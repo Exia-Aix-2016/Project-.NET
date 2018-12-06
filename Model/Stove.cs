@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Stove : Dishes
+    public class Stove : Dishes
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Towel : Cloth
+    public class Towel : Cloth
     {
     }
 }

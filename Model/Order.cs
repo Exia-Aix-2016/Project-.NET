@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Plate : Dishes
+    public class Order
     {
+        public readonly List<Recipe> Recipes;
+
+        public Order(ref List<Recipe> recipes) => Recipes = recipes;
+
     }
 }

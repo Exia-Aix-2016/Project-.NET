@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Juicer : Dishes
+    public class Juicer : Dishes
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Funnel : Dishes
+    public class Funnel : Dishes
     {
     }
 }
