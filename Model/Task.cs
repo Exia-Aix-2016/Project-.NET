@@ -1,17 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
-    public delegate T callback<T>(List<T> param);
-    public class Task<T>
+    public delegate T callback<T>(params object[] param);
+    public class Task<T> : ITask
     {
-        private List<T> param;
+        public readonly object[] Param;
+        public readonly callback<T> Callback;
         private int tickRemaining;
-        private callback<T> callback;
 
+        public Task(object[] param, callback<T> callback, int numberTicks)
+        {
+            tickRemaining = numberTicks;
+            Callback = callback;
+            Param = param;
+        }
+
+        public void exec()
+        {
+            if (tickRemaining == 0)
+            {
+                Callback.Invoke(Param);
+            }
+            else
+            {
+                tickRemaining--;
+            }
+
+        }
+
+        public int TickRemaining { get => tickRemaining; }
     }
 }
