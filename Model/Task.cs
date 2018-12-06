@@ -4,29 +4,29 @@
     public class Task : ITask
     {
         public readonly object[] Param;
-        private callback Callback;
-        private int tickRemaining;
+        private callback _Callback;
+        private int _TickRemaining;
 
         public Task(object[] param, int numberTicks, callback callback)
         {
-            tickRemaining = numberTicks;
-            Callback = callback;
+            _TickRemaining = numberTicks;
+            _Callback = callback;
             Param = param;
         }
 
         public void exec()
         {
-            if (tickRemaining == 0)
+            if (_TickRemaining == 0)
             {
-                Callback.Invoke(Param);
+                _Callback.Invoke(Param);
             }
             else
             {
-                tickRemaining--;
+                _TickRemaining--;
             }
 
         }
 
-        public int TickRemaining { get => tickRemaining; }
+        public int TickRemaining { get => _TickRemaining; }
     }
 }
