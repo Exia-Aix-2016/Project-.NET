@@ -1,13 +1,13 @@
 ﻿namespace Model
 {
-    public delegate T callback<T>(params object[] param);
-    public class Task<T> : ITask
+    public delegate void callback(params object[] param);
+    public class Task : ITask
     {
         public readonly object[] Param;
-        public readonly callback<T> Callback;
+        private callback Callback;
         private int tickRemaining;
 
-        public Task(object[] param, callback<T> callback, int numberTicks)
+        public Task(object[] param, int numberTicks, callback callback)
         {
             tickRemaining = numberTicks;
             Callback = callback;
