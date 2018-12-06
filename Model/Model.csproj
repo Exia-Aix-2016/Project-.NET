@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>01b21667-a7ea-4563-b659-8d9db63ccc3d</ProjectGuid>
+    <ProjectGuid>{01B21667-A7EA-4563-B659-8D9DB63CCC3D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
@@ -31,24 +31,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Blender.cs" />
+    <Compile Include="Bowl.cs" />
+    <Compile Include="Cloth.cs" />
+    <Compile Include="CoffeeCup.cs" />
+    <Compile Include="CookingKnife.cs" />
+    <Compile Include="Cutlery.cs" />
+    <Compile Include="Dishes.cs" />
+    <Compile Include="Funnel.cs" />
+    <Compile Include="Glass.cs" />
+    <Compile Include="Juicer.cs" />
+    <Compile Include="Plate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sieve.cs" />
+    <Compile Include="Spoon.cs" />
+    <Compile Include="Stove.cs" />
+    <Compile Include="Towel.cs" />
+    <Compile Include="Washable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
