@@ -53,6 +53,7 @@
     <Compile Include="CookingKnife.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="Cutlery.cs" />
+    <Compile Include="DiningRoom.cs" />
     <Compile Include="Dishes.cs" />
     <Compile Include="DishMachine.cs" />
     <Compile Include="Diver.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Funnel.cs" />
     <Compile Include="Glass.cs" />
     <Compile Include="Ingredient.cs" />
+    <Compile Include="ISimulation.cs" />
     <Compile Include="ITask.cs" />
     <Compile Include="Juicer.cs" />
     <Compile Include="Kitchen.cs" />
@@ -70,11 +72,14 @@
     <Compile Include="Plate.cs" />
     <Compile Include="PressureCooker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rank.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="Sieve.cs" />
     <Compile Include="Sink.cs" />
     <Compile Include="Spoon.cs" />
+    <Compile Include="Square.cs" />
     <Compile Include="Stove.cs" />
+    <Compile Include="Table.cs" />
     <Compile Include="Tablecloth.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskProcessor.cs" />
