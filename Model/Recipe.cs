@@ -9,8 +9,10 @@ namespace Model
     public class Recipe
     {
         private Dictionary<Ingredient, int> ingredients;
+        private List<Tool> tools;
         private int cookingTimeRemaining;
         private int bakingTimeRemaining;
+
 
         public Recipe(int cookingTimeRemaining, int bakingTimeRemaining)
         {
@@ -29,7 +31,9 @@ namespace Model
         }
 
         public int BakingTimeRemaining { get => bakingTimeRemaining; set => bakingTimeRemaining = (value > 0) ? value : 1; }
+
         public int CookingTimeRemaining { get => cookingTimeRemaining; set => cookingTimeRemaining = (value > 0) ? value : 1; }
+
         public Dictionary<Ingredient, int> Ingredients { get => ingredients; set => ingredients = value; }
 
     }

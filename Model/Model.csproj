@@ -54,6 +54,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Cloth.cs" />
     <Compile Include="ClothType.cs" />
+    <Compile Include="Container.cs" />
     <Compile Include="CookingFires.cs" />
     <Compile Include="DiningRoom.cs" />
     <Compile Include="Counter.cs" />

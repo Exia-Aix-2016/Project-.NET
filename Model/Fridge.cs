@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Fridge
+    public class Fridge : Container<Ingredient>
     {
+        public Fridge(int numberSlots) : base(numberSlots){}
     }
 }

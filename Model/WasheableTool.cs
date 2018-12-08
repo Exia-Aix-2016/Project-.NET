@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class WasheableTool : Tool
+    public class WasheableTool : Model.Tool
     {
         public bool Clean;
         public WasheableTool(ToolsType toolType) : base(toolType) { Clean = true; }

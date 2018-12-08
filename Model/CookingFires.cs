@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class CookingFires
+    public class CookingFires : TaskProcessor
     {
+        private Recipe _Recipe;
+
+        public CookingFires()
+        {
+           
+
+        }
+
+       
+
+
+
     }
 }
