@@ -57,7 +57,6 @@
     <Compile Include="CookingFires.cs" />
     <Compile Include="DiningRoom.cs" />
     <Compile Include="Counter.cs" />
-    <Compile Include="DiningRoom.cs" />
     <Compile Include="DishMachine.cs" />
     <Compile Include="Diver.cs" />
     <Compile Include="Fridge.cs" />
