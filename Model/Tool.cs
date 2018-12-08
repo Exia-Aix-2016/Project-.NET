@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Tool
+    public class Tool
     {
         public readonly ToolsType ToolsType;
 

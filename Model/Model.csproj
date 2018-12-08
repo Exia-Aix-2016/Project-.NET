@@ -74,8 +74,6 @@
     <Compile Include="Sink.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Table.cs" />
-    <Compile Include="Square.cs" />
-    <Compile Include="Table.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskProcessor.cs" />
     <Compile Include="Tool.cs" />
