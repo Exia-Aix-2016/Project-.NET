@@ -8,9 +8,11 @@ namespace Model
 {
     public class DiningRoom
     {
-        public DiningRoom()
-        {
+        private Square[] Squares;
 
+        public DiningRoom(Square[] squares)
+        {
+            this.Squares = squares;
         }
     }
 }

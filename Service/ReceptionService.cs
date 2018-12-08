@@ -9,11 +9,11 @@ namespace Service
 {
     class ReceptionService
     {
-        private DiningRoom diningRoom;
+        private DiningRoom DiningRoom;
 
         public ReceptionService(DiningRoom diningRoom)
         {
-            this.diningRoom = diningRoom;
+            this.DiningRoom = diningRoom;
         }
 
         public void GetNewClients()

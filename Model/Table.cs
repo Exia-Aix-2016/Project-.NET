@@ -8,11 +8,11 @@ namespace Model
 {
     public class Table
     {
-        public readonly int chairs;
+        public readonly int Chairs;
 
         public Table(int chairs)
         {
-            this.chairs = chairs;
+            this.Chairs = chairs;
         }
 
     }
