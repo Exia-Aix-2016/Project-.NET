@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Tool
+    public enum CleaningStatus
     {
-        public readonly ToolsType ToolsType;
-
-        public Tool(ToolsType toolType) => ToolsType = toolType;
-
-
-
+        DIRTY,
+        RINSE,
+        CLEAN
 
     }
 }

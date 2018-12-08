@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class TaskProcessor
+    public class TaskProcessor : ITaskProcessor
     {
-        private Queue<Task> _Tasks;
+        private Queue<Task> _Tasks; //FIFO
         private bool _Occupied;
-
 
         public TaskProcessor()
         {
@@ -22,22 +21,33 @@ namespace Model
         private void CreateProcessor(ref Queue<Task> tasks) {
             _Tasks = tasks;
             _Occupied = false;
+
         }
 
         public void AddTask(Task task)
         {
             _Tasks.Enqueue(task);
         }
+        public void RemoveTask(Task task)
+        {
+            _Tasks.ToList().Remove(task);
+        }
         public void Process()
         {
-            _Occupied = false;
-            _Tasks.Dequeue().exec();
             _Occupied = true;
+            Task task = _Tasks.Peek();
+            task.exec();
+            if (task.TickRemaining == 0) _Tasks.Dequeue(); //Quand la task à fini de process on l'enlève de la queue 
+            _Occupied = false;
+
         }
 
+        /**
+         * Return the number of total tick remaining. 
+         */
         public int TotalTicks { get => _Tasks.Sum(task => task.TickRemaining);}
 
-        public Task GetCurrentTask { get => _Tasks.ElementAt(_Tasks.Count - 1); }
+        public Task GetCurrentTask { get => _Tasks.Peek(); }
 
         public bool IsOccupied { get => _Occupied; }
    

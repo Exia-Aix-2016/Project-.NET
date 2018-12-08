@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Butler : TaskProcessor
+    class Butler : ITaskProcessorContainer
     {
 
-
+        private ITaskProcessor _TaskProcessor;
+        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
     }
 }

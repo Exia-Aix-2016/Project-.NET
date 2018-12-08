@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class PartyChef
+    public class PartyChef : ITaskProcessorContainer
     {
+        private ITaskProcessor _TaskProcessor;
+        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
     }
 }

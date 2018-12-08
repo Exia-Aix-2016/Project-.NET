@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Butler.cs" />
     <Compile Include="Chef.cs" />
+    <Compile Include="CleaningStatus.cs" />
     <Compile Include="Clerk.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Cloth.cs" />
@@ -61,9 +62,12 @@
     <Compile Include="DishMachine.cs" />
     <Compile Include="Diver.cs" />
     <Compile Include="Fridge.cs" />
+    <Compile Include="ICookDevice.cs" />
     <Compile Include="Ingredient.cs" />
+    <Compile Include="ITaskProcessor.cs" />
     <Compile Include="ISimulation.cs" />
     <Compile Include="ITask.cs" />
+    <Compile Include="ITaskProcessorContainer.cs" />
     <Compile Include="Kitchen.cs" />
     <Compile Include="Meal.cs" />
     <Compile Include="Order.cs" />

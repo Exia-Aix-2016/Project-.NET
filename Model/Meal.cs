@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Meal
+    public class Meal
     {
+        public readonly string _Name;
+
+        public Meal(string name)
+        {
+            _Name = name;
+        }
+
     }
 }

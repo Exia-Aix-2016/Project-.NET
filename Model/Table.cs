@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Table
+    public class Table : Container<Client>
     {
-        public readonly int Chairs;
 
-        public Table(int chairs)
+        public Table(int numberchairs) : base(numberchairs)
         {
-            this.Chairs = chairs;
+
         }
 
     }

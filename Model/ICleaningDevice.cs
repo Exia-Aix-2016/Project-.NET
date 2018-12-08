@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Tool
+    public interface ICleaningDevice<T>
     {
-        public readonly ToolsType ToolsType;
-
-        public Tool(ToolsType toolType) => ToolsType = toolType;
-
-
-
-
+        List<T> Retrieve();
+        void StartMachine();
+        bool Available { get; }
     }
 }

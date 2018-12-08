@@ -8,5 +8,9 @@ namespace Model
 {
     public class Kitchen
     {
+        private Fridge _Fridge;
+        private CookingFires _CookingFires;
+        private Oven _Oven;
+       
     }
 }

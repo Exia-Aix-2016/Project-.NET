@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Client : TaskProcessor
+    public class Client : ITaskProcessorContainer
     {
+        private ITaskProcessor _TaskProcessor;
+        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
     }
 }

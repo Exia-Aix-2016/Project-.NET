@@ -8,9 +8,9 @@ namespace Model
 {
     public class Order
     {
-        public readonly List<Recipe> Recipes;
+        public readonly List<Recipe> _Recipes;
 
-        public Order(ref List<Recipe> recipes) => Recipes = recipes;
+        public Order(ref List<Recipe> recipes) => _Recipes = recipes;
 
     }
 }

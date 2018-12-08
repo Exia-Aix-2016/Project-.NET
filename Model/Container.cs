@@ -8,16 +8,18 @@ namespace Model
 {
     public abstract class Container<T>
     {
-        protected List<T> _Slots;
+        protected List<T> Storage;
         public readonly int NumberSlots;
         public bool Available;
 
         public Container(int numberSlots)
         {
-            _Slots = getNewStorage<T>(numberSlots);
+            Storage = getNewStorage<T>(numberSlots);
             NumberSlots = numberSlots;
             Available = true;   
         }
+
+        
 
         /**
          * Construct new Storage with max or infinite Items. 0 = infinite. 
@@ -35,36 +37,36 @@ namespace Model
         }
         public virtual int Size
         {
-            get => _Slots.Count;
+            get => Storage.Count;
         }
         public virtual void AddItem(T item)
         {
             if (item == null) throw new ArgumentNullException("Container : item null");
 
-            if (NumberSlots > 0 && _Slots.Count + 1 > NumberSlots) throw new Exception("Container : Storage is full");
-            _Slots.Add(item);
+            if (NumberSlots > 0 && Storage.Count + 1 > NumberSlots) throw new Exception("Container : Storage is full");
+            Storage.Add(item);
         }
 
         public virtual void AddItems(ref List<T> items)
         {
             if (items == null) throw new ArgumentNullException("Container : items null");
-            if(NumberSlots > 0 && _Slots.Count + items.Count > NumberSlots) throw new Exception("Container : Storage is full");
+            if(NumberSlots > 0 && Storage.Count + items.Count > NumberSlots) throw new Exception("Container : Storage is full");
 
-            _Slots.AddRange(items);
+            Storage.AddRange(items);
         }
 
         public virtual void removeItem(T item)
         {
             if (item == null) throw new ArgumentNullException("Container : item null");
-            _Slots.Remove(item);
+            Storage.Remove(item);
 
         }
         public virtual T removeItem(int index)
         {
-            if(index < _Slots.Count + 1)
+            if(index < Storage.Count + 1)
             {
-                T item = _Slots.ElementAt(index);
-                if (item != null) _Slots.Remove(item);
+                T item = Storage.ElementAt(index);
+                if (item != null) Storage.Remove(item);
                 return item;
             }
             else

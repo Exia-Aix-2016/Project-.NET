@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Tool
+    public interface ITaskProcessorContainer
     {
-        public readonly ToolsType ToolsType;
-
-        public Tool(ToolsType toolType) => ToolsType = toolType;
-
-
-
-
+        ITaskProcessor TaskProcessor { get; }
     }
 }
