@@ -61,6 +61,6 @@ namespace Model
 
         public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
 
-        bool ICleaningDevice<Cloth>.Available { get => _Available && !Storage.Any(); }
+        public bool Available { get => _Available && !Storage.Any(); }
     }
 }
