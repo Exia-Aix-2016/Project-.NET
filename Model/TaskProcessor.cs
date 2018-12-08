@@ -8,34 +8,36 @@ namespace Model
 {
      public class TaskProcessor
     {
-        private Queue<Task> Tasks;
-        private bool Occuped;
+        private Queue<Task> _Tasks;
+        private bool _Occupied;
 
 
         public TaskProcessor()
         {
             Queue<Task> t = new Queue<Task>();
-            createProcessor(ref t);
+            CreateProcessor(ref t);
         }
+        public TaskProcessor(ref Queue<Task> tasks) => CreateProcessor(ref tasks);
 
-        public TaskProcessor(ref Queue<Task> tasks) => createProcessor(ref tasks);
-        private void createProcessor(ref Queue<Task> tasks) {
-            Tasks = tasks;
-            Occuped = false;
+        private void CreateProcessor(ref Queue<Task> tasks) {
+            _Tasks = tasks;
+            _Occupied = false;
         }
 
         public void AddTask(Task task)
         {
-            Tasks.Enqueue(task);
+            _Tasks.Enqueue(task);
         }
         public void Process()
         {
-            Occuped = false;
-            Tasks.Dequeue().exec();
-            Occuped = true;
+            _Occupied = false;
+            _Tasks.Dequeue().exec();
+            _Occupied = true;
         }
 
-        public Task GetCurrentTask { get => Tasks.ElementAt(Tasks.Count - 1); }
+        public Task GetCurrentTask { get => _Tasks.ElementAt(_Tasks.Count - 1); }
+
+        public bool IsOccupied { get => _Occupied; }
    
     }
 }

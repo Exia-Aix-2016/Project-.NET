@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Blender : Dishes
+    public enum ClothType
     {
+        Towel,
+        Tablecloth
     }
 }

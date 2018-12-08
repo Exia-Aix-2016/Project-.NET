@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Plate : Dishes
+    class Butler : TaskProcessor
     {
+
+
     }
 }
