@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-     public class TaskProcessor
+    public class TaskProcessor
     {
         private Queue<Task> _Tasks;
         private bool _Occupied;
@@ -34,6 +34,8 @@ namespace Model
             _Tasks.Dequeue().exec();
             _Occupied = true;
         }
+
+        public int TotalTicks { get => _Tasks.Sum(task => task.TickRemaining);}
 
         public Task GetCurrentTask { get => _Tasks.ElementAt(_Tasks.Count - 1); }
 
