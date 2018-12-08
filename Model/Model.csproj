@@ -55,10 +55,7 @@
     <Compile Include="Cloth.cs" />
     <Compile Include="ClothType.cs" />
     <Compile Include="CookingFires.cs" />
-    <Compile Include="CookingKnife.cs" />
-    <Compile Include="Cutlery.cs" />
     <Compile Include="DiningRoom.cs" />
-    <Compile Include="Dishes.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="DiningRoom.cs" />
     <Compile Include="DishMachine.cs" />
@@ -76,13 +73,8 @@
     <Compile Include="Rank.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="Sink.cs" />
-    <Compile Include="Spoon.cs" />
     <Compile Include="Square.cs" />
-    <Compile Include="Stove.cs" />
     <Compile Include="Table.cs" />
-    <Compile Include="Tablecloth.cs" />
-    <Compile Include="Towel.cs" />
-    <Compile Include="Washable.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Task.cs" />
