@@ -23,8 +23,8 @@ namespace Kitchen
         public MainWindow()
         {
             InitializeComponent();
-            var service = new Service.Class1();
-            service.TestDataBase();
+            /*var service = new Service.Class1();
+            service.TestDataBase();*/
         }
     }
 }
