@@ -59,7 +59,7 @@ namespace Model
             return cloths;
         }
 
-        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
+        public ITaskProcessor TaskProcessor { get; }
 
         public bool Available { get => _Available && !Storage.Any(); }
     }

@@ -63,6 +63,6 @@ namespace Model
 
         public bool Available { get => !Storage.Any() && _Available; }
 
-        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
+        public ITaskProcessor TaskProcessor { get; }
     }
 }

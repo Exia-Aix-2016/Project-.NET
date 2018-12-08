@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Diver
+    public class Diver : ITaskProcessorContainer
     {
+        private ITaskProcessor _TaskProcessor;
+
+        public ITaskProcessor TaskProcessor { get; }
     }
 }

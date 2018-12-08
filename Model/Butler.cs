@@ -10,6 +10,6 @@ namespace Model
     {
 
         private ITaskProcessor _TaskProcessor;
-        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
+        public ITaskProcessor TaskProcessor { get; }
     }
 }

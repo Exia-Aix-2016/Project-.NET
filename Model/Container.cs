@@ -35,10 +35,7 @@ namespace Model
                 return new List<R>();
             }
         }
-        public virtual int Size
-        {
-            get => Storage.Count;
-        }
+        public virtual int Size {get => Storage.Count; }
         public virtual void AddItem(T item)
         {
             if (item == null) throw new ArgumentNullException("Container : item null");

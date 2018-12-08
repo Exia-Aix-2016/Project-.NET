@@ -38,7 +38,7 @@ namespace Model
         }
         public bool Available { get => (_Recipe == null && _Meal == null) ? true : false; }
 
-        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
+        public ITaskProcessor TaskProcessor { get; }
 
         public Meal TakeMeal
         {

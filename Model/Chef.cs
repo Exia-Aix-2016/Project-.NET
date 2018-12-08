@@ -9,6 +9,6 @@ namespace Model
     public class Chef : ITaskProcessorContainer
     {
         private ITaskProcessor _TaskProcessor;
-        public ITaskProcessor TaskProcessor { get => _TaskProcessor; }
+        public ITaskProcessor TaskProcessor { get; }
     }
 }
