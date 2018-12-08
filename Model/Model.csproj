@@ -57,7 +57,6 @@
     <Compile Include="CookingFires.cs" />
     <Compile Include="Counter.cs" />
     <Compile Include="DiningRoom.cs" />
-    <Compile Include="Dishes.cs" />
     <Compile Include="DishMachine.cs" />
     <Compile Include="Diver.cs" />
     <Compile Include="Fridge.cs" />
@@ -77,8 +76,9 @@
     <Compile Include="Table.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskProcessor.cs" />
+    <Compile Include="Tool.cs" />
     <Compile Include="ToolsType.cs" />
-    <Compile Include="Washable.cs" />
+    <Compile Include="WasheableTool.cs" />
     <Compile Include="WashingMachine.cs" />
   </ItemGroup>
   <ItemGroup>
