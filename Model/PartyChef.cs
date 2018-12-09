@@ -9,6 +9,11 @@ namespace Model
     public class PartyChef : ITaskProcessorContainer
     {
         private ITaskProcessor _TaskProcessor;
+
+        public PartyChef()
+        {
+            _TaskProcessor = new TaskProcessor();
+        }
         public ITaskProcessor TaskProcessor { get; }
     }
 }

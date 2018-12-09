@@ -9,6 +9,11 @@ namespace Model
     public class Clerk : ITaskProcessorContainer
     {
         private ITaskProcessor _TaskProcessor;
+
+        public Clerk()
+        {
+            _TaskProcessor = new TaskProcessor();
+        }
         public ITaskProcessor TaskProcessor { get; }
     }
 }

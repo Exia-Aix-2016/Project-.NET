@@ -10,6 +10,11 @@ namespace Model
     {
 
         private ITaskProcessor _TaskProcessor;
+
+        public Butler()
+        {
+            _TaskProcessor = new TaskProcessor();
+        }
         public ITaskProcessor TaskProcessor { get; }
     }
 }

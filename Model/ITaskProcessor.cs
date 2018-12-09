@@ -11,7 +11,7 @@ namespace Model
         void AddTask(Task task);
         void RemoveTask(Task task);
         void Process();
-        Task GetCurrentTask { get; }
+        Task CurrentTask { get; }
 
         
     }

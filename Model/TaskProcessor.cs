@@ -13,15 +13,7 @@ namespace Model
 
         public TaskProcessor()
         {
-            Queue<Task> t = new Queue<Task>();
-            CreateProcessor(ref t);
-        }
-        public TaskProcessor(ref Queue<Task> tasks) => CreateProcessor(ref tasks);
-
-        private void CreateProcessor(ref Queue<Task> tasks) {
-            _Tasks = tasks;
-            _Occupied = false;
-
+            _Tasks = new Queue<Task>();
         }
 
         public void AddTask(Task task)
@@ -34,20 +26,25 @@ namespace Model
         }
         public void Process()
         {
+            if (!_Tasks.Any()) return;
             _Occupied = true;
-            Task task = _Tasks.Peek();
+            Task task = CurrentTask;
+            
             task.exec();
-            if (task.TickRemaining == 0) _Tasks.Dequeue(); //Quand la task à fini de process on l'enlève de la queue 
+            if(task.IsProcess) _Tasks.Dequeue();
+
             _Occupied = false;
 
         }
+
+        public int Size => _Tasks.Count;
 
         /**
          * Return the number of total tick remaining. 
          */
         public int TotalTicks { get => _Tasks.Sum(task => task.TickRemaining);}
 
-        public Task GetCurrentTask { get => _Tasks.Peek(); }
+        public Task CurrentTask { get => _Tasks.Peek(); }
 
         public bool IsOccupied { get => _Occupied; }
    

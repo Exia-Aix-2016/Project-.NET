@@ -9,6 +9,11 @@ namespace Model
     public class Client : ITaskProcessorContainer
     {
         private ITaskProcessor _TaskProcessor;
+
+        public Client()
+        {
+            _TaskProcessor = new TaskProcessor();
+        }
         public ITaskProcessor TaskProcessor { get; }
     }
 }

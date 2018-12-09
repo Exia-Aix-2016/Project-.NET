@@ -14,7 +14,7 @@ namespace Model
         public readonly string Name;
         
 
-        Recipe(string name, int cookingTimeRemaining, Dictionary<Ingredient, int> ingredient)
+        public Recipe(string name, int cookingTimeRemaining, Dictionary<Ingredient, int> ingredient)
         {
             Name = name;
             _CookingTimeRemaining = cookingTimeRemaining;
