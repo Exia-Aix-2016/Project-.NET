@@ -27,5 +27,13 @@ namespace Model
                 .SelectMany(x => x.Items())
                 .ToArray();
         }
+
+        public Table[] Tables
+        {
+            get =>  Squares
+                .SelectMany(x => x.Items())
+                .SelectMany(x => x.Items())
+                .ToArray();
+        }
     }
 }

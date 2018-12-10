@@ -9,11 +9,17 @@ namespace Service
 {
     public class TableService
     {
-        public Table[] GetTables(Func<Table, bool> selector)
+        private DiningRoom _diningRoom;
+
+        public TableService(DiningRoom diningRoom)
         {
-            return null;
+            this._diningRoom = diningRoom;
         }
 
+        public Table[] GetTables(Func<Table, bool> selector)
+        {
+            return _diningRoom.Tables.Where(selector).ToArray();
+        }
 
     }
 }
