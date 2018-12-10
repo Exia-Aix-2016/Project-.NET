@@ -8,17 +8,18 @@ namespace Model
 {
     public class Recipe
     {
-        private Dictionary<Ingredient, int> _Ingredients;
-        private List<Tool> _ToolsNeeds;
-        private int _CookingTimeRemaining;
+        public readonly Dictionary<Ingredient, int> Ingredients;
+        public readonly Dictionary<ToolsType, int> ToolsNeeds;
+        public readonly int _CookingTimeRemaining;
         public readonly string Name;
         
 
-        public Recipe(string name, int cookingTimeRemaining, Dictionary<Ingredient, int> ingredient)
+        public Recipe(string name, int cookingTimeRemaining, Dictionary<Ingredient, int> ingredient, Dictionary<ToolsType, int> toolsNeeds)
         {
             Name = name;
             _CookingTimeRemaining = cookingTimeRemaining;
-            _Ingredients = ingredient;
+            Ingredients = ingredient;
+            ToolsNeeds = toolsNeeds;
 
         }
 

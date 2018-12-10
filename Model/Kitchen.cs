@@ -12,6 +12,8 @@ namespace Model
         public readonly CookingFires _cookingFires;
         public readonly Oven _oven;
         public readonly Recipe[] Recipes;
+        public readonly Stock Stock;
+        public readonly ToolStorage ToolStorage;
 
     }
 }
