@@ -20,9 +20,14 @@ namespace Dinner
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Service.CounterClientService counter = new Service.CounterClientService();
         public MainWindow()
         {
+            Service.DinnerConnection.Instance.Start();
+
             InitializeComponent();
+            
         }
     }
 }

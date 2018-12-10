@@ -9,9 +9,9 @@ namespace Model
     public class DirtyStorage
     {
         public readonly Cloth[] Cloths;
-        public readonly Tool[] Tools;
+        public readonly WasheableTool[] Tools;
 
-        public DirtyStorage(Cloth[] cloths, Tool[] tools)
+        public DirtyStorage(Cloth[] cloths, WasheableTool[] tools)
         {
             this.Cloths = cloths;
             this.Tools = tools;

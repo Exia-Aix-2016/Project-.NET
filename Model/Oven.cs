@@ -28,7 +28,7 @@ namespace Model
             {
                 _Recipe = recipe;
 
-                _TaskProcessor.AddTask(new Task(null, recipe.CookingTimeRemaining, (Void) => {
+                _TaskProcessor.AddTask(new Task((Void) => {
 
                     _Meal = new Meal(_Recipe.Name);
                     _Recipe = null;

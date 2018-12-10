@@ -46,9 +46,11 @@ namespace Service
             if (!IngredientsCart.Contains(false))
                 Tools = true;
 
-            if (Tools && Ingredients) {
+            if (Tools && Ingredients)
+            {
                 return true;
-            }else
+            }
+            else
             {
                 return false;
             }

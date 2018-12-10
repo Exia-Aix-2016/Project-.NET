@@ -29,8 +29,8 @@ namespace Model
             if (!_Tasks.Any()) return;
             _Occupied = true;
             Task task = CurrentTask;
-            
-            task.exec();
+
+            task.Exec();
             if(task.IsProcess) _Tasks.Dequeue();
 
             _Occupied = false;

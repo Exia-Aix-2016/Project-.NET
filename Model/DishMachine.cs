@@ -43,7 +43,7 @@ namespace Model
             if (!_Available) return;
 
             _Available = false;
-            TaskProcessor.AddTask(new Task(null, TIME_REQUIRE, (Void) =>
+            TaskProcessor.AddTask(new Task((Void) =>
             {
                 Storage.ForEach(tool => tool.CleaningStatus = CleaningStatus.CLEAN);
                 _Available = true;

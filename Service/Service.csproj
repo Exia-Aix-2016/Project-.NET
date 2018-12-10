@@ -51,7 +51,9 @@
     <Compile Include="ClientService.cs" />
     <Compile Include="CounterClientService.cs" />
     <Compile Include="CounterServerService.cs" />
-    <Compile Include="InventotyService.cs" />
+    <Compile Include="DinnerConnection.cs" />
+    <Compile Include="InventoryService.cs" />
+    <Compile Include="kitchenConnection.cs" />
     <Compile Include="KitchenStaffService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceptionService.cs" />

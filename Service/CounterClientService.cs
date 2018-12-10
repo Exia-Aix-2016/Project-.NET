@@ -9,6 +9,16 @@ namespace Service
 {
     public class CounterClientService
     {
+  
+        public CounterClientService()
+        {
+            DinnerConnection.Instance.OnreceiveEvent += new DinnerConnection.ReceiveDel(receive);
+        }
+
+        public void receive(byte[] data)
+        {
+            Console.WriteLine(Model.Counter.Deserialize<string>(data));
+        }
         public Meal[] GetMeals()
         {
             return null;

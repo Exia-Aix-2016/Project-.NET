@@ -20,11 +20,26 @@ namespace Kitchen
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Service.CounterServerService Counter = new Service.CounterServerService();
+
+
+
+     
+
+
         public MainWindow()
         {
+            Service.KitchenConnection.Instance.Start();
             InitializeComponent();
+      
             /*var service = new Service.Class1();
             service.TestDataBase();*/
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Service.KitchenConnection.Instance.Send("testdddddddd");
         }
     }
 }
