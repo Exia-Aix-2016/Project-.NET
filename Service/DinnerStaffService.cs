@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -23,7 +22,7 @@ namespace Service
                 .Select(x => x.HeadWaiter)
                 .Single();
 
-            headWaiter.TaskProcessor.AddTask(new Model.Task(new { }, 1, x => {
+            headWaiter.TaskProcessor.AddTask(new Task(x => {
                 List<Client> clientsList = clients.ToList();
                 table.AddItems(ref clientsList);
             }));

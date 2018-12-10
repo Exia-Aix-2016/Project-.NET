@@ -3,34 +3,26 @@ namespace Model
 {
     public delegate void callback(params object[] param);
     public class Task : ITask
-    {
-        public readonly object[] Param;
-        private callback _Callback;
-        private object p1;
-        private int v;
-        private Action<object[]> p2;
+    { 
+        private callback Callback;
+        public int TickRemaining { get; private set; }
+        public bool IsProcess { get; private set; } = false;
 
-        public Task(object[] param, int numberTicks, callback callback)
+        public Task(callback callback, int ticks = 1)
         {
-            TickRemaining = numberTicks;
-            _Callback = callback;
-            Param = param;
-            IsProcess = false;
+            TickRemaining = ticks;
+            Callback = callback;
         }
 
-        public Task(object p1, int v, Action<object[]> p2)
-        {
-            this.p1 = p1;
-            this.v = v;
-            this.p2 = p2;
-        }
-
-        public void exec()
+        public void Exec()
         {
            
             if (TickRemaining == 0)
             { 
-                _Callback.Invoke(Param);
+                if (Callback != null)
+                {
+                    Callback.Invoke();
+                }
                 IsProcess = true;
             }
             else
@@ -39,9 +31,5 @@ namespace Model
             }
 
         }
-
-        public bool IsProcess { get; private set; }
-
-        public int TickRemaining { get; private set; }
     }
 }

@@ -8,6 +8,6 @@ namespace Model
 {
     public interface ITask
     {
-        void exec();
+        void Exec();
     }
 }
