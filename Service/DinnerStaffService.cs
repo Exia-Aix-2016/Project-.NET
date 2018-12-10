@@ -17,15 +17,21 @@ namespace Service
 
         public void AssignTable(Client[] clients, Table table)
         {
-            HeadWaiter headWaiter = _dining.Squares
-                .Where(x => x.Items().Where(y => y.Items().Contains(table)).Any())
-                .Select(x => x.HeadWaiter)
-                .Single();
+            HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
             headWaiter.TaskProcessor.AddTask(new Task(x => {
                 List<Client> clientsList = clients.ToList();
+                clientsList.ForEach(client => _dining.Lobby.Remove(client));
                 table.AddItems(ref clientsList);
             }));
+        }
+
+        public HeadWaiter GetHeadWaiterByTable(Table table)
+        {
+            return _dining.Squares
+                .Where(x => x.Items().Where(y => y.Items().Contains(table)).Any())
+                .Select(x => x.HeadWaiter)
+                .Single();
         }
 
         public HeadWaiter[] GetHeadWaiters(Func<HeadWaiter, bool> selector)
@@ -40,7 +46,20 @@ namespace Service
 
         public void AssignMenus(Table table)
         {
-            // Task
+            HeadWaiter headWaiter = GetHeadWaiterByTable(table);
+
+            headWaiter.TaskProcessor.AddTask(new Task(x =>
+            {
+                var menus = new List<Menu>();
+                for (int i = 0; i < table.Items().Count; i++)
+                {
+                    var menu = _dining.Menus.Last();
+                    _dining.Menus.Remove(menu);
+                    table.Menus.Add(menu);
+                }
+
+            }));
+ 
         }
 
         public void TakeOrders (Table table)
