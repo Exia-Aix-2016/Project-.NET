@@ -20,7 +20,7 @@ namespace Model
         }
         public void AddDirtyCloth(Cloth cloth)
         {
-            if (cloth == null) throw new ArgumentNullException("DisMachine : tool is null");
+            if (cloth == null) throw new ArgumentNullException("DisMachine : cloth is null");
 
             if (cloth.CleaningStatus == CleaningStatus.DIRTY)
             {
@@ -29,7 +29,7 @@ namespace Model
         }
         public void AddDirtyCloths(ref List<Cloth> cloths)
         {
-            if (cloths == null) throw new ArgumentNullException("DisMachine : tool is null");
+            if (cloths == null) throw new ArgumentNullException("DisMachine : cloths is null");
 
             if (cloths.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.DIRTY))
             {
