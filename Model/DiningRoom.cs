@@ -12,8 +12,20 @@ namespace Model
 
         public List<Client> getAllClients()
         {
+            List<Client> clients = new List<Client>();
+            Storage.ForEach(square =>
+            {
+                square.Items().ForEach(rank =>
+                {
+                    rank.Items().ForEach(table =>
+                    {
+                        clients.AddRange(table.Items());
+                    });
+                });
+            });
 
-            return null;
+
+            return clients;
         }
 
         

@@ -8,7 +8,11 @@ namespace Model
 {
     public class Square : Container<Rank>
     {
-        public Square(int numberRanks) : base(numberRanks) { }
+        public readonly int SquareID;
+        public Square(int squareID, int numberRanks) : base(numberRanks)
+        {
+            SquareID = squareID;
+        }
 
 
     }

@@ -8,10 +8,11 @@ namespace Model
 {
     public class Table : Container<Client>
     {
+        public readonly int TableID;
 
-        public Table(int numberchairs) : base(numberchairs)
+        public Table(int tableID, int numberchairs) : base(numberchairs)
         {
-
+            TableID = tableID;
         }
 
 
