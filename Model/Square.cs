@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Square
+    public class Square : Container<Rank>
     {
-        private Rank[] Ranks;
+        public Square(int numberRanks) : base(numberRanks) { }
 
-        public Square(Rank[] ranks)
-        {
-            this.Ranks = ranks;
-        }
 
     }
 }

@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class DiningRoom
+    public class DiningRoom : Container<Square>
     {
-        private Square[] Squares;
+        public DiningRoom(int numberSquares) : base(numberSquares){}
 
-        public DiningRoom(Square[] squares)
-        {
-            this.Squares = squares;
-        }
+        
     }
 }

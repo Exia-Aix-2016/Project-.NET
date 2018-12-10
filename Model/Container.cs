@@ -10,17 +10,14 @@ namespace Model
     {
         protected List<T> Storage;
         public readonly int NumberSlots;
-        public bool Available;
 
         public Container(int numberSlots)
         {
             Storage = getNewStorage<T>(numberSlots);
-            NumberSlots = numberSlots;
-            Available = true;   
+            NumberSlots = numberSlots; 
         }
 
-        
-
+       
         /**
          * Construct new Storage with max or infinite Items. 0 = infinite. 
          */

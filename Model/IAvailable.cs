@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public interface ICleaningDevice<T> : IAvailable
+    public interface IAvailable
     {
-        List<T> Retrieve();
-        void StartMachine();
-
+        bool Available { get; }
     }
 }

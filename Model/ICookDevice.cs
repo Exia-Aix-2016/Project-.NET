@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public interface ICookDevice
+    public interface ICookDevice : IAvailable
     {
         void AddRecipe(ref Recipe recipe);
         Meal TakeMeal { get; }
         bool IsCookFinished {get;}
-        bool Available { get; }
+
 
     }
 }

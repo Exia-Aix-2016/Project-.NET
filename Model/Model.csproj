@@ -62,6 +62,7 @@
     <Compile Include="DishMachine.cs" />
     <Compile Include="Diver.cs" />
     <Compile Include="Fridge.cs" />
+    <Compile Include="IAvailable.cs" />
     <Compile Include="ICleaningDevice.cs" />
     <Compile Include="ICookDevice.cs" />
     <Compile Include="Ingredient.cs" />

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Rank
+    public class Rank : Container<Table>
     {
-        private Table[] Tables;
+        public Rank(int numberTables) : base(numberTables) { }
 
-        public Rank(Table[] tables)
+        public void getTables()
         {
-            this.Tables = tables;
+
+
         }
     }
 }
