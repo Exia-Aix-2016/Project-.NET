@@ -14,10 +14,10 @@ namespace Model
         public Container(int numberSlots)
         {
             Storage = getNewStorage<T>(numberSlots);
-            NumberSlots = numberSlots; 
+            NumberSlots = numberSlots;
         }
 
-       
+
         /**
          * Construct new Storage with max or infinite Items. 0 = infinite. 
          */
@@ -32,7 +32,7 @@ namespace Model
                 return new List<R>();
             }
         }
-        public virtual int Size {get => Storage.Count; }
+        public virtual int Size { get => Storage.Count; }
         public virtual void AddItem(T item)
         {
             if (item == null) throw new ArgumentNullException("Container : item null");
@@ -44,7 +44,7 @@ namespace Model
         public virtual void AddItems(ref List<T> items)
         {
             if (items == null) throw new ArgumentNullException("Container : items null");
-            if(NumberSlots > 0 && Storage.Count + items.Count > NumberSlots) throw new Exception("Container : Storage is full");
+            if (NumberSlots > 0 && Storage.Count + items.Count > NumberSlots) throw new Exception("Container : Storage is full");
 
             Storage.AddRange(items);
         }
@@ -57,10 +57,10 @@ namespace Model
         public virtual T removeItem(int index)
         {
             if (index > Storage.Count) throw new IndexOutOfRangeException("out of bound");
-            
+
             T item = Storage.ElementAt(index);
             if (item != null) Storage.Remove(item);
-            return item;   
+            return item;
         }
 
         public virtual T Item(int index)
@@ -69,19 +69,12 @@ namespace Model
             return Storage.ElementAt(index);
         }
 
-        public virtual T[] Items()
-        { 
-            if(Storage.Count > 0)
-            {
-                T[] t = new T[Storage.Count];
-                Storage.CopyTo(t);
-                return t;
-            }
-            else
-            {
-                return null;
-            }
+        public virtual List<T> Items()
+        {
+            return new List<T>(Storage);
         }
-
     }
+ 
+
+    
 }
