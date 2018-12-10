@@ -44,7 +44,7 @@ namespace ModelTest
 
             
             for (int i = 0; i < 32; i++) taskProcessor.Process();
-
+            
 
             Assert.AreEqual(0, taskProcessor.Size, "not equal");
 
@@ -56,6 +56,25 @@ namespace ModelTest
 
 
 
+        }
+        [TestMethod]
+        public void TestSink()
+        {
+            Model.Sink sink = new Model.Sink(5);
+
+            sink.AddItem(new Model.WasheableTool(Model.ToolsType.Plate, Model.CleaningStatus.DIRTY));
+            sink.AddItem(new Model.WasheableTool(Model.ToolsType.CoffeeCup, Model.CleaningStatus.DIRTY));
+
+            Assert.AreEqual(2, sink.Size, "Number of item in Sink doesn't match (2)");
+
+            List<Model.WasheableTool> washeableTools = sink.WashingTools();
+
+            Assert.AreEqual(2, washeableTools.Count, "Number of washeableTools return by washingTools method doesn't match (2)");
+
+            if(!washeableTools.TrueForAll(item => item.CleaningStatus == Model.CleaningStatus.RINSE))
+            {
+                Assert.Fail("Items aren't Rinsed");
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Model
             //Set number Item can be get by Diver.
             Random random = new Random();
             int numItem = random.Next(1, 6);
+            if (numItem > Storage.Count) numItem = Storage.Count;
 
             List<WasheableTool> tools = new List<WasheableTool>(numItem);
             
