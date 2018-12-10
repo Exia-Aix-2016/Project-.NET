@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class InventotyService
+    public class InventoryService
     {
         private Kitchen _kitchen;
 
