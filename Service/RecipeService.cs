@@ -9,16 +9,21 @@ namespace Service
 {
     public class RecipeService
     {
+        private Kitchen _kitchen;
+
+        public RecipeService(Kitchen kitchen)
+        {
+            this._kitchen = kitchen;
+        } 
+
         public Recipe GetRecipeFromOrder(Order order)
         {
-            return null;
+            return order.Recipe;
         }
 
-        public Recipe GetRecipe(Func<Recipe, bool> selector)
+        public Recipe[] GetRecipe(Func<Recipe, bool> selector)
         {
-            return null;
+            return _kitchen.Recipes.Where(selector).ToArray();
         }
-
-
     }
 }
