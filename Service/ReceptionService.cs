@@ -35,7 +35,14 @@ namespace Service
 
         public bool IsMenuAvailable(int number)
         {
-            return false;
+            if(DiningRoom.Menus.Count >= number)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
