@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class HeadWaiter
+    public class HeadWaiter : ITaskProcessorContainer
     {
+        public ITaskProcessor TaskProcessor { get; } = new TaskProcessor();
     }
 }

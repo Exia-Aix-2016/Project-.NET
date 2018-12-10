@@ -6,28 +6,24 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class DiningRoom : Container<Square>
+    public class DiningRoom
     {
-        public DiningRoom(int numberSquares) : base(numberSquares){}
+        public readonly IList<Square> Squares = new List<Square>();
 
-        public List<Client> getAllClients()
+        public DiningRoom(int numberSquares) { }
+
+        public HeadWaiter[] HeadWaiters
         {
-            List<Client> clients = new List<Client>();
-            Storage.ForEach(square =>
-            {
-                square.Items().ForEach(rank =>
-                {
-                    rank.Items().ForEach(table =>
-                    {
-                        clients.AddRange(table.Items());
-                    });
-                });
-            });
-
-
-            return clients;
+            get => Squares.Select(x => x.HeadWaiter).ToArray();
         }
 
-        
+        public Client[] Clients
+        {
+            get => Squares
+                .SelectMany(x => x.Items())
+                .SelectMany(x => x.Items())
+                .SelectMany(x => x.Items())
+                .ToArray();
+        }
     }
 }
