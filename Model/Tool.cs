@@ -9,8 +9,13 @@ namespace Model
     public class Tool
     {
         public readonly ToolsType ToolsType;
+        public readonly WashersType WasherType;
 
-        public Tool(ToolsType toolType) => ToolsType = toolType;
+        public Tool(ToolsType toolType, WashersType washerType)
+        {
+            ToolsType = toolType;
+            WasherType = washerType;
+        }
 
 
 

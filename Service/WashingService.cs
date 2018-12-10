@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,60 @@ namespace Service
 {
     public class WashingService
     {
-        public bool IsWashingFinished()
+        private Kitchen _kitchen;
+
+        public WashingService(Kitchen kitchen)
         {
-            return false;
+            this._kitchen = kitchen;
+        }
+
+        public bool IsWashingMachineFinished()
+        {
+            return _kitchen.WashingMachine.Available;
+        }
+
+        public void FreeWashingMachine()
+        {
+            // Task
         }
 
         public bool IsDirtyCuttlery()
         {
-            return false;
+            if(_kitchen.DirtyStorage.Tools.Where(x => x.WasherType == WashersType.WashingMachine).Any())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void FillWashingMachine()
+        {
+            // Task
+        }
+
+        public void StartWashingMachine()
+        {
+            // Task
         }
 
         public bool IsDirtyTools()
         {
-            return false;
+            if (_kitchen.DirtyStorage.Tools.Where(x => x.WasherType == WashersType.Sink).Any())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Wash()
+        {
+            // Task
         }
     }
 }

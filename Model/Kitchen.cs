@@ -14,6 +14,8 @@ namespace Model
         public readonly Recipe[] Recipes;
         public readonly Stock Stock;
         public readonly ToolStorage ToolStorage;
+        public readonly DirtyStorage DirtyStorage;
+        public readonly WashingMachine WashingMachine;
 
     }
 }
