@@ -13,30 +13,26 @@ namespace Model
         public List<WasheableTool> WashingTools()
         {
             if(Storage.Count == 0) throw new Exception(" Sink : You cannot Washing tools when the Sink is empty !");
-    
-            //Set number Item can be get by Diver.
-            Random random = new Random();
-            int numItem = random.Next(1, 6);
-            if (numItem > Storage.Count) numItem = Storage.Count;
 
-            List<WasheableTool> tools = new List<WasheableTool>(numItem);
-            
-            tools.AddRange(Storage.GetRange(0, numItem));
-            tools.ForEach(tool => tool.CleaningStatus = CleaningStatus.RINSE);
+            List<WasheableTool> tools = new List<WasheableTool>();
 
-            tools.ForEach(t => Storage.Remove(t));
+            Storage.ForEach(tool => {
+                tool.CleaningStatus = CleaningStatus.CLEAN;
+                tools.Add(tool);
+                });
+            Storage.Clear();
 
             return tools;
         }
 
         public override void AddItem(WasheableTool item)
         {
-            if (item.CleaningStatus == CleaningStatus.DIRTY) base.AddItem(item);
+            if (item.CleaningStatus == CleaningStatus.DIRTY && item.WashRequirement == WashRequirement.Sink) base.AddItem(item);
         }
 
         public override void AddItems(ref List<WasheableTool> items)
         {
-           if(items.TrueForAll(item => item.CleaningStatus == CleaningStatus.DIRTY))
+           if(items.TrueForAll(item => item.CleaningStatus == CleaningStatus.DIRTY && item.WashRequirement == WashRequirement.Sink))
             {
                 base.AddItems(ref items);
             }

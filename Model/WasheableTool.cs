@@ -8,9 +8,19 @@ namespace Model
 {
     public class WasheableTool : Tool
     {
-        public CleaningStatus CleaningStatus;
-        public WasheableTool(ToolsType toolType) : base(toolType) => CleaningStatus = CleaningStatus.CLEAN; 
-        public WasheableTool(ToolsType toolType, CleaningStatus cleaningStatus) : base(toolType) => CleaningStatus = cleaningStatus;
+        public readonly WashRequirement WashRequirement;
 
+        public CleaningStatus CleaningStatus;
+        public WasheableTool(ToolsType toolType, WashRequirement washRequirement) : base(toolType)
+        {
+            CleaningStatus = CleaningStatus.CLEAN;
+            WashRequirement = washRequirement;
+
+        }
+        public WasheableTool(ToolsType toolType, WashRequirement washRequirement, CleaningStatus cleaningStatus) : base(toolType)
+        {
+            CleaningStatus = cleaningStatus;
+            WashRequirement = washRequirement;
+        }
     }
 }

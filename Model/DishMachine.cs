@@ -23,7 +23,7 @@ namespace Model
         {
             if (tool == null) throw new ArgumentNullException("DisMachine : tool is null");
 
-            if(tool.CleaningStatus == CleaningStatus.RINSE)
+            if(tool.CleaningStatus == CleaningStatus.DIRTY && tool.WashRequirement == WashRequirement.DishMachine)
             {
                 base.AddItem(tool);
             }
@@ -32,7 +32,7 @@ namespace Model
         {
             if (tools == null) throw new ArgumentNullException("DisMachine : tool is null");
 
-            if(tools.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.RINSE))
+            if(tools.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.DIRTY && tool.WashRequirement == WashRequirement.DishMachine))
             {
                 base.AddItems(ref tools);
             }

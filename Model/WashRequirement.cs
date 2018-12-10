@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum CleaningStatus
+    public enum WashRequirement
     {
-        DIRTY,
-        CLEAN
+        DishMachine,
+        Sink
     }
 }
