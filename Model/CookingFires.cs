@@ -8,6 +8,7 @@ namespace Model
 {
     public class CookingFires : ICookDevice, ITaskProcessorContainer
     {
+        public int TimeRequire = 10;
         private Recipe _Recipe;
         private Meal _Meal;
         private ITaskProcessor _TaskProcessor;
@@ -32,7 +33,7 @@ namespace Model
                     _Meal = new Meal(_Recipe.Name);
                     _Recipe = null;
 
-                }));
+                }, TimeRequire));
             }
         }
         public Meal TakeMeal {

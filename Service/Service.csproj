@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientService.cs" />
+    <Compile Include="ConfigurationService.cs" />
     <Compile Include="CounterClientService.cs" />
     <Compile Include="CounterServerService.cs" />
     <Compile Include="DinnerConnection.cs" />

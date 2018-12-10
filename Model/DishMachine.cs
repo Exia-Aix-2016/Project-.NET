@@ -8,7 +8,7 @@ namespace Model
 {
     public class DishMachine : Container<WasheableTool>,  ICleaningDevice<WasheableTool>, ITaskProcessorContainer
     {
-        public static int TIME_REQUIRE;
+        public int TimeRequire = 10;
         ITaskProcessor _TaskProcessor;
         private bool _Available;
 
@@ -48,7 +48,7 @@ namespace Model
                 Storage.ForEach(tool => tool.CleaningStatus = CleaningStatus.CLEAN);
                 _Available = true;
 
-            }));
+            }, TimeRequire));
         }
 
         public List<WasheableTool> Retrieve()
