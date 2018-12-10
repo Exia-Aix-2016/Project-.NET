@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    class ReceptionService
+    public class ReceptionService
     {
         private DiningRoom DiningRoom;
 
@@ -16,9 +16,15 @@ namespace Service
             this.DiningRoom = diningRoom;
         }
 
-        public void GetNewClients()
+        public Client[] GetNewClients()
         {
+            return null;
 
+        }
+
+        public bool IsMenuAvailable(int number)
+        {
+            return false;
         }
     }
 }

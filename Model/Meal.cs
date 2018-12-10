@@ -8,11 +8,12 @@ namespace Model
 {
     public class Meal
     {
-        public readonly string _Name;
+        public readonly string Name;
+        public Order Order;
 
         public Meal(string name)
         {
-            _Name = name;
+            Name = name;
         }
 
     }
