@@ -53,7 +53,6 @@ namespace Model
         {
             if (item == null) throw new ArgumentNullException("Container : item null");
             Storage.Remove(item);
-
         }
         public virtual T removeItem(int index)
         {
@@ -70,14 +69,13 @@ namespace Model
             return Storage.ElementAt(index);
         }
 
-        public virtual List<T> Items()
+        public virtual T[] Items()
         { 
             if(Storage.Count > 0)
             {
                 T[] t = new T[Storage.Count];
                 Storage.CopyTo(t);
-                List<T> lt = new List<T>(t);
-                return lt;
+                return t;
             }
             else
             {
