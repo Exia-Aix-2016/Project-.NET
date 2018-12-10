@@ -10,10 +10,5 @@ namespace Model
     {
         public Rank(int numberTables) : base(numberTables) { }
 
-        public void getTables()
-        {
-
-
-        }
     }
 }

@@ -18,7 +18,18 @@ namespace Service
 
         public Client[] GetNewClients()
         {
-            return null;
+            Random random = new Random();
+
+            int nbrRandClient = random.Next(1, 10);
+
+            Client[] clients = new Client[nbrRandClient];
+
+            for(int i = 0; i < clients.Length; i++)
+            {
+                clients[i] = new Client();
+            }
+
+            return clients;
 
         }
 
