@@ -10,6 +10,8 @@ namespace Model
     {
         private ITaskProcessor _TaskProcessor;
 
+        public Recipe Choice;
+
         public Client()
         {
             _TaskProcessor = new TaskProcessor();

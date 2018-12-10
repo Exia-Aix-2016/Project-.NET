@@ -39,9 +39,15 @@ namespace Service
             return _dining.HeadWaiters.Where(selector).ToArray();
         } 
 
-        public void SendOrdersToKitchen(HeadWaiter headWaiter)
+        public void SendOrdersToKitchen(CounterClientService counterClientService, HeadWaiter headWaiter)
         {
-            // Task
+            headWaiter.TaskProcessor.AddTask(new Task(x =>
+            {
+                headWaiter.Orders.ForEach(order =>
+                {
+                    //TODO
+                });
+            }));
         }
 
         public void AssignMenus(Table table)
@@ -57,24 +63,38 @@ namespace Service
                     _dining.Menus.Remove(menu);
                     table.Menus.Add(menu);
                 }
-
             }));
  
         }
 
         public void TakeOrders (Table table)
         {
-            // Task
+            HeadWaiter headWaiter = GetHeadWaiterByTable(table);
+
+            decimal ticks = table.Items().Count * 30;
+
+            headWaiter.TaskProcessor.AddTask(new Task(x => {
+                var orders = table.Items()
+                    .Where(client => client.Choice != null)
+                    .Select(client => new Order(ref client.Choice));
+                headWaiter.Orders.AddRange(orders);
+            }, (int) Math.Round(ticks)));
         }
 
         public void ServeBread(Table table)
         {
-            // Task
+            _dining.ClerkWaiter.TaskProcessor.AddTask(new Task(x =>
+            {
+                table.BreadBasketFull = true;
+            }));
         }
 
         public void ServeWater(Table table)
         {
-            // Task
+            _dining.ClerkWaiter.TaskProcessor.AddTask(new Task(x =>
+            {
+                table.WaterBottleFull = true;
+            }));
         }
 
         public void ServeMeal(Meal meal)

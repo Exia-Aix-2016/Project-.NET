@@ -10,13 +10,12 @@ namespace Model
     {
         public readonly int TableID;
         public readonly IList<Menu> Menus = new List<Menu>();
+        public bool BreadBasketFull = false;
+        public bool WaterBottleFull = false;
 
         public Table(int tableID, int numberchairs) : base(numberchairs)
         {
             TableID = tableID;
         }
-
-
-
     }
 }

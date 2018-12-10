@@ -52,6 +52,7 @@
     <Compile Include="Chef.cs" />
     <Compile Include="CleaningStatus.cs" />
     <Compile Include="Clerk.cs" />
+    <Compile Include="ClerkWaiter.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Cloth.cs" />
     <Compile Include="ClothType.cs" />
@@ -94,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

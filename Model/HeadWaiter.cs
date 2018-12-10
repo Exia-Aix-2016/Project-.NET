@@ -9,5 +9,7 @@ namespace Model
     public class HeadWaiter : ITaskProcessorContainer
     {
         public ITaskProcessor TaskProcessor { get; } = new TaskProcessor();
+
+        public readonly List<Order> Orders = new List<Order>(); 
     }
 }
