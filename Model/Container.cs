@@ -57,17 +57,33 @@ namespace Model
         }
         public virtual T removeItem(int index)
         {
-            if(index < Storage.Count + 1)
+            if (index > Storage.Count) throw new IndexOutOfRangeException("out of bound");
+            
+            T item = Storage.ElementAt(index);
+            if (item != null) Storage.Remove(item);
+            return item;   
+        }
+
+        public virtual T Item(int index)
+        {
+            if (index > Storage.Count) throw new IndexOutOfRangeException("Out of bound");
+            return Storage.ElementAt(index);
+        }
+
+        public virtual List<T> Items()
+        { 
+            if(Storage.Count > 0)
             {
-                T item = Storage.ElementAt(index);
-                if (item != null) Storage.Remove(item);
-                return item;
+                T[] t = new T[Storage.Count];
+                Storage.CopyTo(t);
+                List<T> lt = new List<T>(t);
+                return lt;
             }
             else
             {
-                return default(T);
+                return null;
             }
-            
         }
+
     }
 }

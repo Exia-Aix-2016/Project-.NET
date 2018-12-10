@@ -10,6 +10,12 @@ namespace Model
     {
         public DiningRoom(int numberSquares) : base(numberSquares){}
 
+        public List<Client> getAllClients()
+        {
+
+            return null;
+        }
+
         
     }
 }
