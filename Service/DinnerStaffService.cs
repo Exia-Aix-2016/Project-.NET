@@ -10,6 +10,7 @@ namespace Service
     {
         private DiningRoom _dining => _injector.Get<DiningRoom>();
         private CounterClientService _counterClientService => _injector.Get<CounterClientService>();
+        private Configuration configuration => _injector.Get<Configuration>();
 
         public DinnerStaffService(DependencyInjector injector): base(injector)
         {
@@ -23,11 +24,11 @@ namespace Service
             headWaiter.TaskProcessor.AddTask(() => {
                 lock (_dining.Squares) lock (_dining.Lobby)
                 {
-                headWaiter.StaffStatus = StaffStatus.ASSIGN_CLIENT_TO_TABLE;
-                _dining.Lobby.Remove(clients);
-                table.AddItems(clients.ToList());
+                    headWaiter.StaffStatus = StaffStatus.ASSIGN_CLIENT_TO_TABLE;
+                    _dining.Lobby.Remove(clients);
+                    table.AddItems(clients.ToList());
                 }
-            });
+            }, configuration.TimeToAssignTable);
         }
 
         public HeadWaiter GetHeadWaiterByTable(Table table)
@@ -56,10 +57,13 @@ namespace Service
         {
             headWaiter.TaskProcessor.AddTask(() =>
             {
-                headWaiter.StaffStatus = StaffStatus.SEND_ORDERS_TO_KITCHEN;
-                _counterClientService.PutOrders(headWaiter.Orders.ToArray());
-                headWaiter.Orders.Clear();
-            });
+                lock (_counterClientService) lock(_dining.Squares)
+                {
+                    headWaiter.StaffStatus = StaffStatus.SEND_ORDERS_TO_KITCHEN;
+                    _counterClientService.PutOrders(headWaiter.Orders.ToArray());
+                    headWaiter.Orders.Clear();
+                }
+            }, configuration.TimeToSendOrdersToKitchen);
         }
 
         public void AssignMenus(Table table)
@@ -75,9 +79,12 @@ namespace Service
 
             headWaiter.TaskProcessor.AddTask(() =>
             {
-                headWaiter.StaffStatus = StaffStatus.ASSIGN_MENU;
-                menus.ForEach(x => table.Menus.Add(x));
-            });
+                lock(_dining.Squares)
+                {
+                    headWaiter.StaffStatus = StaffStatus.ASSIGN_MENU;
+                    menus.ForEach(x => table.Menus.Add(x));
+                }
+            }, configuration.TimeToAssignMenus);
  
         }
 
@@ -90,14 +97,17 @@ namespace Service
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
-            decimal ticks = table.Items().Count * 30;
+            decimal ticks = table.Items().Count * configuration.TimeToOrder;
 
             headWaiter.TaskProcessor.AddTask(() => {
-                headWaiter.StaffStatus = StaffStatus.TAKE_ORDERS;
-                var orders = table.Items()
-                    .Where(client => client.Choice != null)
-                    .Select(client => new Order(client.Choice, table));
-                headWaiter.Orders.AddRange(orders);
+                lock (_dining.Squares)
+                {
+                    headWaiter.StaffStatus = StaffStatus.TAKE_ORDERS;
+                    var orders = table.Items()
+                        .Where(client => client.Choice != null)
+                        .Select(client => new Order(client.Choice, table));
+                    headWaiter.Orders.AddRange(orders);
+                }
             }, (int) Math.Round(ticks));
         }
 
@@ -105,18 +115,24 @@ namespace Service
         {
             _dining.ClerkWaiter.TaskProcessor.AddTask(() =>
             {
-                _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_BREAD;
-                table.BreadBasketFull = true;
-            });
+                lock (_dining.ClerkWaiter) lock (_dining.Squares)
+                {
+                    _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_BREAD;
+                    table.BreadBasketFull = true;
+                }
+            }, configuration.TimeToServeBread);
         }
 
         public void ServeWater(Table table)
         {
             _dining.ClerkWaiter.TaskProcessor.AddTask(() =>
             {
-                _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_WATER;
-                table.WaterBottleFull = true;
-            });
+                lock (_dining.ClerkWaiter) lock (_dining.Squares)
+                {
+                    _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_WATER;
+                    table.WaterBottleFull = true;
+                }
+            }, configuration.TimeToServeWater);
         }
 
         public void ServeMeal(Meal meal)
@@ -124,10 +140,14 @@ namespace Service
             var waiter = GetWaiterByTable(meal.Order.Table);
             waiter.TaskProcessor.AddTask(() =>
             {
-                waiter.StaffStatus = StaffStatus.SERVE_MEAL;
-                Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).First();
-                client.Meal = meal;
-            }, 5);
+                lock (_dining.Squares)
+                {
+                    waiter.StaffStatus = StaffStatus.SERVE_MEAL;
+                    Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).First();
+                    client.Meal = meal;
+
+                }
+            }, configuration.TimeToServeMeal);
         }
 
         public void CleanTable(Table table)
@@ -145,7 +165,7 @@ namespace Service
                 table.Clear();
                 table.Reserved = false;
                 }
-            });
+            }, configuration.TimeToCleanTable);
         }
     }
 }

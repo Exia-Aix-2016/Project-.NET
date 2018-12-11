@@ -41,6 +41,7 @@ namespace Service
             injector.Register<TableService>(new TableService(injector));
             injector.Register<DinnerStaffService>(new DinnerStaffService(injector));
             injector.Register<CounterClientService>(new CounterClientService(injector));
+            injector.Register<Configuration>(new Configuration());
 
             return injector;
         }
