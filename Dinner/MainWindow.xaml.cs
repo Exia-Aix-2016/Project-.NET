@@ -37,5 +37,21 @@ namespace Dinner
         {
 
         }
+
+        private void StartSimButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void StopSimbutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PauseSimButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
