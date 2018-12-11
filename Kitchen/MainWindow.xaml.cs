@@ -19,7 +19,7 @@ namespace Kitchen
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, Model.IRender<Model.Kitchen>
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -30,7 +30,7 @@ namespace Kitchen
             service.TestDataBase();*/
         }
 
-        public void Render(Model.Kitchen obj)
+        public void Render(object obj)
         {
             throw new NotImplementedException();
         }
