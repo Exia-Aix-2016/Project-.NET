@@ -35,10 +35,25 @@ namespace Model
 
         public Table[] Tables
         {
-            get =>  Squares
+            get => Squares
                 .SelectMany(x => x.Items())
                 .SelectMany(x => x.Items())
                 .ToArray();
+        }
+
+        public Waiter[] Waiters => Squares
+            .SelectMany(x => x.Waiters)
+            .ToArray();
+
+        public ITaskProcessor[] TaskProcessors
+        {
+            get {
+                List<ITaskProcessor> taskProcessors = new List<ITaskProcessor>();
+                taskProcessors.AddRange(HeadWaiters.Select(x => x.TaskProcessor));
+                taskProcessors.AddRange(Waiters.Select(x => x.TaskProcessor));
+                taskProcessors.AddRange(Clients.Select(x => x.TaskProcessor));
+                return taskProcessors.ToArray();
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Dinner
         private CounterClientService _counterClientService => _injector.Get<CounterClientService>();
         private ClientService _clientService => _injector.Get<ClientService>();
 
-        Simulation(DependencyInjector injector)
+        public Simulation(DependencyInjector injector)
         {
             _injector = injector;
         }

@@ -1,36 +1,91 @@
-﻿using System;
+﻿using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using Model;
+using Task = System.Threading.Tasks.Task;
 
 namespace Dinner
 {
-    public class SimulationController : Model.ISimulation
+    public class SimulationController : ISimulation
     {
-        public void Resume()
+        private readonly DependencyInjector _injector;
+        private DiningRoom diningRoom => _injector.Get<DiningRoom>();
+        private readonly Simulation _simulation;
+        private bool _running = false;
+        public int Speed { get; private set; } = 1;
+        private Task task;
+        private int PoolQueueLength = 0;
+        private ManualResetEvent @event = new ManualResetEvent(false);
+
+        public SimulationController()
         {
-            throw new NotImplementedException();
+            _injector = new DependencyInjector();
+            _simulation = new Simulation(_injector);
         }
+
+        private void Run()
+        {
+            while (_running)
+            {
+                PoolQueueLength = 0;
+                @event.Reset();
+                foreach(var taskProcessor in diningRoom.TaskProcessors)
+                {
+                    PoolQueueLength++;
+                    ThreadPool.QueueUserWorkItem(x =>
+                    {
+                        taskProcessor.Process();
+                        PoolQueueLength--;
+                        if (PoolQueueLength == 0)
+                        {
+                            @event.Set();
+                        }
+                    });
+
+                }
+                @event.WaitOne();
+            }
+        }
+
 
         public void SlowDown()
         {
-            throw new NotImplementedException();
+            Speed--;
         }
 
         public void SpeedUp()
         {
-            throw new NotImplementedException();
+            Speed++;
         }
 
         public void Start()
         {
-            throw new NotImplementedException();
+            if(task == null)
+            {
+                _running = true;
+                task = new Task(Run);
+                task.Start();
+            } else
+            {
+                Console.WriteLine("The simulation is already running");
+            }
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            if (task != null)
+            {
+                _running = false;
+                task.Wait();
+                task = null;
+            }else
+            {
+                Console.WriteLine("The simulation is already stopped");
+            }
         }
     }
 }

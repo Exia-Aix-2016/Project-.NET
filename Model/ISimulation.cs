@@ -10,10 +10,7 @@ namespace Model
     {
         void Start();
         void Stop();
-        void Resume();
         void SlowDown();
         void SpeedUp();
-        
-
     }
 }
