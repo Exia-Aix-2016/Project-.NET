@@ -13,5 +13,10 @@ namespace Service
         {
             // Task
         }
+
+        public void Eat(Client client)
+        {
+
+        }
     }
 }

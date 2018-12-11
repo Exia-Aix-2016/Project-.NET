@@ -9,11 +9,12 @@ namespace Service
 {
     public class TableService
     {
-        private DiningRoom _diningRoom;
+        private readonly DependencyInjector _injector;
+        private DiningRoom _diningRoom => _injector.Get<DiningRoom>();
 
-        public TableService(DiningRoom diningRoom)
+        public TableService(DependencyInjector injector)
         {
-            this._diningRoom = diningRoom;
+            _injector = injector;
         }
 
         public Table[] GetTables(Func<Table, bool> selector)
