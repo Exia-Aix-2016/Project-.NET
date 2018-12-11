@@ -5,10 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dinner"
         mc:Ignorable="d"
-        Title="Dinner" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="StartSimButton" Content="Start" HorizontalAlignment="Left" Margin="22,29,0,0" VerticalAlignment="Top" Width="75" Click="StartSimButton_Click"/>
-        <Button x:Name="StopSimbutton" Content="Stop" HorizontalAlignment="Left" Margin="117,29,0,0" VerticalAlignment="Top" Width="75" Click="StopSimbutton_Click"/>
-        <Button x:Name="PauseSimButton" Content="Pause" HorizontalAlignment="Left" Margin="210,29,0,0" VerticalAlignment="Top" Width="75" Click="PauseSimButton_Click"/>
+        Title="Dinner" Height="444" Width="791">
+    <Grid Margin="0,0,11,11" Height="392" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="762">
+        <Button x:Name="StartSimButton" Content="Start" Margin="22,0,695,362" VerticalAlignment="Bottom" Click="StartSimButton_Click"/>
+        <Button x:Name="PauseSimButton" Content="Pause" Margin="91,0,626,362" VerticalAlignment="Bottom" Click="PauseSimButton_Click"/>
+        <Separator Margin="10,27,0,0" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="479"/>
+        <Label x:Name="NumberTable" Content="Number of Table : 0" HorizontalAlignment="Left" Margin="22,58,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TickCount" Content="Number of Ticks : 0" HorizontalAlignment="Left" Margin="153,58,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="NumberClient" Content="Number of client : 0" HorizontalAlignment="Left" Margin="21,89,0,0" VerticalAlignment="Top"/>
+        <Separator HorizontalAlignment="Left" Height="16" Margin="10,120,0,0" VerticalAlignment="Top" Width="479"/>
+        <Slider x:Name="SpeedSim" HorizontalAlignment="Left" Margin="275,10,0,0" VerticalAlignment="Top" Width="214" Minimum="1" SmallChange="1" Cursor="Arrow"/>
+        <Label Content="SpeedSim :&#xD;&#xA;" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" Height="25"/>
+        <DataGrid x:Name="GridViewDinner" HorizontalAlignment="Left" Margin="44,156,0,0" Width="674" Height="208" VerticalAlignment="Top"/>
     </Grid>
 </Window>
