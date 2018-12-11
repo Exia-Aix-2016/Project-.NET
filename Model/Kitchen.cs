@@ -18,6 +18,7 @@ namespace Model
         public readonly WashingMachine WashingMachine;
         public readonly Counter Counter;
         public readonly Clerk Clerk;
+        public readonly Diver Diver;
 
         public Kitchen()
         {
@@ -29,6 +30,7 @@ namespace Model
             DirtyStorage = new DirtyStorage();
             WashingMachine = new WashingMachine(10);
             Counter = new Counter();
+            Diver = new Diver();
         }
 
     }

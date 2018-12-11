@@ -65,7 +65,10 @@ namespace Service
 
         public void StartWashingMachine()
         {
-            // Task
+            _kitchen.Diver.TaskProcessor.AddTask(() =>
+            {
+                _kitchen.WashingMachine.StartMachine();
+            });
         }
 
         public bool IsDirtyTools()
@@ -82,7 +85,7 @@ namespace Service
 
         public void Wash()
         {
-            // Task
+           
         }
     }
 }
