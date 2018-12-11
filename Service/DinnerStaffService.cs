@@ -1,4 +1,4 @@
-﻿using Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +18,7 @@ namespace Service
         public void AssignTable(Client[] clients, Table table)
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
+            table.Reserved = true;
 
             headWaiter.TaskProcessor.AddTask(() => {
                 _dining.Lobby.Remove(clients);
@@ -135,7 +136,7 @@ namespace Service
             var waiter = GetWaiterByTable(meal.Order.Table);
             waiter.TaskProcessor.AddTask(() =>
             {
-                Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).Single();
+                Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).First();
                 client.Meal = meal;
             }, 5);
         }
@@ -150,6 +151,7 @@ namespace Service
                 table.Menus.Clear();
                 table.TableCloth = null;
                 table.Clear();
+                table.Reserved = false;
             });
         }
     }

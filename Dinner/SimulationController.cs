@@ -66,7 +66,6 @@ namespace Dinner
 
                 _simulation.Forward();
 
-
                 TimeSpan interval = DateTime.Now - startTime;
                 int millisToSleep = (int)Math.Round(MillisToWait - interval.Milliseconds);
                 if (millisToSleep > 0)
@@ -75,6 +74,7 @@ namespace Dinner
                 }
 
                 Ticks++;
+
                 Dispatcher.FromThread(mainThread).Invoke(() =>
                 {
                     renderCallback(diningRoom);

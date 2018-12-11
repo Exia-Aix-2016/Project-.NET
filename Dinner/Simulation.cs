@@ -38,7 +38,7 @@ namespace Dinner
             _receptionService.GenerateNewClients();
             Client[] clients = _receptionService.GetNewClients();
             Table[] tables = _tableService
-                .GetTables(x => x.Items().Count == 0 && x.NumberSlots >= clients.Length)
+                .GetTables(x => !x.Reserved && x.NumberSlots >= clients.Length)
                 .OrderBy(x => x.NumberSlots)
                 .ToArray();
             if (tables.Length > 0)

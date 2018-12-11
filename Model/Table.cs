@@ -13,6 +13,7 @@ namespace Model
         public bool BreadBasketFull = false;
         public bool WaterBottleFull = false;
         public Cloth TableCloth;
+        public bool Reserved = false;
 
         public Table(int tableID, int numberchairs) : base(numberchairs)
         {

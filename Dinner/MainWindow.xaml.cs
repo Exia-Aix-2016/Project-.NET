@@ -76,7 +76,7 @@ namespace Dinner
 
         private void PauseSimButton_Click(object sender, RoutedEventArgs e)
         {
-
+            simulationController.Stop();
         }
 
         private void SpeedSim_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
