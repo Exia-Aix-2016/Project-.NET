@@ -16,6 +16,7 @@ namespace Model
         public readonly ToolStorage ToolStorage;
         public readonly DirtyStorage DirtyStorage;
         public readonly WashingMachine WashingMachine;
+        public readonly Counter Counter;
 
     }
 }

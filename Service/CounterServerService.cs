@@ -9,18 +9,37 @@ namespace Service
 {
     public class CounterServerService
     {
-
-        public CounterServerService()
+        private Kitchen _kitchen;
+        public CounterServerService(DependencyInjector dependency)
         {
             KitchenConnection.Instance.OnreceiveEvent += new KitchenConnection.ReceiveDel(Receive);
+            _kitchen = dependency.Get<Kitchen>();
         }
         public void Receive(byte[] data)
         {
-            Console.WriteLine(Model.Counter.Deserialize<Model.MessageSocket>(data).ToString());
+           MessageSocket message =  Model.Counter.Deserialize<Model.MessageSocket>(data);
+
+            if (message.HasOrders) _kitchen.Counter.AddOrders(message.Orders);
+            if (message.HasWasheableTools) _kitchen.Counter.AddWasheableTools(message.WasheableTools);
         }
         public Order[] GetOrders()
         {
-            return null;
+            return _kitchen.Counter.TakeOrders();
+        }
+
+        public void PutMeals(Meal[] meals)
+        {
+            MessageSocket message = new MessageSocket(meals);
+            KitchenConnection.Instance.Send(message);
+        }
+        public void PutWasheableTools(WasheableTool[] washeableTools)
+        {
+            List<WasheableTool> tools = new List<WasheableTool>(washeableTools);
+            if (tools.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.CLEAN))
+            {
+                MessageSocket message = new MessageSocket(washeableTools);
+                KitchenConnection.Instance.Send(message);
+            }
         }
 
 

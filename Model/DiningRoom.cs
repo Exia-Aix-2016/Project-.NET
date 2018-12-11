@@ -12,8 +12,12 @@ namespace Model
         public readonly IList<Client> Lobby = new List<Client>();
         public readonly IList<Menu> Menus = new List<Menu>();
         public ClerkWaiter ClerkWaiter;
+        public Counter Counter;
 
-        public DiningRoom(int numberSquares) { }
+        public DiningRoom()
+        {
+            Counter = new Counter();
+        }
 
         public HeadWaiter[] HeadWaiters
         {

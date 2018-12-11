@@ -12,11 +12,13 @@ namespace Model
     {
         private List<Order> _Orders;
         private List<Meal> _Meals;
+        private List<WasheableTool> _WasheableTools;
 
         public Counter()
         {
             _Orders = new List<Order>();
             _Meals = new List<Meal>();
+            _WasheableTools = new List<WasheableTool>();
         }
 
         public void AddOrder(Order order)
@@ -26,6 +28,43 @@ namespace Model
         public void AddOrders(Order[] orders)
         {
             _Orders.AddRange(orders);
+        }
+
+        public void AddMeal(Meal meal)
+        {
+            _Meals.Add(meal);
+        }
+        public void AddMeals(Meal[] meals)
+        {
+            _Meals.AddRange(meals);
+        }
+
+        public void AddWasheableTool(WasheableTool tool)
+        {
+            _WasheableTools.Add(tool);
+        }
+        public void AddWasheableTools(WasheableTool[] tools)
+        {
+            _WasheableTools.AddRange(tools);
+        }
+
+        public Meal[] TakeMeals()
+        {
+            Meal[] meals = _Meals.ToArray();
+            _Meals.Clear();
+            return meals; 
+        }
+        public Order[] TakeOrders()
+        {
+            Order[] orders = _Orders.ToArray();
+            _Orders.Clear();
+            return orders;
+        }
+        public WasheableTool[] TakeTools(CleaningStatus cleaningStatus)
+        {
+            WasheableTool[] tools = _WasheableTools.Where(t => t.CleaningStatus == cleaningStatus).ToArray();
+            _WasheableTools.RemoveAll(t => t.CleaningStatus == cleaningStatus);
+            return tools;
         }
 
 
