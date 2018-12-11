@@ -9,11 +9,9 @@ namespace Model
     public interface ITaskProcessor
     {
         void AddTask(Task task);
-        void AddTask(callback callback, int ticks);
+        void AddTask(Action callback);
         void RemoveTask(Task task);
         void Process();
         Task CurrentTask { get; }
-
-        
     }
 }

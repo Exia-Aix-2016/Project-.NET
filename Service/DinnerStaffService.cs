@@ -43,7 +43,7 @@ namespace Service
         public void SendOrdersToKitchen(HeadWaiter headWaiter)
         {
             CounterClientService counterClientService = _injector.Get<CounterClientService>();
-            headWaiter.TaskProcessor.AddTask(new Task(x =>
+            headWaiter.TaskProcessor.AddTask(x =>
             {
                 headWaiter.Orders.ForEach(order =>
                 {
