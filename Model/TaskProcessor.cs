@@ -54,7 +54,12 @@ namespace Model
          */
         public int TotalTicks { get => _Tasks.Sum(task => task.TickRemaining);}
 
-        public Task CurrentTask { get => _Tasks.Peek(); }
+        public Task CurrentTask { get
+            {
+                if (!_Tasks.Any()) return null;
+                return _Tasks.Peek();
+            }
+        }
 
         public bool IsOccupied { get => _Occupied; }
 

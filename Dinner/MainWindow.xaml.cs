@@ -76,7 +76,7 @@ namespace Dinner
 
             dining.Waiters.ToList().ForEach(waiter =>
             {
-                Staffdata.Rows.Add("Waiter", waiter.TaskProcessor.CurrentTask.Name);
+                Staffdata.Rows.Add("Waiter", waiter.TaskProcessor.CurrentTask?.Name);
             });
 
             Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.TaskProcessor.CurrentTask.Name);
