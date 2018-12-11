@@ -23,16 +23,16 @@ namespace Service
         
         public void FreeWashingMachine()
         {
-            Cloth[] cloths; 
+            List<Cloth> cloths = new List<Cloth>(); 
 
             _kitchen.Clerk.TaskProcessor.AddTask(() =>
             {
-                cloths = _kitchen.WashingMachine.Retrieve().ToArray();
+                cloths = _kitchen.WashingMachine.Retrieve();
             }, 5);
 
             _kitchen.Clerk.TaskProcessor.AddTask(() =>
             {
-                _kitchen.Counter.AddCloths(cloths);
+                _kitchen.Counter.AddCloths(cloths.ToArray());
             });
         }
 
@@ -50,7 +50,7 @@ namespace Service
 
         public void FillWashingMachine()
         {
-            Cloth[] DirtyCloths;
+            List<Cloth> DirtyCloths = new List<Cloth>(); ;
 
             _kitchen.Clerk.TaskProcessor.AddTask(() =>
             {
@@ -59,7 +59,7 @@ namespace Service
 
             _kitchen.Clerk.TaskProcessor.AddTask(() =>
             {
-                _kitchen.WashingMachine.AddDirtyCloths(DirtyCloths.ToList());
+                _kitchen.WashingMachine.AddDirtyCloths(DirtyCloths);
             });
         }
 

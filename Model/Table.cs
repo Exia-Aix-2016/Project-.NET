@@ -19,15 +19,20 @@ namespace Model
             TableID = tableID;
         }
 
-        public TableStatus TableOrderStatus {  get
+        public TableStatus TableOrderStatus
+        {
+            get
             {
                 if (Storage.TrueForAll(client => client.Choice != null))
                 {
                     return TableStatus.CHOOSEN;
-                }else
+                }
+                else
                 {
                     return TableStatus.NOT_CHOOSEN;
                 }
             }
+        }
     }
+    
 }
