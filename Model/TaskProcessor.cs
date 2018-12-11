@@ -53,6 +53,9 @@ namespace Model
         public Task CurrentTask { get => _Tasks.Peek(); }
 
         public bool IsOccupied { get => _Occupied; }
-   
+
+        public int QueueLenght => _Tasks.Sum(x => x.TickRemaining);
+
+        public int QueueCount => _Tasks.Count;
     }
 }

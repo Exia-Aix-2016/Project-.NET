@@ -93,6 +93,7 @@
     <Compile Include="TaskProcessor.cs" />
     <Compile Include="Tool.cs" />
     <Compile Include="ToolsType.cs" />
+    <Compile Include="Waiter.cs" />
     <Compile Include="WasheableTool.cs" />
     <Compile Include="WashingMachine.cs" />
     <Compile Include="WashRequirement.cs" />

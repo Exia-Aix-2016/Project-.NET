@@ -10,8 +10,12 @@ namespace Model
     public class Order
     {
         public readonly Recipe Recipe;
+        public readonly Table Table;
 
-        public Order(Recipe recipe) => Recipe = recipe;
-
+        public Order(Recipe recipe, Table table)
+        {
+            Recipe = recipe;
+            Table = table;
+        }
     }
 }

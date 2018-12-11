@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum ClothType
+    public class Waiter : ITaskProcessorContainer
     {
-        TOWEL,
-        TABLE_CLOTH
+        public ITaskProcessor TaskProcessor { get; } = new TaskProcessor();
     }
 }

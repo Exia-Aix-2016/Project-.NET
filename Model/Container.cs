@@ -54,7 +54,7 @@ namespace Model
             if (item == null) throw new ArgumentNullException("Container : item null");
             Storage.Remove(item);
         }
-        public virtual T removeItem(int index)
+        public virtual T RemoveItem(int index)
         {
             if (index > Storage.Count) throw new IndexOutOfRangeException("out of bound");
 
@@ -72,6 +72,11 @@ namespace Model
         public virtual List<T> Items()
         {
             return new List<T>(Storage);
+        }
+
+        public virtual void Clear()
+        {
+            Storage.Clear();
         }
     }
  

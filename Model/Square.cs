@@ -11,6 +11,7 @@ namespace Model
 
         public readonly int SquareID;
         public HeadWaiter HeadWaiter;
+        public readonly List<Waiter> Waiters = new List<Waiter>();
 
         public Square(int squareID, int numberRanks) : base(numberRanks)
         {

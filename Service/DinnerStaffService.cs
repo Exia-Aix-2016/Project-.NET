@@ -10,6 +10,7 @@ namespace Service
     {
         private DiningRoom _dining;
         private readonly DependencyInjector _injector;
+        private CounterClientService _counterClientService => _injector.Get<CounterClientService>();
 
         public DinnerStaffService(DependencyInjector injector)
         {
@@ -35,6 +36,15 @@ namespace Service
                 .Single();
         }
 
+        public Waiter GetWaiterByTable(Table table)
+        {
+            return _dining.Squares
+                .Where(x => x.Items().Where(y => y.Items().Contains(table)).Any())
+                .SelectMany(x => x.Waiters)
+                .OrderBy(x => x.TaskProcessor.QueueLenght)
+                .Single();
+        }
+
         public HeadWaiter[] GetHeadWaiters(Func<HeadWaiter, bool> selector)
         {
             return _dining.HeadWaiters.Where(selector).ToArray();
@@ -42,13 +52,10 @@ namespace Service
 
         public void SendOrdersToKitchen(HeadWaiter headWaiter)
         {
-            CounterClientService counterClientService = _injector.Get<CounterClientService>();
             headWaiter.TaskProcessor.AddTask(() =>
             {
-                headWaiter.Orders.ForEach(order =>
-                {
-                    //TODO
-                });
+                _counterClientService.PutOrders(headWaiter.Orders.ToArray());
+                headWaiter.Orders.Clear();
             });
         }
 
@@ -78,9 +85,9 @@ namespace Service
             headWaiter.TaskProcessor.AddTask(() => {
                 var orders = table.Items()
                     .Where(client => client.Choice != null)
-                    .Select(client => new Order(client.Choice));
+                    .Select(client => new Order(client.Choice, table));
                 headWaiter.Orders.AddRange(orders);
-            }, (int)Math.Round(ticks));
+            }, (int) Math.Round(ticks));
         }
 
         public void ServeBread(Table table)
@@ -101,12 +108,25 @@ namespace Service
 
         public void ServeMeal(Meal meal)
         {
-            // Task
+            var waiter = GetWaiterByTable(meal.Order.Table);
+            waiter.TaskProcessor.AddTask(() =>
+            {
+                Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).Single();
+                client.Meal = meal;
+            }, 5);
         }
 
-        public void CleanTable()
+        public void CleanTable(Table table)
         {
-            // Task
+            var waiter = GetWaiterByTable(table);
+            waiter.TaskProcessor.AddTask(() =>
+            {
+                table.WaterBottleFull = false;
+                table.BreadBasketFull = false;
+                table.Menus.Clear();
+                table.TableCloth = null;
+                table.Clear();
+            });
         }
     }
 }

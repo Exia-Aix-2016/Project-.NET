@@ -8,6 +8,8 @@ namespace Model
 {
     public interface ITaskProcessor
     {
+        int QueueLenght { get; }
+        int QueueCount { get; }
         void AddTask(Task task);
         void AddTask(Action callback, int ticks = 1);
         void RemoveTask(Task task);

@@ -11,6 +11,7 @@ namespace Model
         private ITaskProcessor _TaskProcessor;
 
         public Recipe Choice;
+        public Meal Meal;
 
         public Client()
         {
