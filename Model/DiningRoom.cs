@@ -9,9 +9,9 @@ namespace Model
     public class DiningRoom
     {
         private static readonly object _locker = new object();
-        public readonly IList<Square> Squares = new List<Square>();
-        public readonly IList<Client[]> Lobby = new List<Client[]>();
-        public readonly IList<Menu> Menus = new List<Menu>();
+        public readonly List<Square> Squares = new List<Square>();
+        public readonly List<Client[]> Lobby = new List<Client[]>();
+        public readonly List<Menu> Menus = new List<Menu>();
         public ClerkWaiter ClerkWaiter;
         public Counter Counter;
 

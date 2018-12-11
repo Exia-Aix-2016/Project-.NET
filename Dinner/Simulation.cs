@@ -25,12 +25,12 @@ namespace Dinner
         public void Forward()
         {
             ClientReception();
-            //SendOrders();
-            //DistributeMenus();
-            //TakeOrders();
-            //Resupply();
-            //ServeMeal();
-            //CleanTables();
+            SendOrders();
+            DistributeMenus();
+            TakeOrders();
+            Resupply();
+            ServeMeal();
+            CleanTables();
         }
 
         void ClientReception()

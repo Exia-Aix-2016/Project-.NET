@@ -21,9 +21,12 @@ namespace Service
             table.Reserved = true;
 
             headWaiter.TaskProcessor.AddTask(() => {
+                lock (_dining.Squares) lock (_dining.Lobby)
+                {
                 headWaiter.StaffStatus = StaffStatus.ASSIGN_CLIENT_TO_TABLE;
                 _dining.Lobby.Remove(clients);
                 table.AddItems(clients.ToList());
+                }
             });
         }
 
@@ -63,36 +66,19 @@ namespace Service
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
+            var menus = new List<Menu>();
+            for (int i = 0; i < table.Items().Count; i++)
+            {
+                var menu = _dining.Menus.Last();
+                _dining.Menus.Remove(menu);
+            }
+
             headWaiter.TaskProcessor.AddTask(() =>
             {
                 headWaiter.StaffStatus = StaffStatus.ASSIGN_MENU;
-                var menus = new List<Menu>();
-                for (int i = 0; i < table.Items().Count; i++)
-                {
-                    var menu = _dining.Menus.Last();
-                    _dining.Menus.Remove(menu);
-                    table.Menus.Add(menu);
-                }
+                menus.ForEach(x => table.Menus.Add(x));
             });
  
-        }
-
-        public Table[] getFreeTables()
-        {
-            return _dining.Tables.Where(table => !table.Items().Any()).ToArray();
-        }
-
-        public Table getFreeTable(int numberClient)
-        {
-            return _dining.Tables.Where(table => !table.Items().Any())
-                                 .Where(table => table.Size > numberClient)
-                                 .First();
-        }
-        public Table[] getFreeTables(int numberClient)
-        {
-            return _dining.Tables.Where(table => !table.Items().Any())
-                                 .Where(table => table.Size > numberClient)
-                                 .ToArray();
         }
 
         public Table[] GetTablesOrderStatus(TableStatus tableOrderStatus)
@@ -100,10 +86,6 @@ namespace Service
             return _dining.Tables.Where(table => table.TableOrderStatus == tableOrderStatus).ToArray();
         }
 
-        public Table[] GetTableWithoutMenus()
-        {
-            return _dining.Tables.Where(table => !table.Menus.Any()).ToArray();
-        }
         public void TakeOrders(Table table)
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
@@ -153,6 +135,8 @@ namespace Service
             var waiter = GetWaiterByTable(table);
             waiter.TaskProcessor.AddTask(() =>
             {
+                lock (_dining.Squares) lock (_dining.Menus)
+                {
                 waiter.StaffStatus = StaffStatus.CLEAN_TABLE;
                 table.WaterBottleFull = false;
                 table.BreadBasketFull = false;
@@ -160,6 +144,7 @@ namespace Service
                 table.TableCloth = null;
                 table.Clear();
                 table.Reserved = false;
+                }
             });
         }
     }
