@@ -9,10 +9,12 @@ namespace Service
     public class DinnerStaffService
     {
         private DiningRoom _dining;
+        private readonly DependencyInjector _injector;
 
-        public DinnerStaffService(DiningRoom dining)
+        public DinnerStaffService(DependencyInjector injector)
         {
-            _dining = dining;
+            _injector = injector;
+            _dining = _injector.Get<DiningRoom>();
         }
 
         public void AssignTable(Client[] clients, Table table)
@@ -39,8 +41,9 @@ namespace Service
             return _dining.HeadWaiters.Where(selector).ToArray();
         } 
 
-        public void SendOrdersToKitchen(CounterClientService counterClientService, HeadWaiter headWaiter)
+        public void SendOrdersToKitchen(HeadWaiter headWaiter)
         {
+            CounterClientService counterClientService = _injector.Get<CounterClientService>();
             headWaiter.TaskProcessor.AddTask(new Task(x =>
             {
                 headWaiter.Orders.ForEach(order =>
