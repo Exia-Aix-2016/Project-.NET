@@ -10,7 +10,7 @@ namespace Model
     {
         private ITaskProcessor _TaskProcessor;
 
-        public Recipe Choice;
+        public string Choice;
         public Order Order;
         public Meal Meal;
         public bool Finished = false;

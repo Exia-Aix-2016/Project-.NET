@@ -9,26 +9,13 @@ namespace Model
     [Serializable]
     public class Order
     {
-        public readonly Recipe Recipe;
+        public readonly string Recipe;
         public readonly Table Table;
 
-        public Order(Recipe recipe, Table table)
+        public Order(string recipeName, Table table)
         {
-            Recipe = recipe;
+            Recipe = recipeName;
             Table = table;
-        }
-
-        public List<Ingredient> GetIngredients()
-        {
-            List<Ingredient> ingredients = new List<Ingredient>();
-            foreach(KeyValuePair<Ingredient, int> keyValuePair in Recipe.Ingredients)
-            {
-                for(int i=0; i < keyValuePair.Value; i++)
-                {
-                    ingredients.Add(keyValuePair.Key);
-                }
-            }
-            return ingredients;
         }
     }
 }
