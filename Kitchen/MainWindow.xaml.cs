@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 
 namespace Kitchen
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, Model.IRender<Model.Kitchen>
     {
         public MainWindow()
         {
@@ -28,6 +29,12 @@ namespace Kitchen
             /*var service = new Service.Class1();
             service.TestDataBase();*/
         }
+
+        public void Render(Model.Kitchen obj)
+        {
+            throw new NotImplementedException();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Model.Meal[] meals = new Model.Meal[2];

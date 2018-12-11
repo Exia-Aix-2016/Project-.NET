@@ -62,6 +62,7 @@
     <Compile Include="Counter.cs" />
     <Compile Include="DirtyStorage.cs" />
     <Compile Include="IConnection.cs" />
+    <Compile Include="IRender.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MessageSocket.cs" />
     <Compile Include="Stock.cs" />
