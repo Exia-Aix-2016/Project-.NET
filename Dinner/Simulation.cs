@@ -25,26 +25,30 @@ namespace Dinner
         public void Forward()
         {
             ClientReception();
-            SendOrders();
-            DistributeMenus();
-            TakeOrders();
-            Resupply();
-            ServeMeal();
-            CleanTables();
+            //SendOrders();
+            //DistributeMenus();
+            //TakeOrders();
+            //Resupply();
+            //ServeMeal();
+            //CleanTables();
         }
 
         void ClientReception()
         {
             _receptionService.GenerateNewClients();
-            Client[] clients = _receptionService.GetNewClients();
-            Table[] tables = _tableService
-                .GetTables(x => !x.Reserved && x.NumberSlots >= clients.Length)
-                .OrderBy(x => x.NumberSlots)
-                .ToArray();
-            if (tables.Length > 0)
+
+            foreach(var clients in _receptionService.GetNewClients())
             {
-                _staffService.AssignTable(clients, tables[0]);
+                Table[] tables = _tableService
+                    .GetTables(x => !x.Reserved && x.NumberSlots >= clients.Length)
+                    .OrderBy(x => x.NumberSlots)
+                    .ToArray();
+                if (tables.Length > 0)
+                {
+                    _staffService.AssignTable(clients, tables[0]);
+                }
             }
+
         }
 
         void SendOrders()

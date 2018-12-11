@@ -32,9 +32,9 @@ namespace Service
             _diningRoom.Lobby.Add(clients);
         }
 
-        public Client[] GetNewClients()
+        public Client[][] GetNewClients()
         {
-            return _diningRoom.Lobby.First();
+            return _diningRoom.Lobby.ToArray();
         }
 
         public bool IsMenuAvailable(int number)
