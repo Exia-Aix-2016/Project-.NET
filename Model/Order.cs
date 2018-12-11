@@ -17,5 +17,18 @@ namespace Model
             Recipe = recipe;
             Table = table;
         }
+
+        public List<Ingredient> GetIngredients()
+        {
+            List<Ingredient> ingredients = new List<Ingredient>();
+            foreach(KeyValuePair<Ingredient, int> keyValuePair in Recipe.Ingredients)
+            {
+                for(int i=0; i < keyValuePair.Value; i++)
+                {
+                    ingredients.Add(keyValuePair.Key);
+                }
+            }
+            return ingredients;
+        }
     }
 }
