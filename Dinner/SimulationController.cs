@@ -21,11 +21,14 @@ namespace Dinner
         private int PoolQueueLength = 0;
         private ManualResetEvent @event = new ManualResetEvent(false);
         private double MillisToWait => 1 / Speed * 1000;
+        private readonly Action<DiningRoom> renderCallback;
 
-        public SimulationController()
+        public SimulationController(Action<DiningRoom> renderCallback)
         {
-            _injector = new DependencyInjector();
+            IBootstrap b = new DinnerBootstrap();
+            _injector = b.Bootstrap();
             _simulation = new Simulation(_injector);
+            this.renderCallback = renderCallback;
         }
 
         private void Run()
@@ -50,6 +53,11 @@ namespace Dinner
 
                 }
                 @event.WaitOne();
+
+                _simulation.Forward();
+
+                new Task(() => renderCallback(diningRoom)).Start();
+
                 TimeSpan interval = DateTime.Now - startTime;
                 int millisToSleep = (int)Math.Round(MillisToWait - interval.Milliseconds);
                 if (millisToSleep > 0)

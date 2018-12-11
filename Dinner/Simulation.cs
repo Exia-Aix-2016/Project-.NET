@@ -22,7 +22,7 @@ namespace Dinner
             _injector = injector;
         }
 
-        void Forward()
+        public void Forward()
         {
             ClientReception();
             SendOrders();

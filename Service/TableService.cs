@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class TableService
+    public class TableService: Service
     {
-        private readonly DependencyInjector _injector;
         private DiningRoom _diningRoom => _injector.Get<DiningRoom>();
 
-        public TableService(DependencyInjector injector)
+        public TableService(DependencyInjector injector): base(injector)
         {
-            _injector = injector;
         }
 
         public Table[] GetTables(Func<Table, bool> selector)

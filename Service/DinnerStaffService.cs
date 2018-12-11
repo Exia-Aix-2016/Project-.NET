@@ -6,16 +6,13 @@ using System.Text;
 
 namespace Service
 {
-    public class DinnerStaffService
+    public class DinnerStaffService: Service
     {
-        private DiningRoom _dining;
-        private readonly DependencyInjector _injector;
+        private DiningRoom _dining => _injector.Get<DiningRoom>();
         private CounterClientService _counterClientService => _injector.Get<CounterClientService>();
 
-        public DinnerStaffService(DependencyInjector injector)
+        public DinnerStaffService(DependencyInjector injector): base(injector)
         {
-            _injector = injector;
-            _dining = _injector.Get<DiningRoom>();
         }
 
         public void AssignTable(Client[] clients, Table table)

@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class ReceptionService
+    public class ReceptionService: Service
     {
-        private DependencyInjector _injector;
+
         private DiningRoom _diningRoom => _injector.Get<DiningRoom>();
 
-
-        public ReceptionService(DependencyInjector injector)
+        public ReceptionService(DependencyInjector injector) : base(injector)
         {
-            _injector = injector;
         }
 
         public void GenerateNewClients()

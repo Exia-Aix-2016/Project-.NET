@@ -12,24 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Service;
+using Model;
 
 namespace Dinner
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, Model.IRender<Model.DiningRoom>
+    public partial class MainWindow : Window, IRender<DiningRoom>
     {
+        private SimulationController simulationController;
 
         public MainWindow()
         {
-            Service.DinnerConnection.Instance.Start();
+            //DinnerConnection.Instance.Start();
 
             InitializeComponent();
-            
+
+            simulationController = new SimulationController(Render);
         }
 
-        public void Render(Model.DiningRoom diningRoom)
+        public void Render(DiningRoom diningRoom)
         {
 
         }

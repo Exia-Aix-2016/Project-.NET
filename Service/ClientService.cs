@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class ClientService
+    public class ClientService: Service
     {
+        public ClientService(DependencyInjector injector) : base(injector)
+        {
+        }
+
         public void ChooseMeal(Table table)
         {
             // Task
