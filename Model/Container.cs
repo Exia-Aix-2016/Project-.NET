@@ -11,7 +11,7 @@ namespace Model
         protected List<T> Storage;
         public readonly int NumberSlots;
 
-        public Container(int numberSlots)
+        public Container(int numberSlots = 0)
         {
             Storage = getNewStorage<T>(numberSlots);
             NumberSlots = numberSlots;

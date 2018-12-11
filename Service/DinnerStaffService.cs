@@ -69,7 +69,7 @@ namespace Service
  
         }
 
-        public void TakeOrders (Table table)
+        public void TakeOrders(Table table)
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
@@ -80,7 +80,7 @@ namespace Service
                     .Where(client => client.Choice != null)
                     .Select(client => new Order(client.Choice));
                 headWaiter.Orders.AddRange(orders);
-            }, (int) Math.Round(ticks)));
+            }, (int)Math.Round(ticks));
         }
 
         public void ServeBread(Table table)

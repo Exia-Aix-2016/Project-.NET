@@ -21,6 +21,7 @@ namespace Service
 
             if (message.HasOrders) _kitchen.Counter.AddOrders(message.Orders);
             if (message.HasWasheableTools) _kitchen.Counter.AddWasheableTools(message.WasheableTools);
+            if (message.hasCloths) _kitchen.Counter.AddCloths(message.Cloths);
         }
         public Order[] GetOrders()
         {
@@ -40,6 +41,21 @@ namespace Service
                 MessageSocket message = new MessageSocket(washeableTools);
                 KitchenConnection.Instance.Send(message);
             }
+        }
+
+        public void PutCloths(Cloth[] cloths)
+        {
+            List<Cloth> clths = new List<Cloth>(cloths);
+            if(clths.TrueForAll(cl => cl.CleaningStatus == CleaningStatus.CLEAN))
+            {
+                MessageSocket message = new MessageSocket(cloths);
+                KitchenConnection.Instance.Send(message);
+            }
+        }
+
+        public Cloth[] TakeCloths()
+        {
+            return _kitchen.Counter.TakeCloths(CleaningStatus.DIRTY);
         }
 
 

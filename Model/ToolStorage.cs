@@ -8,7 +8,7 @@ namespace Model
 {
     public class ToolStorage : Container<Tool>
     {
-        public ToolStorage(int numberSlot) : base(numberSlot) { }
+        public ToolStorage(int numberSlot = 0) : base(numberSlot) { }
 
         public Tool TakeTool(ToolsType toolsType)
         {

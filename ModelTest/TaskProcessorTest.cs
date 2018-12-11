@@ -24,12 +24,12 @@ namespace ModelTest
 
            
 
-            Model.Task task = new Model.Task((Void) =>
+            Model.Task task = new Model.Task(() =>
             {
                 task1executed = true;
             });
 
-            Model.Task task2 = new Model.Task((Void) =>
+            Model.Task task2 = new Model.Task(() =>
             {
                 task2executed = true;
             });

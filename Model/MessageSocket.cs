@@ -12,23 +12,31 @@ namespace Model
         public readonly Order[] Orders;
         public readonly Meal[] Meals;
         public readonly WasheableTool[] WasheableTools;
+        public readonly Cloth[] Cloths;
 
         public MessageSocket(Order[] orders) => Orders = orders;
         public MessageSocket(Meal[] meals) => Meals = meals;
 
+        public MessageSocket(Cloth[] cloths)
+        {
+            Cloths = cloths;
+        }
+
         public MessageSocket(WasheableTool[] washeableTools) => WasheableTools = washeableTools;
 
-        public MessageSocket(Order[] orders, Meal[] meals, WasheableTool[] washeableTool)
+        public MessageSocket(Order[] orders, Meal[] meals, WasheableTool[] washeableTool, Cloth[] cloths)
         {
             Orders = orders;
             Meals = meals;
             WasheableTools = washeableTool;
+            Cloths = cloths;
         }
 
 
         public bool HasOrders { get => (Orders.Length > 0) ? true : false; }
         public bool HasMeals { get => (Meals.Length > 0) ? true : false; }
 
+        public bool hasCloths { get => (Cloths.Length > 0) ? true : false; }
         public bool HasWasheableTools { get => (WasheableTools.Length > 0) ? true : false; }
 
         public override string ToString()

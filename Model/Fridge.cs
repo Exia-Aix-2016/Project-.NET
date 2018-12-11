@@ -8,6 +8,6 @@ namespace Model
 {
     public class Fridge : Container<Ingredient>
     {
-        public Fridge(int numberSlots) : base(numberSlots){}
+        public Fridge(int numberSlots = 0) : base(numberSlots){}
     }
 }

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Stock
+    public class Stock : Container<Ingredient>
     {
-        public readonly Ingredient[] Ingredients;
-
-        public Stock(Ingredient[] ingredients)
+  
+        public Stock()
         {
-            this.Ingredients = ingredients;
+            
         }
     }
 }

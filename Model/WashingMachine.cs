@@ -42,7 +42,7 @@ namespace Model
 
             _Available = false;
 
-            TaskProcessor.AddTask(new Task((Void) => {
+            TaskProcessor.AddTask(new Task(() => {
 
                 Storage.ForEach(item => item.CleaningStatus = CleaningStatus.CLEAN);
                 _Available = true;

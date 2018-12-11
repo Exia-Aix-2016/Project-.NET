@@ -34,7 +34,7 @@ namespace Service
 
             foreach (KeyValuePair<Ingredient, int> ingredientNeed in recipe.Ingredients)
             {
-                if (_kitchen.Stock.Ingredients.Where(ingredient => ingredientNeed.Key.Name == ingredient.Name).Count() >= ingredientNeed.Value)
+                if (_kitchen.Stock.Items().Where(ingredient => ingredientNeed.Key.Name == ingredient.Name).Count() >= ingredientNeed.Value)
                 {
                     IngredientsCart.Add(true);
                 }

@@ -28,7 +28,7 @@ namespace Service
 
         public bool IsDirtyCuttlery()
         {
-            if(_kitchen.DirtyStorage.Tools.Where(x => x.WashRequirement == WashRequirement.DishMachine).Any())
+            if(_kitchen.DirtyStorage.WasheableTools.Where(x => x.WashRequirement == WashRequirement.DishMachine).Any())
             {
                 return true;
             }
@@ -50,7 +50,7 @@ namespace Service
 
         public bool IsDirtyTools()
         {
-            if (_kitchen.DirtyStorage.Tools.Where(x => x.WashRequirement == WashRequirement.Sink).Any())
+            if (_kitchen.DirtyStorage.WasheableTools.Where(x => x.WashRequirement == WashRequirement.Sink).Any())
             {
                 return true;
             }

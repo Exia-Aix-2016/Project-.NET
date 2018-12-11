@@ -18,5 +18,17 @@ namespace Model
         public readonly WashingMachine WashingMachine;
         public readonly Counter Counter;
 
+        public Kitchen()
+        {
+            _fridge = new Fridge();
+            _cookingFires = new CookingFires();
+            _oven = new Oven();
+            Stock = new Stock();
+            ToolStorage = new ToolStorage();
+            DirtyStorage = new DirtyStorage();
+            WashingMachine = new WashingMachine(10);
+            Counter = new Counter();
+        }
+
     }
 }

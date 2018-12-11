@@ -13,6 +13,7 @@ namespace Model
         private List<Order> _Orders;
         private List<Meal> _Meals;
         private List<WasheableTool> _WasheableTools;
+        private List<Cloth> _cloths;
 
         public Counter()
         {
@@ -67,6 +68,20 @@ namespace Model
             return tools;
         }
 
+        public void AddCloth(Cloth cloth)
+        {
+            _cloths.Add(cloth);
+        }
+        public void AddCloths(Cloth[] cloths)
+        {
+            _cloths.AddRange(cloths);
+        }
+        public Cloth[] TakeCloths(CleaningStatus cleaningStatus)
+        {
+            Cloth[] cloths = _cloths.Where(cloth => cloth.CleaningStatus == cleaningStatus).ToArray();
+            _cloths.Clear();
+            return cloths;
+        }
 
         public static T Deserialize<T>(byte[] data)
         {
@@ -89,6 +104,8 @@ namespace Model
                 return stream.ToArray();
             }
         }
+
+        
 
     }
 }
