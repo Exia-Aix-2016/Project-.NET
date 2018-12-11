@@ -27,13 +27,13 @@ namespace Model
                 base.AddItem(cloth);
             }
         }
-        public void AddDirtyCloths(ref List<Cloth> cloths)
+        public void AddDirtyCloths(List<Cloth> cloths)
         {
             if (cloths == null) throw new ArgumentNullException("DisMachine : cloths is null");
 
             if (cloths.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.DIRTY))
             {
-                base.AddItems(ref cloths);
+                base.AddItems(cloths);
             }
         }
         public void StartMachine()
