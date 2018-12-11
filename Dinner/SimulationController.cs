@@ -25,6 +25,7 @@ namespace Dinner
         private readonly Action<DiningRoom> renderCallback;
         private Thread mainThread;
         public int Ticks { get; private set; } = 0;
+        private readonly object PoolQueueLengthLock = new object();
 
         public SimulationController(Action<DiningRoom> renderCallback, Thread thread)
         {
@@ -53,7 +54,10 @@ namespace Dinner
                             ThreadPool.QueueUserWorkItem(x =>
                             {
                                 taskProcessor.Process();
-                                PoolQueueLength--;
+                                lock (PoolQueueLengthLock)
+                                {
+                                    PoolQueueLength--;
+                                }
                                 if (PoolQueueLength == 0)
                                 {
                                     @event.Set();
@@ -78,7 +82,7 @@ namespace Dinner
                 Dispatcher.FromThread(mainThread).Invoke(() =>
                 {
                     renderCallback(diningRoom);
-                });      
+                });
             }
         }
 
