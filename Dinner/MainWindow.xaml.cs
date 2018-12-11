@@ -50,6 +50,8 @@ namespace Dinner
             this.NumberClient.Content = $"Number of client : {dining.Clients.Length}";
 
             this.NumberTable.Content = $"Number of Table : {dining.Tables.Length}";
+
+            this.NumberClientInLoby.Content = $"Number of Client in lobby : {dining.Lobby.Count}";
             data.Clear();
             for(int i = 0; i < dining.Tables.Length; i++)
             {

@@ -17,5 +17,7 @@
         <Slider x:Name="SpeedSim" HorizontalAlignment="Left" Margin="275,10,0,0" VerticalAlignment="Top" Width="214" Minimum="1" SmallChange="1" Cursor="Arrow"/>
         <Label Content="SpeedSim :&#xD;&#xA;" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" Height="25"/>
         <DataGrid x:Name="DataGridDinner" HorizontalAlignment="Left" Height="241" Margin="21,141,0,0" VerticalAlignment="Top" Width="468"/>
+        <Label x:Name="NumberClientInLoby" Content="Number of client in lobby : 0" HorizontalAlignment="Left" Margin="153,89,0,0" VerticalAlignment="Top" Width="167"/>
+        <ScrollBar HorizontalAlignment="Left" Margin="265,141,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
