@@ -17,6 +17,7 @@ namespace Model
         public readonly DirtyStorage DirtyStorage;
         public readonly WashingMachine WashingMachine;
         public readonly Counter Counter;
+        public readonly Clerk Clerk;
 
         public Kitchen()
         {

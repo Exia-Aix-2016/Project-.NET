@@ -20,10 +20,20 @@ namespace Service
         {
             return _kitchen.WashingMachine.Available;
         }
-
+        
         public void FreeWashingMachine()
         {
-            // Task
+            Cloth[] cloths; 
+
+            _kitchen.Clerk.TaskProcessor.AddTask(() =>
+            {
+                cloths = _kitchen.WashingMachine.Retrieve().ToArray();
+            }, 5);
+
+            _kitchen.Clerk.TaskProcessor.AddTask(() =>
+            {
+                _kitchen.Counter.AddCloths(cloths);
+            });
         }
 
         public bool IsDirtyCuttlery()
@@ -40,7 +50,17 @@ namespace Service
 
         public void FillWashingMachine()
         {
-            // Task
+            Cloth[] DirtyCloths;
+
+            _kitchen.Clerk.TaskProcessor.AddTask(() =>
+            {
+                DirtyCloths = _kitchen.DirtyStorage.Cloths;
+            });
+
+            _kitchen.Clerk.TaskProcessor.AddTask(() =>
+            {
+                _kitchen.WashingMachine.AddDirtyCloths(DirtyCloths.ToList());
+            });
         }
 
         public void StartWashingMachine()
