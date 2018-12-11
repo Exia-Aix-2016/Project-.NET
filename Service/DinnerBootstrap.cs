@@ -17,9 +17,9 @@ namespace Service
 
             injector.Register<DiningRoom>(diningRoom);
             injector.Register<ClientService>(new ClientService(injector));
-            injector.Register<ClientService>(new ClientService(injector));
-            injector.Register<ClientService>(new TableService(injector));
-            injector.Register<ClientService>(new DinnerStaffService(injector));
+            injector.Register<ReceptionService>(new ReceptionService(injector));
+            injector.Register<TableService>(new TableService(injector));
+            injector.Register<DinnerStaffService>(new DinnerStaffService(injector));
 
             return injector;
         }

@@ -28,7 +28,7 @@ namespace Service
             return _kitchen.Counter.TakeOrders();
         }
 
-        public void PutMeals(Meal meals)
+        public void PutMeals(Meal[] meals)
         {
             MessageSocket message = new MessageSocket(meals);
             KitchenConnection.Instance.Send(message);
