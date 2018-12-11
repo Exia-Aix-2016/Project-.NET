@@ -8,7 +8,6 @@ namespace Model
 {
     public class ClerkWaiter : ITaskProcessorContainer
     {
-        public StaffStatus StaffStatus;
         public ITaskProcessor TaskProcessor { get; } = new TaskProcessor();
     }
 }
