@@ -21,7 +21,7 @@ namespace Model
             _Tasks.Enqueue(task);
         }
 
-        public void AddTask(callback callback, int ticks = 1)
+        public void AddTask(Action callback, int ticks = 1)
         {
             _Tasks.Enqueue(new Task(callback, ticks));
         }

@@ -21,10 +21,10 @@ namespace Service
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
-            headWaiter.TaskProcessor.AddTask(new Task(x => {
+            headWaiter.TaskProcessor.AddTask(() => {
                 _dining.Lobby.Remove(clients);
                 table.AddItems(clients.ToList());
-            }));
+            });
         }
 
         public HeadWaiter GetHeadWaiterByTable(Table table)
@@ -43,20 +43,20 @@ namespace Service
         public void SendOrdersToKitchen(HeadWaiter headWaiter)
         {
             CounterClientService counterClientService = _injector.Get<CounterClientService>();
-            headWaiter.TaskProcessor.AddTask(x =>
+            headWaiter.TaskProcessor.AddTask(() =>
             {
                 headWaiter.Orders.ForEach(order =>
                 {
                     //TODO
                 });
-            }));
+            });
         }
 
         public void AssignMenus(Table table)
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
-            headWaiter.TaskProcessor.AddTask(new Task(x =>
+            headWaiter.TaskProcessor.AddTask(() =>
             {
                 var menus = new List<Menu>();
                 for (int i = 0; i < table.Items().Count; i++)
@@ -65,7 +65,7 @@ namespace Service
                     _dining.Menus.Remove(menu);
                     table.Menus.Add(menu);
                 }
-            }));
+            });
  
         }
 
@@ -75,7 +75,7 @@ namespace Service
 
             decimal ticks = table.Items().Count * 30;
 
-            headWaiter.TaskProcessor.AddTask(new Task(x => {
+            headWaiter.TaskProcessor.AddTask(() => {
                 var orders = table.Items()
                     .Where(client => client.Choice != null)
                     .Select(client => new Order(client.Choice));
@@ -85,18 +85,18 @@ namespace Service
 
         public void ServeBread(Table table)
         {
-            _dining.ClerkWaiter.TaskProcessor.AddTask(new Task(x =>
+            _dining.ClerkWaiter.TaskProcessor.AddTask(() =>
             {
                 table.BreadBasketFull = true;
-            }));
+            });
         }
 
         public void ServeWater(Table table)
         {
-            _dining.ClerkWaiter.TaskProcessor.AddTask(new Task(x =>
+            _dining.ClerkWaiter.TaskProcessor.AddTask(() =>
             {
                 table.WaterBottleFull = true;
-            }));
+            });
         }
 
         public void ServeMeal(Meal meal)
