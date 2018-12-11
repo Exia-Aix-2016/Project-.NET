@@ -17,15 +17,7 @@ namespace Service
 
         public T Get<T>()
         {
-            try
-            {
-                return (T)_services[typeof(T)];
-            } catch
-            {
-
-            }
-
-            return default(T);
+            return (T)_services[typeof(T)];
         }
     }
 }

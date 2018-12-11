@@ -9,14 +9,16 @@ namespace Service
 {
     public class ReceptionService
     {
-        private DiningRoom DiningRoom;
+        private DependencyInjector _injector;
+        private DiningRoom _diningRoom => _injector.Get<DiningRoom>();
 
-        public ReceptionService(DiningRoom diningRoom)
+
+        public ReceptionService(DependencyInjector injector)
         {
-            this.DiningRoom = diningRoom;
+            _injector = injector;
         }
 
-        public Client[] GetNewClients()
+        public void GenerateNewClients()
         {
             Random random = new Random();
 
@@ -29,13 +31,17 @@ namespace Service
                 clients[i] = new Client();
             }
 
-            return clients;
+            _diningRoom.Lobby.Add(clients);
+        }
 
+        public Client[] GetNewClients()
+        {
+            return _diningRoom.Lobby.First();
         }
 
         public bool IsMenuAvailable(int number)
         {
-            if(DiningRoom.Menus.Count >= number)
+            if(_diningRoom.Menus.Count >= number)
             {
                 return true;
             }

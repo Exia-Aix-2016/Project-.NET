@@ -9,7 +9,7 @@ namespace Model
     public class DiningRoom
     {
         public readonly IList<Square> Squares = new List<Square>();
-        public readonly IList<Client> Lobby = new List<Client>();
+        public readonly IList<Client[]> Lobby = new List<Client[]>();
         public readonly IList<Menu> Menus = new List<Menu>();
         public ClerkWaiter ClerkWaiter;
         public Counter Counter;

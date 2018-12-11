@@ -22,9 +22,8 @@ namespace Service
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
             headWaiter.TaskProcessor.AddTask(new Task(x => {
-                List<Client> clientsList = clients.ToList();
-                clientsList.ForEach(client => _dining.Lobby.Remove(client));
-                table.AddItems(clientsList);
+                _dining.Lobby.Remove(clients);
+                table.AddItems(clients.ToList());
             }));
         }
 
