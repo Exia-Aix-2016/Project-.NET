@@ -10,14 +10,14 @@
         <Button x:Name="StartSimButton" Content="Start" Margin="22,0,695,362" VerticalAlignment="Bottom" Click="StartSimButton_Click"/>
         <Button x:Name="PauseSimButton" Content="Pause" Margin="91,0,626,362" VerticalAlignment="Bottom" Click="PauseSimButton_Click"/>
         <Separator Margin="10,27,0,0" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="479"/>
-        <Label x:Name="NumberTable" Content="Number of Table : 0" HorizontalAlignment="Left" Margin="22,58,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="TickCount" Content="Number of Ticks : 0" HorizontalAlignment="Left" Margin="153,58,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="NumberClient" Content="Number of client : 0" HorizontalAlignment="Left" Margin="21,89,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="NumberTable" Content="Number of Table : 0" HorizontalAlignment="Left" Margin="22,58,0,0" VerticalAlignment="Top" Width="126"/>
+        <Label x:Name="TickCount" Content="Number of Ticks : 0" HorizontalAlignment="Left" Margin="153,58,0,0" VerticalAlignment="Top" Width="164"/>
+        <Label x:Name="NumberClient" Content="Number of client : 0" HorizontalAlignment="Left" Margin="21,89,0,0" VerticalAlignment="Top" Width="127"/>
         <Separator HorizontalAlignment="Left" Height="16" Margin="10,120,0,0" VerticalAlignment="Top" Width="479"/>
         <Slider x:Name="SpeedSim" HorizontalAlignment="Left" Margin="275,10,0,0" VerticalAlignment="Top" Width="214" Minimum="1" SmallChange="1" Cursor="Arrow" ValueChanged="SpeedSim_ValueChanged"/>
         <Label Content="SpeedSim :&#xD;&#xA;" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" Height="25"/>
         <DataGrid x:Name="DataGridDinner" HorizontalAlignment="Left" Height="241" Margin="21,141,0,0" VerticalAlignment="Top" Width="363"/>
-        <Label x:Name="NumberClientInLoby" Content="Number of client in lobby : 0" HorizontalAlignment="Left" Margin="153,89,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label x:Name="NumberClientInLoby" Content="Number of client in lobby : 0" HorizontalAlignment="Left" Margin="153,89,0,0" VerticalAlignment="Top" Width="231"/>
         <DataGrid x:Name="StaffStatus" HorizontalAlignment="Left" Height="241" Margin="389,141,0,0" VerticalAlignment="Top" Width="363"/>
     </Grid>
 </Window>
