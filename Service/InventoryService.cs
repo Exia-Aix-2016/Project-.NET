@@ -11,6 +11,11 @@ namespace Service
     {
         private Kitchen _kitchen;
 
+        public InventoryService(DependencyInjector dependencyInjector)
+        {
+            _kitchen = dependencyInjector.Get<Kitchen>();
+        }
+
         public bool IsRequirementAvailable(Recipe recipe)
         {
             bool Tools = false;

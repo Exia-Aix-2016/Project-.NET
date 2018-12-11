@@ -20,6 +20,7 @@ namespace Model
             _Orders = new List<Order>();
             _Meals = new List<Meal>();
             _WasheableTools = new List<WasheableTool>();
+            _cloths = new List<Cloth>();
         }
 
         public void AddOrder(Order order)
