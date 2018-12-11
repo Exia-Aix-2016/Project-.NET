@@ -71,7 +71,7 @@ namespace Model
 
         public virtual List<T> Items()
         {
-            return new List<T>(Storage);
+            return Storage;
         }
 
         public virtual void Clear()

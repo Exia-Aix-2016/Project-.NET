@@ -65,6 +65,7 @@
     <Compile Include="Menu.cs" />
     <Compile Include="MessageSocket.cs" />
     <Compile Include="Stock.cs" />
+    <Compile Include="TableStatus.cs" />
     <Compile Include="ToolStorage.cs" />
     <Compile Include="DishMachine.cs" />
     <Compile Include="Diver.cs" />

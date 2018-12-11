@@ -18,5 +18,16 @@ namespace Model
         {
             TableID = tableID;
         }
+
+        public TableStatus TableOrderStatus {  get
+            {
+                if (Storage.TrueForAll(client => client.Choice != null))
+                {
+                    return TableStatus.CHOOSEN;
+                }else
+                {
+                    return TableStatus.NOT_CHOOSEN;
+                }
+            }
     }
 }

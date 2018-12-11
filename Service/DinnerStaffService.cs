@@ -76,6 +76,33 @@ namespace Service
  
         }
 
+        public Table[] getFreeTables()
+        {
+            return _dining.Tables.Where(table => !table.Items().Any()).ToArray();
+        }
+
+        public Table getFreeTable(int numberClient)
+        {
+            return _dining.Tables.Where(table => !table.Items().Any())
+                                 .Where(table => table.Size > numberClient)
+                                 .First();
+        }
+        public Table[] getFreeTables(int numberClient)
+        {
+            return _dining.Tables.Where(table => !table.Items().Any())
+                                 .Where(table => table.Size > numberClient)
+                                 .ToArray();
+        }
+
+        public Table[] GetTablesOrderStatus(TableStatus tableOrderStatus)
+        {
+            return _dining.Tables.Where(table => table.TableOrderStatus == tableOrderStatus).ToArray();
+        }
+
+        public Table[] GetTableWithoutMenus()
+        {
+            return _dining.Tables.Where(table => !table.Menus.Any()).ToArray();
+        }
         public void TakeOrders(Table table)
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
