@@ -74,6 +74,7 @@ namespace Dinner
                     Thread.Sleep(millisToSleep);
                 }
 
+                Ticks++;
                 Dispatcher.FromThread(mainThread).Invoke(() =>
                 {
                     renderCallback(diningRoom);

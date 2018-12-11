@@ -48,6 +48,7 @@ namespace Dinner
         {
 
             this.NumberClient.Content = $"Number of client : {dining.Clients.Length}";
+            this.TickCount.Content = $"Tick : {simulationController.Ticks}";
 
             this.NumberTable.Content = $"Number of Table : {dining.Tables.Length}";
 
@@ -76,6 +77,19 @@ namespace Dinner
         private void PauseSimButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SpeedSim_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (simulationController == null) return;
+            if (e.NewValue > e.OldValue)
+            {
+                simulationController.SpeedUp();
+            }else if(e.NewValue < e.OldValue)
+            {
+                simulationController.SlowDown();
+            }
+            
         }
     }
 }
