@@ -20,14 +20,6 @@ namespace Kitchen
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        Service.CounterServerService Counter = new Service.CounterServerService();
-
-
-
-     
-
-
         public MainWindow()
         {
             Service.KitchenConnection.Instance.Start();
@@ -36,15 +28,14 @@ namespace Kitchen
             /*var service = new Service.Class1();
             service.TestDataBase();*/
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Model.Meal[] meals = new Model.Meal[2];
 
-            meals[0] = new Model.Meal("Test");
+            /*meals[0] = new Model.Meal("Test");
             meals[1] = new Model.Meal("Bla");
             Model.MessageSocket  msg = new Model.MessageSocket(meals);
-            Service.KitchenConnection.Instance.Send(msg);
+            Service.KitchenConnection.Instance.Send(msg);*/
         }
     }
 }
