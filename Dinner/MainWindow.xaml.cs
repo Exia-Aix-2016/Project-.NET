@@ -71,15 +71,15 @@ namespace Dinner
             Staffdata.Clear();
             dining.HeadWaiters.ToList().ForEach(HeadWaiter =>
             {
-                Staffdata.Rows.Add("HeadWeater", HeadWaiter.StaffStatus.ToString());
+                Staffdata.Rows.Add("HeadWeater", HeadWaiter.TaskProcessor.CurrentTask.Name);
             });
 
             dining.Waiters.ToList().ForEach(waiter =>
             {
-                Staffdata.Rows.Add("Waiter", waiter.StaffStatus.ToString());
+                Staffdata.Rows.Add("Waiter", waiter.TaskProcessor.CurrentTask.Name);
             });
 
-            Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.StaffStatus.ToString());
+            Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.TaskProcessor.CurrentTask.Name);
 
 
 

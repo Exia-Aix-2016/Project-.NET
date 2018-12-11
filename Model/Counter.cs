@@ -12,15 +12,11 @@ namespace Model
     {
         private List<Order> _Orders;
         private List<Meal> _Meals;
-        private List<WasheableTool> _WasheableTools;
-        private List<Cloth> _cloths;
 
         public Counter()
         {
             _Orders = new List<Order>();
-            _Meals = new List<Meal>();
-            _WasheableTools = new List<WasheableTool>();
-            _cloths = new List<Cloth>();
+            _Meals = new List<Meal>();;
         }
 
         public void AddOrder(Order order)
@@ -41,15 +37,6 @@ namespace Model
             _Meals.AddRange(meals);
         }
 
-        public void AddWasheableTool(WasheableTool tool)
-        {
-            _WasheableTools.Add(tool);
-        }
-        public void AddWasheableTools(WasheableTool[] tools)
-        {
-            _WasheableTools.AddRange(tools);
-        }
-
         public Meal[] TakeMeals()
         {
             Meal[] meals = _Meals.ToArray();
@@ -61,27 +48,6 @@ namespace Model
             Order[] orders = _Orders.ToArray();
             _Orders.Clear();
             return orders;
-        }
-        public WasheableTool[] TakeTools(CleaningStatus cleaningStatus)
-        {
-            WasheableTool[] tools = _WasheableTools.Where(t => t.CleaningStatus == cleaningStatus).ToArray();
-            _WasheableTools.RemoveAll(t => t.CleaningStatus == cleaningStatus);
-            return tools;
-        }
-
-        public void AddCloth(Cloth cloth)
-        {
-            _cloths.Add(cloth);
-        }
-        public void AddCloths(Cloth[] cloths)
-        {
-            _cloths.AddRange(cloths);
-        }
-        public Cloth[] TakeCloths(CleaningStatus cleaningStatus)
-        {
-            Cloth[] cloths = _cloths.Where(cloth => cloth.CleaningStatus == cleaningStatus).ToArray();
-            _cloths.Clear();
-            return cloths;
         }
 
         public static T Deserialize<T>(byte[] data)

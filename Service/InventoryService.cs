@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess;
 
 namespace Service
 {
     public class InventoryService
     {
-        private Kitchen _kitchen;
+        /*private Kitchen _kitchen;
 
         public InventoryService(DependencyInjector dependencyInjector)
         {
@@ -59,6 +60,6 @@ namespace Service
             {
                 return false;
             }
-        }
+        }*/
     }
 }

@@ -9,23 +9,22 @@ namespace Service
 {
     public class CounterServerService
     {
-        private Kitchen _kitchen;
+        private DependencyInjector injector;
+        private Counter counter => injector.Get<Counter>();
         public CounterServerService(DependencyInjector dependency)
         {
             KitchenConnection.Instance.OnreceiveEvent += new KitchenConnection.ReceiveDel(Receive);
-            _kitchen = dependency.Get<Kitchen>();
+            injector = dependency;
         }
         public void Receive(byte[] data)
         {
            MessageSocket message =  Model.Counter.Deserialize<Model.MessageSocket>(data);
 
-            if (message.HasOrders) _kitchen.Counter.AddOrders(message.Orders);
-            if (message.HasWasheableTools) _kitchen.Counter.AddWasheableTools(message.WasheableTools);
-            if (message.hasCloths) _kitchen.Counter.AddCloths(message.Cloths);
+            if (message.HasOrders) counter.AddOrders(message.Orders);
         }
         public Order[] GetOrders()
         {
-            return _kitchen.Counter.TakeOrders();
+            return counter.TakeOrders();
         }
 
         public void PutMeals(Meal[] meals)
@@ -33,31 +32,6 @@ namespace Service
             MessageSocket message = new MessageSocket(meals);
             KitchenConnection.Instance.Send(message);
         }
-        public void PutWasheableTools(WasheableTool[] washeableTools)
-        {
-            List<WasheableTool> tools = new List<WasheableTool>(washeableTools);
-            if (tools.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.CLEAN))
-            {
-                MessageSocket message = new MessageSocket(washeableTools);
-                KitchenConnection.Instance.Send(message);
-            }
-        }
-
-        public void PutCloths(Cloth[] cloths)
-        {
-            List<Cloth> clths = new List<Cloth>(cloths);
-            if(clths.TrueForAll(cl => cl.CleaningStatus == CleaningStatus.CLEAN))
-            {
-                MessageSocket message = new MessageSocket(cloths);
-                KitchenConnection.Instance.Send(message);
-            }
-        }
-
-        public Cloth[] TakeCloths()
-        {
-            return _kitchen.Counter.TakeCloths(CleaningStatus.DIRTY);
-        }
-
-
+      
     }
 }

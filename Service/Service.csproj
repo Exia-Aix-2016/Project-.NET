@@ -59,7 +59,6 @@
     <Compile Include="InventoryService.cs" />
     <Compile Include="KitchenBootstrap.cs" />
     <Compile Include="KitchenConnection.cs" />
-    <Compile Include="KitchenStaffService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceptionService.cs" />
     <Compile Include="DinnerStaffService.cs" />

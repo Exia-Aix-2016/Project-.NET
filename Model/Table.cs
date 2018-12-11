@@ -12,7 +12,6 @@ namespace Model
         public readonly IList<Menu> Menus = new List<Menu>();
         public bool BreadBasketFull = false;
         public bool WaterBottleFull = false;
-        public Cloth TableCloth;
         public bool Reserved = false;
         private TableStatus _tableStatus;
 

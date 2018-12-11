@@ -153,7 +153,6 @@ namespace Service
                 table.WaterBottleFull = false;
                 table.BreadBasketFull = false;
                 table.Menus.Clear();
-                table.TableCloth = null;
                 table.Clear();
                 table.Reserved = false;
                 }
