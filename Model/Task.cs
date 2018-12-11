@@ -6,9 +6,11 @@ namespace Model
         private Action Callback;
         public int TickRemaining { get; private set; }
         public bool IsProcess { get; private set; } = false;
+        public readonly string Name;
 
-        public Task(Action callback, int ticks = 1)
+        public Task(Action callback, int ticks = 1, string name = "")
         {
+            Name = name;
             TickRemaining = ticks;
             Callback = callback;
         }

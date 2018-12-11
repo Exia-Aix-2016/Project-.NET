@@ -24,11 +24,10 @@ namespace Service
             headWaiter.TaskProcessor.AddTask(() => {
                 lock (_dining.Squares) lock (_dining.Lobby)
                 {
-                    headWaiter.StaffStatus = StaffStatus.ASSIGN_CLIENT_TO_TABLE;
                     _dining.Lobby.Remove(clients);
                     table.AddItems(clients.ToList());
                 }
-            }, configuration.TimeToAssignTable);
+            }, configuration.TimeToAssignTable, "ASSIGN_CLIENT_TO_TABLE");
         }
 
         public HeadWaiter GetHeadWaiterByTable(Table table)
@@ -59,11 +58,10 @@ namespace Service
             {
                 lock (_counterClientService) lock(_dining.Squares)
                 {
-                    headWaiter.StaffStatus = StaffStatus.SEND_ORDERS_TO_KITCHEN;
                     _counterClientService.PutOrders(headWaiter.Orders.ToArray());
                     headWaiter.Orders.Clear();
                 }
-            }, configuration.TimeToSendOrdersToKitchen);
+            }, configuration.TimeToSendOrdersToKitchen, "SEND_ORDERS_TO_KITCHEN");
         }
 
         public void AssignMenus(Table table)
@@ -81,10 +79,9 @@ namespace Service
             {
                 lock(_dining.Squares)
                 {
-                    headWaiter.StaffStatus = StaffStatus.ASSIGN_MENU;
                     menus.ForEach(x => table.Menus.Add(x));
                 }
-            }, configuration.TimeToAssignMenus);
+            }, configuration.TimeToAssignMenus, "ASSIGN_MENU");
  
         }
 
@@ -102,13 +99,12 @@ namespace Service
             headWaiter.TaskProcessor.AddTask(() => {
                 lock (_dining.Squares)
                 {
-                    headWaiter.StaffStatus = StaffStatus.TAKE_ORDERS;
                     var orders = table.Items()
                         .Where(client => client.Choice != null)
                         .Select(client => new Order(client.Choice, table));
                     headWaiter.Orders.AddRange(orders);
                 }
-            }, (int) Math.Round(ticks));
+            }, (int) Math.Round(ticks), "TAKE_ORDERS");
         }
 
         public void ServeBread(Table table)
@@ -117,10 +113,9 @@ namespace Service
             {
                 lock (_dining.ClerkWaiter) lock (_dining.Squares)
                 {
-                    _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_BREAD;
                     table.BreadBasketFull = true;
                 }
-            }, configuration.TimeToServeBread);
+            }, configuration.TimeToServeBread, "SERVE_BREAD");
         }
 
         public void ServeWater(Table table)
@@ -129,10 +124,9 @@ namespace Service
             {
                 lock (_dining.ClerkWaiter) lock (_dining.Squares)
                 {
-                    _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_WATER;
                     table.WaterBottleFull = true;
                 }
-            }, configuration.TimeToServeWater);
+            }, configuration.TimeToServeWater, "SERVE_WATER");
         }
 
         public void ServeMeal(Meal meal)
@@ -142,12 +136,11 @@ namespace Service
             {
                 lock (_dining.Squares)
                 {
-                    waiter.StaffStatus = StaffStatus.SERVE_MEAL;
                     Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).First();
                     client.Meal = meal;
 
                 }
-            }, configuration.TimeToServeMeal);
+            }, configuration.TimeToServeMeal, "SERVE_MEAL");
         }
 
         public void CleanTable(Table table)
@@ -157,7 +150,6 @@ namespace Service
             {
                 lock (_dining.Squares) lock (_dining.Menus)
                 {
-                waiter.StaffStatus = StaffStatus.CLEAN_TABLE;
                 table.WaterBottleFull = false;
                 table.BreadBasketFull = false;
                 table.Menus.Clear();
@@ -165,7 +157,7 @@ namespace Service
                 table.Clear();
                 table.Reserved = false;
                 }
-            }, configuration.TimeToCleanTable);
+            }, configuration.TimeToCleanTable, "CLEAN_TABLE");
         }
     }
 }

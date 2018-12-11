@@ -12,6 +12,7 @@ namespace Model
         int QueueCount { get; }
         void AddTask(Task task);
         void AddTask(Action callback, int ticks = 1);
+        void AddTask(Action callback, int ticks = 1, string name = "");
         void RemoveTask(Task task);
         void Process();
         Task CurrentTask { get; }
