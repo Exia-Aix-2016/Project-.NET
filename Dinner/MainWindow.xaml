@@ -16,6 +16,6 @@
         <Separator HorizontalAlignment="Left" Height="16" Margin="10,120,0,0" VerticalAlignment="Top" Width="479"/>
         <Slider x:Name="SpeedSim" HorizontalAlignment="Left" Margin="275,10,0,0" VerticalAlignment="Top" Width="214" Minimum="1" SmallChange="1" Cursor="Arrow"/>
         <Label Content="SpeedSim :&#xD;&#xA;" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" Height="25"/>
-        <DataGrid x:Name="GridViewDinner" HorizontalAlignment="Left" Margin="44,156,0,0" Width="674" Height="208" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DataGridDinner" HorizontalAlignment="Left" Height="241" Margin="21,141,0,0" VerticalAlignment="Top" Width="468"/>
     </Grid>
 </Window>

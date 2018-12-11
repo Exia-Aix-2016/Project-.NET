@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Service;
 using Model;
+using System.Data;
 
 namespace Dinner
 {
@@ -23,7 +24,7 @@ namespace Dinner
     public partial class MainWindow : Window, IRender<DiningRoom>
     {
         private SimulationController simulationController;
-
+        private DataTable data;
         public MainWindow()
         {
             //DinnerConnection.Instance.Start();
@@ -31,10 +32,19 @@ namespace Dinner
             InitializeComponent();
 
             simulationController = new SimulationController(Render);
+            data = new DataTable();
+            data.Columns.Add("Table", typeof(string));
+            data.Columns.Add("Numbers Of Client", typeof(int));
+            data.Columns.Add("Status", typeof(string));
+
+            data.Rows.Add("Table 1", 10, Model.TableStatus.CHOOSEN.ToString());
+
+
         }
 
         public void Render(DiningRoom diningRoom)
         {
+            this.NumberClient.Content = $"Number of client : {diningRoom.Lobby.Count}";
 
         }
 
