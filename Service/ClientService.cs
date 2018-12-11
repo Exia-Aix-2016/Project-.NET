@@ -15,12 +15,21 @@ namespace Service
 
         public void ChooseMeal(Table table)
         {
-            
+            table.Items().ForEach(client =>
+            {
+                client.TaskProcessor.AddTask(() =>
+                {
+
+                }, 10);
+            });
         }
 
         public void Eat(Client client)
         {
-
+            client.TaskProcessor.AddTask(() =>
+            {
+                client.Finished = true;
+            }, 5);
         }
     }
 }

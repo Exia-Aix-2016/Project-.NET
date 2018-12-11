@@ -4,8 +4,8 @@
     {
         CHOOSEN,
         NOT_CHOOSEN,
- 
         EATING,
-        FINISH    
+        FINISH,
+        NOT_ASSIGNED
     }
 }

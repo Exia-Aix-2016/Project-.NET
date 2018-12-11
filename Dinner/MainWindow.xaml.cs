@@ -38,6 +38,7 @@ namespace Dinner
             Tablesdata.Columns.Add("Table", typeof(string));
             Tablesdata.Columns.Add("Numbers Of Client", typeof(int));
             Tablesdata.Columns.Add("Status", typeof(string));
+            Tablesdata.Columns.Add("Number Chairs", typeof(int));
 
             Staffdata = new DataTable();
             Staffdata.Columns.Add("Staff", typeof(string));
@@ -63,7 +64,8 @@ namespace Dinner
             Tablesdata.Clear();
             for(int i = 0; i < dining.Tables.Length; i++)
             {
-                Tablesdata.Rows.Add($"Table {i}", dining.Tables[i].Items().Count, dining.Tables[i].TableOrderStatus.ToString());
+                Tablesdata.Rows.Add($"Table {i}", dining.Tables[i].Items().Count, dining.Tables[i].TableOrderStatus.ToString(), 
+                    dining.Tables[i].NumberSlots);
             }
 
             Staffdata.Clear();

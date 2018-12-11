@@ -37,7 +37,7 @@ namespace Model
         {
             if (item == null) throw new ArgumentNullException("Container : item null");
 
-            if (NumberSlots > 0 && Storage.Count + 1 > NumberSlots) throw new Exception("Container : Storage is full");
+            if (NumberSlots > 0 && Storage.Count >= NumberSlots) throw new Exception("Container : Storage is full");
             
             Storage.Add(item);
         }
@@ -45,7 +45,7 @@ namespace Model
         public virtual void AddItems(List<T> items)
         {
             if (items == null) throw new ArgumentNullException("Container : items null");
-            if (NumberSlots > 0 && Storage.Count + items.Count > NumberSlots) throw new Exception("Container : Storage is full");
+            if (NumberSlots > 0 && Storage.Count + items.Count >= NumberSlots) throw new Exception("Container : Storage is full");
             Storage.AddRange(items);
         }
 

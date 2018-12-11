@@ -14,26 +14,30 @@ namespace Model
         public bool WaterBottleFull = false;
         public Cloth TableCloth;
         public bool Reserved = false;
+        private TableStatus _tableStatus;
 
         public Table(int tableID, int numberchairs) : base(numberchairs)
         {
             TableID = tableID;
+            _tableStatus = TableStatus.NOT_ASSIGNED;
         }
 
         public TableStatus TableOrderStatus
         {
             get
             {
-                if (Storage.TrueForAll(client => client.Choice != null))
-                {
-                    return TableStatus.CHOOSEN;
-                }
-                else
-                {
-                    return TableStatus.NOT_CHOOSEN;
-                }
+                if (Items().TrueForAll(client => client.Finished == false)) return TableStatus.FINISH;
+
+                if (Items().TrueForAll(client => client.Finished == false && client.Meal != null)) return TableStatus.EATING;
+
+                if (Items().TrueForAll(client => client.Finished == false && client.Meal == null)) return TableStatus.CHOOSEN;
+
+                return TableStatus.NOT_ASSIGNED;
             }
         }
+        
+
     }
-    
 }
+    
+
