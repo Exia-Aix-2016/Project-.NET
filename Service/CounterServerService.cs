@@ -16,7 +16,7 @@ namespace Service
         }
         public void Receive(byte[] data)
         {
-            Console.WriteLine(Encoding.ASCII.GetString(data));
+            Console.WriteLine(Model.Counter.Deserialize<Model.MessageSocket>(data).ToString());
         }
         public Order[] GetOrders()
         {

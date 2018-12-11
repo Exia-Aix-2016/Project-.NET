@@ -12,12 +12,12 @@ namespace Service
   
         public CounterClientService()
         {
-            DinnerConnection.Instance.OnreceiveEvent += new DinnerConnection.ReceiveDel(receive);
+            DinnerConnection.Instance.OnreceiveEvent += new DinnerConnection.ReceiveDel(Receive);
         }
 
-        public void receive(byte[] data)
+        public void Receive(byte[] data)
         {
-            Console.WriteLine(Model.Counter.Deserialize<string>(data));
+            Console.WriteLine(Model.Counter.Deserialize<Model.MessageSocket>(data).ToString());
         }
         public Meal[] GetMeals()
         {

@@ -63,6 +63,7 @@
     <Compile Include="DirtyStorage.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="MessageSocket.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="ToolStorage.cs" />
     <Compile Include="DishMachine.cs" />

@@ -39,7 +39,12 @@ namespace Kitchen
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Service.KitchenConnection.Instance.Send("testdddddddd");
+            Model.Meal[] meals = new Model.Meal[2];
+
+            meals[0] = new Model.Meal("Test");
+            meals[1] = new Model.Meal("Bla");
+            Model.MessageSocket  msg = new Model.MessageSocket(meals);
+            Service.KitchenConnection.Instance.Send(msg);
         }
     }
 }
