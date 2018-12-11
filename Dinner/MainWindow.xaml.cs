@@ -40,13 +40,13 @@ namespace Dinner
 
         private void StartSimButton_Click(object sender, RoutedEventArgs e)
         {
-
+            simulationController.Start();
         }
 
 
         private void StopSimbutton_Click(object sender, RoutedEventArgs e)
         {
-
+            simulationController.Stop();
         }
 
         private void PauseSimButton_Click(object sender, RoutedEventArgs e)

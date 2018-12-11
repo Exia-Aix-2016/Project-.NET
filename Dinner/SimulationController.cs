@@ -39,21 +39,27 @@ namespace Dinner
                 DateTime startTime = DateTime.Now;
                 PoolQueueLength = 0;
                 @event.Reset();
-                foreach(var taskProcessor in diningRoom.TaskProcessors)
-                {
-                    PoolQueueLength++;
-                    ThreadPool.QueueUserWorkItem(x =>
-                    {
-                        taskProcessor.Process();
-                        PoolQueueLength--;
-                        if (PoolQueueLength == 0)
-                        {
-                            @event.Set();
-                        }
-                    });
 
+                if(diningRoom.TaskProcessors.Length > 0)
+                {
+                    foreach (var taskProcessor in diningRoom.TaskProcessors)
+                    {
+                        if (taskProcessor != null)
+                        {
+                            PoolQueueLength++;
+                            ThreadPool.QueueUserWorkItem(x =>
+                            {
+                                taskProcessor.Process();
+                                PoolQueueLength--;
+                                if (PoolQueueLength == 0)
+                                {
+                                    @event.Set();
+                                }
+                            });
+                        }
+                    }
+                    @event.WaitOne();
                 }
-                @event.WaitOne();
 
                 _simulation.Forward();
 

@@ -39,7 +39,7 @@ namespace Service
                 .Where(x => x.Items().Where(y => y.Items().Contains(table)).Any())
                 .SelectMany(x => x.Waiters)
                 .OrderBy(x => x.TaskProcessor.QueueLenght)
-                .Single();
+                .First();
         }
 
         public HeadWaiter[] GetHeadWaiters(Func<HeadWaiter, bool> selector)

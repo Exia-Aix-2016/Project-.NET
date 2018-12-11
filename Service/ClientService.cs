@@ -15,7 +15,7 @@ namespace Service
 
         public void ChooseMeal(Table table)
         {
-            // Task
+            
         }
 
         public void Eat(Client client)

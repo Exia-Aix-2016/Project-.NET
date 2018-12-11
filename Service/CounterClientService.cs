@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class CounterClientService
+    public class CounterClientService: Service
     {
-        private DiningRoom _diningRoom;
-        
-  
-        public CounterClientService(DependencyInjector dependencyInjector)
+        private DiningRoom _diningRoom => _injector.Get<DiningRoom>();
+
+
+        public CounterClientService(DependencyInjector injector): base(injector)
         {
             DinnerConnection.Instance.OnreceiveEvent += new DinnerConnection.ReceiveDel(Receive);
-
-            _diningRoom = dependencyInjector.Get<DiningRoom>();
-
-            
-
         }
 
         public void Receive(byte[] data)
