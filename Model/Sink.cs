@@ -30,11 +30,11 @@ namespace Model
             if (item.CleaningStatus == CleaningStatus.DIRTY && item.WashRequirement == WashRequirement.Sink) base.AddItem(item);
         }
 
-        public override void AddItems(ref List<WasheableTool> items)
+        public override void AddItems(List<WasheableTool> items)
         {
            if(items.TrueForAll(item => item.CleaningStatus == CleaningStatus.DIRTY && item.WashRequirement == WashRequirement.Sink))
             {
-                base.AddItems(ref items);
+                base.AddItems(items);
             }
             else
             {

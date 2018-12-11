@@ -20,7 +20,7 @@ namespace Model
             _Meal = null;
         }
 
-        public void AddRecipe(ref Recipe recipe)
+        public void AddRecipe(Recipe recipe)
         {
             if (recipe == null) throw new ArgumentNullException("Oven : recipe is null");
 

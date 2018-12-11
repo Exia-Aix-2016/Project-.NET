@@ -10,7 +10,7 @@ namespace Model
     {
         public readonly Recipe Recipe;
 
-        public Order(ref Recipe recipe) => Recipe = recipe;
+        public Order(Recipe recipe) => Recipe = recipe;
 
     }
 }

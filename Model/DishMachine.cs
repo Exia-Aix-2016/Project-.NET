@@ -28,13 +28,13 @@ namespace Model
                 base.AddItem(tool);
             }
         }
-        public void AddDirtyTools(ref List<WasheableTool> tools)
+        public void AddDirtyTools(List<WasheableTool> tools)
         {
             if (tools == null) throw new ArgumentNullException("DisMachine : tool is null");
 
             if(tools.TrueForAll(tool => tool.CleaningStatus == CleaningStatus.DIRTY && tool.WashRequirement == WashRequirement.DishMachine))
             {
-                base.AddItems(ref tools);
+                base.AddItems(tools);
             }
         }
 

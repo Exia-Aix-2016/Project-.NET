@@ -22,7 +22,7 @@ namespace Service
             headWaiter.TaskProcessor.AddTask(new Task(x => {
                 List<Client> clientsList = clients.ToList();
                 clientsList.ForEach(client => _dining.Lobby.Remove(client));
-                table.AddItems(ref clientsList);
+                table.AddItems(clientsList);
             }));
         }
 
@@ -76,7 +76,7 @@ namespace Service
             headWaiter.TaskProcessor.AddTask(new Task(x => {
                 var orders = table.Items()
                     .Where(client => client.Choice != null)
-                    .Select(client => new Order(ref client.Choice));
+                    .Select(client => new Order(client.Choice));
                 headWaiter.Orders.AddRange(orders);
             }, (int) Math.Round(ticks)));
         }

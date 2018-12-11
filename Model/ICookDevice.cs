@@ -8,7 +8,7 @@ namespace Model
 {
     public interface ICookDevice : IAvailable
     {
-        void AddRecipe(ref Recipe recipe);
+        void AddRecipe(Recipe recipe);
         Meal TakeMeal { get; }
         bool IsCookFinished {get;}
 
