@@ -4,6 +4,7 @@
     {
         CHOOSEN,
         NOT_CHOOSEN,
+ 
         EATING,
         FINISH    
     }

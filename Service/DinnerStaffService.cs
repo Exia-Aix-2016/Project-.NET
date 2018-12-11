@@ -21,6 +21,7 @@ namespace Service
             table.Reserved = true;
 
             headWaiter.TaskProcessor.AddTask(() => {
+                headWaiter.StaffStatus = StaffStatus.ASSIGN_CLIENT_TO_TABLE;
                 _dining.Lobby.Remove(clients);
                 table.AddItems(clients.ToList());
             });
@@ -52,6 +53,7 @@ namespace Service
         {
             headWaiter.TaskProcessor.AddTask(() =>
             {
+                headWaiter.StaffStatus = StaffStatus.SEND_ORDERS_TO_KITCHEN;
                 _counterClientService.PutOrders(headWaiter.Orders.ToArray());
                 headWaiter.Orders.Clear();
             });
@@ -63,6 +65,7 @@ namespace Service
 
             headWaiter.TaskProcessor.AddTask(() =>
             {
+                headWaiter.StaffStatus = StaffStatus.ASSIGN_MENU;
                 var menus = new List<Menu>();
                 for (int i = 0; i < table.Items().Count; i++)
                 {
@@ -108,6 +111,7 @@ namespace Service
             decimal ticks = table.Items().Count * 30;
 
             headWaiter.TaskProcessor.AddTask(() => {
+                headWaiter.StaffStatus = StaffStatus.TAKE_ORDERS;
                 var orders = table.Items()
                     .Where(client => client.Choice != null)
                     .Select(client => new Order(client.Choice, table));
@@ -119,6 +123,7 @@ namespace Service
         {
             _dining.ClerkWaiter.TaskProcessor.AddTask(() =>
             {
+                _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_BREAD;
                 table.BreadBasketFull = true;
             });
         }
@@ -127,6 +132,7 @@ namespace Service
         {
             _dining.ClerkWaiter.TaskProcessor.AddTask(() =>
             {
+                _dining.ClerkWaiter.StaffStatus = StaffStatus.SERVE_WATER;
                 table.WaterBottleFull = true;
             });
         }
@@ -136,6 +142,7 @@ namespace Service
             var waiter = GetWaiterByTable(meal.Order.Table);
             waiter.TaskProcessor.AddTask(() =>
             {
+                waiter.StaffStatus = StaffStatus.SERVE_MEAL;
                 Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).First();
                 client.Meal = meal;
             }, 5);
@@ -146,6 +153,7 @@ namespace Service
             var waiter = GetWaiterByTable(table);
             waiter.TaskProcessor.AddTask(() =>
             {
+                waiter.StaffStatus = StaffStatus.CLEAN_TABLE;
                 table.WaterBottleFull = false;
                 table.BreadBasketFull = false;
                 table.Menus.Clear();

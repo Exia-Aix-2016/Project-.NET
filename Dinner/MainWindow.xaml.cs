@@ -25,7 +25,8 @@ namespace Dinner
     public partial class MainWindow : Window, Model.IRender<DiningRoom>
     {
         private SimulationController simulationController;
-        private DataTable data;
+        private DataTable Tablesdata;
+        private DataTable Staffdata;
         public MainWindow()
         {
             //DinnerConnection.Instance.Start();
@@ -33,13 +34,19 @@ namespace Dinner
             InitializeComponent();
             
             simulationController = new SimulationController(Render, Thread.CurrentThread);
-            data = new DataTable();
-            data.Columns.Add("Table", typeof(string));
-            data.Columns.Add("Numbers Of Client", typeof(int));
-            data.Columns.Add("Status", typeof(string));
+            Tablesdata = new DataTable();
+            Tablesdata.Columns.Add("Table", typeof(string));
+            Tablesdata.Columns.Add("Numbers Of Client", typeof(int));
+            Tablesdata.Columns.Add("Status", typeof(string));
+
+            Staffdata = new DataTable();
+            Staffdata.Columns.Add("Staff", typeof(string));
+            Staffdata.Columns.Add("Status", typeof(string));
+
 
             //data.Rows.Add("Table 1", 10, Model.TableStatus.CHOOSEN.ToString());
-            DataGridDinner.ItemsSource = data.AsDataView();
+            DataGridDinner.ItemsSource = Tablesdata.AsDataView();
+            StaffStatus.ItemsSource = Staffdata.AsDataView();
 
 
         }
@@ -53,11 +60,25 @@ namespace Dinner
             this.NumberTable.Content = $"Number of Table : {dining.Tables.Length}";
 
             this.NumberClientInLoby.Content = $"Number of Client in lobby : {dining.Lobby.Count}";
-            data.Clear();
+            Tablesdata.Clear();
             for(int i = 0; i < dining.Tables.Length; i++)
             {
-                data.Rows.Add($"Table {i}", dining.Tables[i].Items().Count, dining.Tables[i].TableOrderStatus.ToString());
+                Tablesdata.Rows.Add($"Table {i}", dining.Tables[i].Items().Count, dining.Tables[i].TableOrderStatus.ToString());
             }
+
+            Staffdata.Clear();
+            dining.HeadWaiters.ToList().ForEach(HeadWaiter =>
+            {
+                Staffdata.Rows.Add("HeadWeater", HeadWaiter.StaffStatus.ToString());
+            });
+
+            dining.Waiters.ToList().ForEach(waiter =>
+            {
+                Staffdata.Rows.Add("Waiter", waiter.StaffStatus.ToString());
+            });
+
+            Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.StaffStatus.ToString());
+
 
 
         }
