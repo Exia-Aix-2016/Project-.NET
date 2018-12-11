@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using Service;
 using Model;
 using System.Data;
+using System.Threading;
 
 namespace Dinner
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IRender<DiningRoom>
+    public partial class MainWindow : Window, Model.IRender<DiningRoom>
     {
         private SimulationController simulationController;
         private DataTable data;
@@ -30,27 +31,38 @@ namespace Dinner
             //DinnerConnection.Instance.Start();
 
             InitializeComponent();
-
-            simulationController = new SimulationController(Render);
+            
+            simulationController = new SimulationController(Render, Thread.CurrentThread);
             data = new DataTable();
             data.Columns.Add("Table", typeof(string));
             data.Columns.Add("Numbers Of Client", typeof(int));
             data.Columns.Add("Status", typeof(string));
 
-            data.Rows.Add("Table 1", 10, Model.TableStatus.CHOOSEN.ToString());
+            //data.Rows.Add("Table 1", 10, Model.TableStatus.CHOOSEN.ToString());
+            DataGridDinner.ItemsSource = data.AsDataView();
 
 
         }
 
-        public void Render(DiningRoom diningRoom)
+        public void Render(DiningRoom dining)
         {
-            this.NumberClient.Content = $"Number of client : {diningRoom.Lobby.Count}";
+
+            this.NumberClient.Content = $"Number of client : {dining.Clients.Length}";
+
+            this.NumberTable.Content = $"Number of Table : {dining.Tables.Length}";
+            data.Clear();
+            for(int i = 0; i < dining.Tables.Length; i++)
+            {
+                data.Rows.Add($"Table {i}", dining.Tables[i].Items().Count, dining.Tables[i].TableOrderStatus.ToString());
+            }
+
 
         }
 
         private void StartSimButton_Click(object sender, RoutedEventArgs e)
         {
             simulationController.Start();
+            
         }
 
 

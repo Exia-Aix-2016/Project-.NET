@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Model;
 using Task = System.Threading.Tasks.Task;
+using System.Windows.Threading;
 
 namespace Dinner
 {
@@ -22,10 +23,12 @@ namespace Dinner
         private ManualResetEvent @event = new ManualResetEvent(false);
         private double MillisToWait => 1 / Speed * 1000;
         private readonly Action<DiningRoom> renderCallback;
+        private Thread mainThread;
         public int Ticks { get; private set; } = 0;
 
-        public SimulationController(Action<DiningRoom> renderCallback)
+        public SimulationController(Action<DiningRoom> renderCallback, Thread thread)
         {
+            mainThread = thread;
             IBootstrap b = new DinnerBootstrap();
             _injector = b.Bootstrap();
             _simulation = new Simulation(_injector);
@@ -71,9 +74,10 @@ namespace Dinner
                     Thread.Sleep(millisToSleep);
                 }
 
-                Ticks++;
-
-                new Task(() => renderCallback(diningRoom)).Start();
+                Dispatcher.FromThread(mainThread).Invoke(() =>
+                {
+                    renderCallback(diningRoom);
+                });      
             }
         }
 

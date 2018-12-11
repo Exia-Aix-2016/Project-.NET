@@ -8,6 +8,7 @@ namespace Model
 {
     public class DiningRoom
     {
+        private static readonly object _locker = new object();
         public readonly IList<Square> Squares = new List<Square>();
         public readonly IList<Client[]> Lobby = new List<Client[]>();
         public readonly IList<Menu> Menus = new List<Menu>();
@@ -24,13 +25,23 @@ namespace Model
             get => Squares.Select(x => x.HeadWaiter).ToArray();
         }
 
+
+
         public Client[] Clients
         {
-            get => Squares
-                .SelectMany(x => x.Items())
-                .SelectMany(x => x.Items())
-                .SelectMany(x => x.Items())
-                .ToArray();
+
+            get
+            {
+                lock (_locker)
+                {
+                    return Squares
+                     .SelectMany(x => x.Items())
+                     .SelectMany(x => x.Items())
+                     .SelectMany(x => x.Items())
+                     .ToArray();
+                }
+            }
+
         }
 
         public Table[] Tables
