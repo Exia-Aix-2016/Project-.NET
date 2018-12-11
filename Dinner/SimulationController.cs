@@ -20,6 +20,7 @@ namespace Dinner
         private Task task;
         private int PoolQueueLength = 0;
         private ManualResetEvent @event = new ManualResetEvent(false);
+        private double MillisToWait => 1 / Speed * 1000;
 
         public SimulationController()
         {
@@ -31,6 +32,7 @@ namespace Dinner
         {
             while (_running)
             {
+                DateTime startTime = DateTime.Now;
                 PoolQueueLength = 0;
                 @event.Reset();
                 foreach(var taskProcessor in diningRoom.TaskProcessors)
@@ -48,18 +50,30 @@ namespace Dinner
 
                 }
                 @event.WaitOne();
+                TimeSpan interval = DateTime.Now - startTime;
+                int millisToSleep = (int)Math.Round(MillisToWait - interval.Milliseconds);
+                if (millisToSleep > 0)
+                {
+                    Thread.Sleep(millisToSleep);
+                }
             }
         }
 
 
         public void SlowDown()
         {
-            Speed--;
+            if (Speed >= 2)
+            {
+                Speed--;
+            }
         }
 
         public void SpeedUp()
         {
-            Speed++;
+            if (Speed < 7)
+            {
+                Speed++;
+            }
         }
 
         public void Start()
