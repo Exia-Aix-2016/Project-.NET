@@ -22,6 +22,7 @@ namespace Dinner
         private ManualResetEvent @event = new ManualResetEvent(false);
         private double MillisToWait => 1 / Speed * 1000;
         private readonly Action<DiningRoom> renderCallback;
+        public int Ticks { get; private set; } = 0;
 
         public SimulationController(Action<DiningRoom> renderCallback)
         {
@@ -56,7 +57,6 @@ namespace Dinner
 
                 _simulation.Forward();
 
-                new Task(() => renderCallback(diningRoom)).Start();
 
                 TimeSpan interval = DateTime.Now - startTime;
                 int millisToSleep = (int)Math.Round(MillisToWait - interval.Milliseconds);
@@ -64,6 +64,10 @@ namespace Dinner
                 {
                     Thread.Sleep(millisToSleep);
                 }
+
+                Ticks++;
+
+                new Task(() => renderCallback(diningRoom)).Start();
             }
         }
 
