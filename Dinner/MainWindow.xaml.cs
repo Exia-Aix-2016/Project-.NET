@@ -27,6 +27,7 @@ namespace Dinner
         private SimulationController simulationController;
         private DataTable Tablesdata;
         private DataTable Staffdata;
+        private DataTable Clientdata;
         public MainWindow()
         {
             //DinnerConnection.Instance.Start();
@@ -44,10 +45,14 @@ namespace Dinner
             Staffdata.Columns.Add("Staff", typeof(string));
             Staffdata.Columns.Add("Status", typeof(string));
 
+            Clientdata = new DataTable();
+            Clientdata.Columns.Add("Client", typeof(string));
+            Clientdata.Columns.Add("Status", typeof(string));
 
             //data.Rows.Add("Table 1", 10, Model.TableStatus.CHOOSEN.ToString());
             DataGridDinner.ItemsSource = Tablesdata.AsDataView();
             StaffStatus.ItemsSource = Staffdata.AsDataView();
+            DataGridClientView.ItemsSource = Clientdata.AsDataView();
 
 
         }
@@ -81,6 +86,12 @@ namespace Dinner
 
             Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.TaskProcessor.CurrentTask?.Name);
 
+            Clientdata.Clear();
+            dining.Clients.ToList().ForEach(client =>
+            {
+                Clientdata.Rows.Add("Client", client.TaskProcessor.CurrentTask.Name);
+  
+            });
 
 
         }

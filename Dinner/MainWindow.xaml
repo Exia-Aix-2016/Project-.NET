@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dinner"
         mc:Ignorable="d"
-        Title="Dinner" Height="444" Width="791">
-    <Grid Margin="0,0,11,11" Height="392" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="762">
-        <Button x:Name="StartSimButton" Content="Start" Margin="22,0,695,362" VerticalAlignment="Bottom" Click="StartSimButton_Click"/>
-        <Button x:Name="PauseSimButton" Content="Pause" Margin="91,0,626,362" VerticalAlignment="Bottom" Click="PauseSimButton_Click"/>
+        Title="Dinner" Height="623" Width="791">
+    <Grid Margin="0,10,11,12" HorizontalAlignment="Right" Width="762">
+        <Button x:Name="StartSimButton" Content="Start" Margin="22,0,695,541" Click="StartSimButton_Click" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="PauseSimButton" Content="Pause" Margin="91,0,626,541" Click="PauseSimButton_Click" Height="20" VerticalAlignment="Bottom"/>
         <Separator Margin="10,27,0,0" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="479"/>
         <Label x:Name="NumberTable" Content="Number of Table : 0" HorizontalAlignment="Left" Margin="22,58,0,0" VerticalAlignment="Top" Width="126"/>
         <Label x:Name="TickCount" Content="Number of Ticks : 0" HorizontalAlignment="Left" Margin="153,58,0,0" VerticalAlignment="Top" Width="164"/>
@@ -19,5 +19,6 @@
         <DataGrid x:Name="DataGridDinner" HorizontalAlignment="Left" Height="241" Margin="21,141,0,0" VerticalAlignment="Top" Width="363"/>
         <Label x:Name="NumberClientInLoby" Content="Number of client in lobby : 0" HorizontalAlignment="Left" Margin="153,89,0,0" VerticalAlignment="Top" Width="231"/>
         <DataGrid x:Name="StaffStatus" HorizontalAlignment="Left" Height="241" Margin="389,141,0,0" VerticalAlignment="Top" Width="363"/>
+        <DataGrid x:Name="DataGridClientView" HorizontalAlignment="Left" Margin="22,400,0,10" Width="362"/>
     </Grid>
 </Window>
