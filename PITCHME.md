@@ -6,18 +6,20 @@
 
 # Sommaire
 
-* Presentation du projet
-* Architecture 
-* Design Pattern
-* Connection à la BDD
-* Spécifications
-* Démonstration
-* Conclusion
+- Presentation du projet
+- Architecture
+- Design Pattern
+- Connection à la BDD
+- Spécifications
+- Démonstration
+- Conclusion
 
---- 
+---
+
 # Présentation du projet
 
 ![example](assets/img/example.jpg)
+
 ![restaurant](assets/img/restaurant.jpg)
 
 ---
@@ -56,7 +58,7 @@
 
 ![activitéreception](assets/img/activitereception.png)
 
-+++ 
++++
 
 ![activitéreheadwaiter](assets/img/activitereheadwaiter.png)
 
@@ -107,7 +109,6 @@
 # Connection à la BDD
 
 ![mssql](assets/img/mssql.png)
-
 
 ---
 
