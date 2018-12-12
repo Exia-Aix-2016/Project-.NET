@@ -6,13 +6,13 @@
 ---
 # Sommaire
 
-* Présenation du projet
-* Architecture 
-* Design Pattern
-* Connection à la BDD
-* Spécifications
-* Démonstration
-* Conclusion
+..* Présenation du projet
+..* Architecture 
+..* Design Pattern
+..* Connection à la BDD
+..* Spécifications
+..* Démonstration
+..* Conclusion
 
 --- 
 # Présentation du projet
