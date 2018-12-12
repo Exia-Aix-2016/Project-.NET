@@ -27,9 +27,11 @@ namespace Dinner
             ClientReception();
             SendOrders();
             DistributeMenus();
+            ChooseMeal();
             TakeOrders();
             Resupply();
             ServeMeal();
+            EatMeal();
             CleanTables();
         }
 
@@ -62,15 +64,23 @@ namespace Dinner
 
         void DistributeMenus()
         {
-            Table[] tables = _tableService.GetTables(x => x.Menus.Count == 0);
+            Table[] tables = _tableService.GetTables(x => x.Menus.Count == 0 && x.Items().Count > 0);
             foreach(var table in tables)
             {
                 if (_receptionService.IsMenuAvailable(table.Items().Count))
                 {
                     _staffService.AssignMenus(table);
-                    _clientService.ChooseMeal(table);
                     break;
                 }
+            }
+        }
+
+        void ChooseMeal()
+        {
+            Table[] tables = _tableService.GetTables(x => x.Menus.Count > 0 && x.Items().All(y => y.Choice == null && y.Order == null));
+            foreach(var table in tables)
+            {
+                _clientService.ChooseMeal(table);
             }
         }
 
@@ -105,6 +115,15 @@ namespace Dinner
                 _staffService.ServeMeal(meal);
                 Table table = _tableService.GetTables(x => x.Items().Any(y => y.Order == meal.Order)).Single();
                 _clientService.Eat(table.Items().Where(x => x.Order == meal.Order).Single());
+            }
+        }
+
+        void EatMeal()
+        {
+            Client[] clients = _clientService.GetClients(x => x.Meal != null && !x.Finished && x.TaskProcessor.CurrentTask == null);
+            foreach(var client in clients)
+            {
+                _clientService.Eat(client);
             }
         }
 

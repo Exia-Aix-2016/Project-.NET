@@ -25,5 +25,7 @@ namespace Model
         public int TimeToServeMeal = 120;
 
         public int TimeToCleanTable = 200;
+
+        public int TimeToEat = 3600;
     }
 }

@@ -8,12 +8,12 @@ namespace Model
 {
     public class Menu
     {
-        public readonly List<string> Recipe;
+        public readonly List<string> Recipes;
 
 
-        public Menu(List<string> recipe)
+        public Menu(List<string> recipes)
         {
-            Recipe = recipe;
+            Recipes = recipes;
         }
     }
 }
