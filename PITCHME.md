@@ -24,7 +24,6 @@
 ---
 #Architecture
 
-![]()
 
 +++
 ## Diagrammes de séquence
@@ -38,51 +37,49 @@
 
 ## Injector Pattern
 
-![]()
+
 
 +++
 ## Singleton Pattern
 
-![]()
+
 
 +++
 ## Façade Pattern
 
-![]()
 
 +++
 ## Event Pattern
 
-![]()
+
 
 +++
 ## Commande Pattern
 
-![]()
+
 
 +++
 ## Bridge Pattern
 
-![]()
+
 
 ---
 # Connection à la BDD
 
 ![mssql](assets/img/mssql.png)
 
-![]()
 
 ---
 # Spécifications
 
 ## IPC
 
-![]()
+
 
 +++
 ## Pool de threads
 
-![]()
+
 
 ---
 # Démonstration
