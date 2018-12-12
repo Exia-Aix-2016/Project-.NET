@@ -19,12 +19,12 @@
 
 ![example](assets/img/example.jpg)
 
-![restaurant](c.jpg)
+![restaurant](assets/img/restaurant.jpg)
 
 ---
 #Architecture
 
-![](assets/img/)
+![]()
 
 +++
 ## Diagrammes de séquence
@@ -38,39 +38,39 @@
 
 ## Injector Pattern
 
-![](assets/img/)
+![]()
 
 +++
 ## Singleton Pattern
 
-![](assets/img/)
+![]()
 
 +++
 ## Façade Pattern
 
-![](assets/img/)
+![]()
 
 +++
 ## Event Pattern
 
-![](assets/img/)
+![]()
 
 +++
 ## Commande Pattern
 
-![](assets/img/)
+![]()
 
 +++
 ## Bridge Pattern
 
-![](assets/img/)
+![]()
 
 ---
 # Connection à la BDD
 
 ![mssql](assets/img/mssql.png)
 
-![](assets/img/)
+![]()
 
 ---
 # Spécifications
