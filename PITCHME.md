@@ -6,4 +6,4 @@
 
 # Sommaire
 
-- Présenation du projet
+1. Présentation du projet
