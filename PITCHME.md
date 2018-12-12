@@ -18,7 +18,6 @@
 # Présentation du projet
 
 ![example](assets/img/example.jpg)
-
 ![restaurant](assets/img/restaurant.jpg)
 
 ---
