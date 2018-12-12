@@ -8,8 +8,7 @@
 
 - Presentation du projet
 - Architecture
-- Design Pattern
-- Connection à la BDD
+- Base de données
 - Spécifications
 - Démonstration
 - Conclusion
@@ -24,6 +23,8 @@
 ---
 
 # Architecture
+
++++
 
 ![diagram](assets/img/diagram.png)
 
@@ -101,7 +102,9 @@
 
 ---
 
-# Connection à la BDD
+# Base de données
+
++++
 
 ![bdd](assets/img/bdd.png)
 
