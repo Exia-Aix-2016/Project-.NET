@@ -29,11 +29,17 @@ namespace Kitchen
             Order[] orders = _counterServerService.GetOrders();
             if(orders.Length > 0)
             {
-               /* if (_kitchenStaffService.GetRequirements(orders[0]))
+                /* if (_kitchenStaffService.GetRequirements(orders[0]))
+                 {
+                     //Meal meal = _kitchenStaffService.Cook(orders[0]);
+                     //_counterServerService.PutMeals(meal);
+                 }*/
+                if (_counterServerService.GetRequirements(orders[0]))
                 {
-                    //Meal meal = _kitchenStaffService.Cook(orders[0]);
-                    //_counterServerService.PutMeals(meal);
-                }*/
+                    Meal meal = _counterServerService.Cook(orders[0]);
+                    _counterServerService.PutMeals(meal);
+                }
+
             }
             
         }

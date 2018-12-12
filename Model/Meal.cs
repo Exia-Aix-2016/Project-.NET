@@ -12,9 +12,10 @@ namespace Model
         public readonly string Name;
         public Order Order;
 
-        public Meal(string name)
+        public Meal(string name, Order order)
         {
             Name = name;
+            Order = order;
         }
 
     }
