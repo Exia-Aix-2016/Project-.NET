@@ -18,6 +18,7 @@ namespace Service
         public event ReceiveDel OnreceiveEvent;
 
         private UdpClient server;
+        private UdpClient client;
         private Thread thread;
         IPEndPoint localpt = new IPEndPoint(IPAddress.Loopback, 2000);
 
@@ -26,9 +27,10 @@ namespace Service
 
         private KitchenConnection()
         {
-            server = new UdpClient();
-            server.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            server.Client.Bind(localpt);
+            server = new UdpClient(2000);
+            client = new UdpClient();
+            //server.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+           // server.Client.Bind(localpt);
             thread = new Thread(Read);
         }
         private void Read()
@@ -48,7 +50,7 @@ namespace Service
         public void Send<TData>(TData obj)
         {
             byte[] data = Model.Counter.Serialize<TData>(obj);
-            server.Send(data, data.Length, localpt);
+            client.Send(data, data.Length, "127.0.0.1", 2001);
     
         }
 

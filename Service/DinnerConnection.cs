@@ -15,6 +15,7 @@ namespace Service
         public event ReceiveDel OnreceiveEvent;
 
         private UdpClient client;
+        private UdpClient server;
         private Thread thread;
         IPEndPoint localpt = new IPEndPoint(IPAddress.Loopback, 2000);
 
@@ -25,10 +26,11 @@ namespace Service
 
         private DinnerConnection()
         {
-            client = new UdpClient();
+            client = new UdpClient(2001);
+            server = new UdpClient();
             client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
-            client.Client.Bind(localpt);
+            //client.Client.Bind(localpt);
             thread = new Thread(Read);
         }
 
@@ -36,9 +38,7 @@ namespace Service
         {
             while (true)
             {
-                Console.WriteLine("ttestt");
-                OnreceiveEvent(Receive());
-                
+                OnreceiveEvent(Receive());    
             }
         }
 
@@ -53,7 +53,7 @@ namespace Service
         public void Send<TData>(TData obj)
         {
             byte[] data = Model.Counter.Serialize<TData>(obj);
-            client.Send(data, data.Length, localpt);
+            server.Send(data, data.Length, "127.0.0.1", 2000);
         }
 
         public byte[] Receive()

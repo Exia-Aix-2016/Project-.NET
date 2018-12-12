@@ -23,8 +23,9 @@ namespace Service
 
             if (MessageSocket.HasMeals)
             {
+
                 _diningRoom.Counter.AddMeals(MessageSocket.Meals);
-                Console.WriteLine("RECEIVE");
+                Console.WriteLine(MessageSocket.ToString());
             }
             
         }
