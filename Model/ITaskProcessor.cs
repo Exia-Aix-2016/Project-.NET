@@ -16,5 +16,6 @@ namespace Model
         void RemoveTask(Task task);
         void Process();
         Task CurrentTask { get; }
+        Task[] GetTasks(string taskName);
     }
 }

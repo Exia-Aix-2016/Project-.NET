@@ -73,6 +73,7 @@ namespace Service
             {
                 var menu = _dining.Menus.Last();
                 _dining.Menus.Remove(menu);
+                menus.Add(menu);
             }
 
             headWaiter.TaskProcessor.AddTask(() =>
@@ -94,17 +95,20 @@ namespace Service
         {
             HeadWaiter headWaiter = GetHeadWaiterByTable(table);
 
-            decimal ticks = table.Items().Count * configuration.TimeToOrder;
+            if(headWaiter.TaskProcessor.GetTasks("TAKE_ORDERS").Length == 0)
+            {
+                decimal ticks = table.Items().Count * configuration.TimeToOrder;
 
-            headWaiter.TaskProcessor.AddTask(() => {
-                lock (_dining.Squares)
-                {
-                    var orders = table.Items()
-                        .Where(client => client.Choice != null)
-                        .Select(client => new Order(client.Choice, table));
-                    headWaiter.Orders.AddRange(orders);
-                }
-            }, (int) Math.Round(ticks), "TAKE_ORDERS");
+                headWaiter.TaskProcessor.AddTask(() => {
+                    lock (_dining.Squares)
+                    {
+                        var orders = table.Items()
+                            .Where(client => client.Choice != null)
+                            .Select(client => new Order(client.Choice, table));
+                        headWaiter.Orders.AddRange(orders);
+                    }
+                }, (int)Math.Round(ticks), "TAKE_ORDERS");
+            }
         }
 
         public void ServeBread(Table table)

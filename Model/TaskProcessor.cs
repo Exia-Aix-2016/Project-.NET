@@ -49,6 +49,11 @@ namespace Model
             }
         }
 
+        public Task[] GetTasks(string taskName)
+        {
+            return _Tasks.Where(x => x.Name == taskName).ToArray();
+        }
+
         public int Size => _Tasks.Count;
 
         /**
