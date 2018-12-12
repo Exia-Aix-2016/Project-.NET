@@ -23,7 +23,7 @@ namespace Service
             Menu menu = table.Menus.First();
             table.Items().ForEach(client =>
             {
-                string recipe = menu.Recipes[random.Next(0, menu.Recipes.Count - 1)];
+                string recipe = menu.Recipes[random.Next(0, menu.Recipes.Count)];
                 client.TaskProcessor.AddTask(() =>
                 {
                     var t = table;
