@@ -1,4 +1,4 @@
-﻿using Service;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +16,14 @@ namespace Dinner
         private readonly DependencyInjector _injector;
         private DiningRoom diningRoom => _injector.Get<DiningRoom>();
         private readonly Simulation _simulation;
-        private bool _running = false;
+        private volatile bool _running = false;
         public int Speed { get; private set; } = 1;
         private Task task;
         private double MillisToWait => 1 / Speed * 1000;
         private readonly Action<DiningRoom> renderCallback;
         private Thread mainThread;
         public int Ticks { get; private set; } = 0;
-        private readonly object PoolQueueLengthLock = new object();
+        private object RunLock = new object();
 
         public SimulationController(Action<DiningRoom> renderCallback, Thread thread)
         {
@@ -36,39 +36,47 @@ namespace Dinner
 
         private void Run()
         {
-            while (_running)
+            DateTime startTime = DateTime.Now;
+            CountdownEvent countdown = new CountdownEvent(diningRoom.TaskProcessors.Length);
+
+            if(diningRoom.TaskProcessors.Length > 0)
             {
-                DateTime startTime = DateTime.Now;
-                CountdownEvent countdown = new CountdownEvent(diningRoom.TaskProcessors.Length);
-
-                if(diningRoom.TaskProcessors.Length > 0)
+                foreach (var taskProcessor in diningRoom.TaskProcessors)
                 {
-                    foreach (var taskProcessor in diningRoom.TaskProcessors)
+                    ThreadPool.QueueUserWorkItem(x =>
                     {
-                        ThreadPool.QueueUserWorkItem(x =>
-                        {
-                            taskProcessor?.Process();
-                            countdown.Signal();
-                        });
-                    }
-                    countdown.Wait();
+                        taskProcessor?.Process();
+                        countdown.Signal();
+                    });
                 }
+                countdown.Wait();
+            }
 
-                _simulation.Forward();
+            _simulation.Forward();
 
-                TimeSpan interval = DateTime.Now - startTime;
-                int millisToSleep = (int)Math.Round(MillisToWait - interval.Milliseconds);
-                if (millisToSleep > 0)
-                {
-                    Thread.Sleep(millisToSleep);
-                }
+            TimeSpan interval = DateTime.Now - startTime;
+            int millisToSleep = (int)Math.Round(MillisToWait - interval.Milliseconds);
+            if (millisToSleep > 0)
+            {
+                Thread.Sleep(millisToSleep);
+            }
 
-                Ticks++;
+            Ticks++;
 
-                Dispatcher.FromThread(mainThread).Invoke(() =>
-                {
-                    renderCallback(diningRoom);
-                });
+            Dispatcher.FromThread(mainThread).Invoke(() =>
+            {
+                renderCallback(diningRoom);
+            });
+
+            if (_running)
+            {
+                Console.WriteLine("Tick");
+                Run();
+            }
+            else
+            {
+                Console.WriteLine("Stopping");
+                task = null;
             }
         }
 
@@ -94,8 +102,7 @@ namespace Dinner
             if(task == null)
             {
                 _running = true;
-                task = new Task(Run);
-                task.Start();
+                task = Task.Run(() => Run());
             } else
             {
                 Console.WriteLine("The simulation is already running");
@@ -107,7 +114,6 @@ namespace Dinner
             if (task != null)
             {
                 _running = false;
-                task.Wait();
                 task = null;
             }else
             {
