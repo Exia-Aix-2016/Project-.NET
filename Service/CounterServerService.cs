@@ -23,12 +23,12 @@ namespace Service
         {
            MessageSocket message =  Model.Counter.Deserialize<Model.MessageSocket>(data);
 
-            if (message.HasOrders) counter.AddOrders(message.Orders);
+            if (message.HasOrders) _counter.AddOrders(message.Orders);
 
             /*TEMPORAIRE*/
             List<Meal> meals = new List<Meal>();          
-            message.Orders.ToList().ForEach(order => meals.Add(new Meal(order.Recipe)));
-            PutMeals(meals.ToArray());
+            message.Orders.ToList().ForEach(order => meals.Add(new Meal(order.Recipe, order)));
+            PutMeals(meals.First());
             /*TEMPORAIRE*/
 
             Console.WriteLine("TESTKITCHEN");
