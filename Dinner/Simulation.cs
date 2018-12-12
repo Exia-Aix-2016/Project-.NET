@@ -95,12 +95,12 @@ namespace Dinner
 
         void Resupply()
         {
-            Table[] tablesNoBread = _tableService.GetTables(x => x.Items().All(y => y.Order != null) && !x.BreadBasketFull);
+            Table[] tablesNoBread = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Order != null) && !x.BreadBasketFull);
             if(tablesNoBread.Length > 0)
             {
                 _staffService.ServeBread(tablesNoBread[0]);
             }
-            Table[] tablesNoWater = _tableService.GetTables(x => x.Items().All(y => y.Order != null) && !x.WaterBottleFull);
+            Table[] tablesNoWater = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Order != null) && !x.WaterBottleFull);
             if(tablesNoWater.Length > 0)
             {
                 _staffService.ServeBread(tablesNoWater[0]);
@@ -129,7 +129,7 @@ namespace Dinner
 
         void CleanTables()
         {
-            Table[] tables = _tableService.GetTables(x => x.Items().All(y => y.Finished));
+            Table[] tables = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Finished));
             if(tables.Length > 0)
             {
                 _staffService.CleanTable(tables[0]);

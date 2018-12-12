@@ -71,7 +71,7 @@ namespace Dinner
             Staffdata.Clear();
             dining.HeadWaiters.ToList().ForEach(HeadWaiter =>
             {
-                Staffdata.Rows.Add("HeadWeater", HeadWaiter.TaskProcessor.CurrentTask.Name);
+                Staffdata.Rows.Add("HeadWaiter", HeadWaiter.TaskProcessor.CurrentTask?.Name);
             });
 
             dining.Waiters.ToList().ForEach(waiter =>
@@ -79,7 +79,7 @@ namespace Dinner
                 Staffdata.Rows.Add("Waiter", waiter.TaskProcessor.CurrentTask?.Name);
             });
 
-            Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.TaskProcessor.CurrentTask.Name);
+            Staffdata.Rows.Add("ClerkWaiter", dining.ClerkWaiter.TaskProcessor.CurrentTask?.Name);
 
 
 
