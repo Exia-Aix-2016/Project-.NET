@@ -8,17 +8,11 @@ namespace Model
 {
     public class Client : ITaskProcessorContainer
     {
-        private ITaskProcessor _TaskProcessor;
+        public ITaskProcessor TaskProcessor { get; } = new TaskProcessor();
 
         public string Choice;
         public Order Order;
         public Meal Meal;
         public bool Finished = false;
-
-        public Client()
-        {
-            _TaskProcessor = new TaskProcessor();
-        }
-        public ITaskProcessor TaskProcessor { get; }
     }
 }

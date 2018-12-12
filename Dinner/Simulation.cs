@@ -86,7 +86,7 @@ namespace Dinner
 
         void TakeOrders()
         {
-            Table[] tables = _tableService.GetTables(x => x.Items().All(y => y.Choice != null && y.Order == null));
+            Table[] tables = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Choice != null && y.Order == null));
             if (tables.Length > 0)
             {
                 _staffService.TakeOrders(tables[0]);
