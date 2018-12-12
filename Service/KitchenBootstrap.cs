@@ -10,13 +10,11 @@ namespace Service
     {
         public DependencyInjector Bootstrap()
         {
+            
             DependencyInjector injector = new DependencyInjector();
 
-
-            injector.Register<Model.Counter>(new Model.Counter());
             injector.Register<CounterServerService>(new CounterServerService(injector));
-
-
+            injector.Register<Model.Counter>(new Model.Counter());
             return injector;
         }
     }

@@ -19,7 +19,7 @@ namespace Service
 
         private UdpClient server;
         private Thread thread;
-        IPEndPoint localpt = new IPEndPoint(IPAddress.Loopback, 6000);
+        IPEndPoint localpt = new IPEndPoint(IPAddress.Loopback, 2000);
 
         public static KitchenConnection Instance { get => lazy.Value; }
 
@@ -27,8 +27,7 @@ namespace Service
         private KitchenConnection()
         {
             server = new UdpClient();
-            server.Client.SetSocketOption(
-            SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            server.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             server.Client.Bind(localpt);
             thread = new Thread(Read);
         }
@@ -50,6 +49,7 @@ namespace Service
         {
             byte[] data = Model.Counter.Serialize<TData>(obj);
             server.Send(data, data.Length, localpt);
+    
         }
 
         public byte[] Receive()

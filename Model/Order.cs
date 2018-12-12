@@ -10,12 +10,12 @@ namespace Model
     public class Order
     {
         public readonly string Recipe;
-        public readonly Table Table;
+        public readonly int TableId;
 
-        public Order(string recipeName, Table table)
+        public Order(string recipeName, int tableId)
         {
             Recipe = recipeName;
-            Table = table;
+            TableId = tableId;
         }
     }
 }

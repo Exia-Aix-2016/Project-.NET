@@ -30,10 +30,7 @@ namespace Dinner
         private DataTable Clientdata;
         public MainWindow()
         {
-            //DinnerConnection.Instance.Start();
-
             InitializeComponent();
-            
             simulationController = new SimulationController(Render, Thread.CurrentThread);
             Tablesdata = new DataTable();
             Tablesdata.Columns.Add("Table", typeof(string));

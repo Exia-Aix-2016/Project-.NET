@@ -14,13 +14,19 @@ namespace Service
         public CounterClientService(DependencyInjector injector): base(injector)
         {
             DinnerConnection.Instance.OnreceiveEvent += new DinnerConnection.ReceiveDel(Receive);
+            DinnerConnection.Instance.Start();
         }
 
         public void Receive(byte[] data)
         {
             Model.MessageSocket MessageSocket = Model.Counter.Deserialize<Model.MessageSocket>(data);
 
-            if (MessageSocket.HasMeals) _diningRoom.Counter.AddMeals(MessageSocket.Meals);
+            if (MessageSocket.HasMeals)
+            {
+                _diningRoom.Counter.AddMeals(MessageSocket.Meals);
+                Console.WriteLine("RECEIVE");
+            }
+            
         }
 
         public Meal[] TakeMeals()

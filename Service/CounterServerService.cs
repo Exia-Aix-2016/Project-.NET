@@ -17,21 +17,25 @@ namespace Service
         public CounterServerService(DependencyInjector dependency)
         {
             KitchenConnection.Instance.OnreceiveEvent += new KitchenConnection.ReceiveDel(Receive);
+            KitchenConnection.Instance.Start();
             _injector = dependency;
         }
         public void Receive(byte[] data)
         {
            MessageSocket message =  Model.Counter.Deserialize<Model.MessageSocket>(data);
 
-            if (message.HasOrders) _counter.AddOrders(message.Orders);
+            if (message.HasOrders)
+            {
+                _counter.AddOrders(message.Orders);
 
-            /*TEMPORAIRE*/
-            List<Meal> meals = new List<Meal>();          
-            message.Orders.ToList().ForEach(order => meals.Add(new Meal(order.Recipe, order)));
-            PutMeals(meals.First());
-            /*TEMPORAIRE*/
+                /*TEMPORAIRE*/
+                List<Meal> meals = new List<Meal>();
+                message.Orders.ToList().ForEach(order => meals.Add(new Meal(order.Recipe, order)));
+                PutMeals(meals.First());
+                /*TEMPORAIRE*/
+                Console.WriteLine("BLABLA");
+            }
 
-            Console.WriteLine("TESTKITCHEN");
             if (message.HasOrders) _counter.AddOrders(message.Orders);
         }
         public Order[] GetOrders()

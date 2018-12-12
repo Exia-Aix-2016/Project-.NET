@@ -10,6 +10,7 @@ namespace Service
     {
         private DiningRoom _dining => _injector.Get<DiningRoom>();
         private CounterClientService _counterClientService => _injector.Get<CounterClientService>();
+        private TableService _tableService => _injector.Get<TableService>();
         private Configuration configuration => _injector.Get<Configuration>();
 
         public DinnerStaffService(DependencyInjector injector): base(injector)
@@ -104,7 +105,7 @@ namespace Service
                     {
                         var orders = table.Items()
                             .Where(client => client.Choice != null)
-                            .Select(client => new Order(client.Choice, table));
+                            .Select(client => new Order(client.Choice, table.TableID));
                         headWaiter.Orders.AddRange(orders);
                     }
                 }, (int)Math.Round(ticks), "TAKE_ORDERS");
@@ -135,12 +136,12 @@ namespace Service
 
         public void ServeMeal(Meal meal)
         {
-            var waiter = GetWaiterByTable(meal.Order.Table);
+            var waiter = GetWaiterByTable(_tableService.getTableById(meal.Order.TableId));
             waiter.TaskProcessor.AddTask(() =>
             {
                 lock (_dining.Squares)
                 {
-                    Client client = meal.Order.Table.Items().Where(x => x.Choice == meal.Order.Recipe).First();
+                    Client client = _tableService.getTableById(meal.Order.TableId).Items().Where(x => x.Choice == meal.Order.Recipe).First();
                     client.Meal = meal;
 
                 }

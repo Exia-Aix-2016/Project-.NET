@@ -24,8 +24,8 @@ namespace Kitchen
         private readonly SimulationController simulationController;
         public MainWindow()
         {
-
-            Service.KitchenConnection.Instance.Start();
+            simulationController = new SimulationController();
+            
 
             InitializeComponent();
       

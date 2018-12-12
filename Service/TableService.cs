@@ -20,5 +20,9 @@ namespace Service
             return _diningRoom.Tables.Where(selector).ToArray();
         }
 
+        public Table getTableById(int tableId)
+        {
+            return _diningRoom.Tables.Where(table => table.TableID == tableId).First();
+        }
     }
 }

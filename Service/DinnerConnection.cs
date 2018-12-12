@@ -16,7 +16,7 @@ namespace Service
 
         private UdpClient client;
         private Thread thread;
-        IPEndPoint localpt = new IPEndPoint(IPAddress.Loopback, 6000);
+        IPEndPoint localpt = new IPEndPoint(IPAddress.Loopback, 2000);
 
         private static readonly Lazy<DinnerConnection> lazy = new Lazy<DinnerConnection>(() => new DinnerConnection());
 
@@ -26,17 +26,19 @@ namespace Service
         private DinnerConnection()
         {
             client = new UdpClient();
-            thread = new Thread(Read);
-            client.Client.SetSocketOption(
-            SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+
             client.Client.Bind(localpt);
+            thread = new Thread(Read);
         }
 
         private void Read()
         {
             while (true)
             {
+                Console.WriteLine("ttestt");
                 OnreceiveEvent(Receive());
+                
             }
         }
 

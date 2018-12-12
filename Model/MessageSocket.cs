@@ -21,8 +21,8 @@ namespace Model
         }
 
 
-        public bool HasOrders { get => (Orders.Length > 0) ? true : false; }
-        public bool HasMeals { get => (Meals.Length > 0) ? true : false; }
+        public bool HasOrders { get => (Orders?.Length > 0) ? true : false; }
+        public bool HasMeals { get => (Meals?.Length > 0) ? true : false; }
 
         public override string ToString()
         {
