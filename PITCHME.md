@@ -21,67 +21,112 @@
 ![restaurant](assets/img/restaurant.jpg)
 
 ---
-#Architecture
 
+# Architecture
+
+![]()
 
 +++
+
 ## Diagrammes de séquence
 
+![sequenceclient](assets/img/sequenceclient.png)
+
 +++
+
+![sequencereception](assets/img/sequencereception.png)
+
++++
+
+![sequencekitchen](assets/img/sequencekitchen.png)
+
++++
+
 ## Diagrammes de uses cases
 
+![usescases](assets/img/usescases.png)
+
++++
+
+![usescaseskitchen](assets/img/usescaseskitchen.png)
+
++++
+
+## Diagrammes de d'activité
+
+![activitéreception](assets/img/activitéreception.png)
+
++++ 
+
+![activitéreheadwaiter](assets/img/activitéreheadwaiter.png)
+
++++
+
+![activitéreserveur](assets/img/activitéreserveur.png)
 
 ---
-#Design Pattern
+
+# Design Pattern
 
 ## Injector Pattern
 
-
+![]()
 
 +++
+
 ## Singleton Pattern
 
-
+![]()
 
 +++
+
 ## Façade Pattern
 
+![]()
 
 +++
+
 ## Event Pattern
 
-
+![]()
 
 +++
+
 ## Commande Pattern
 
-
+![]()
 
 +++
+
 ## Bridge Pattern
 
-
+![]()
 
 ---
+
 # Connection à la BDD
 
 ![mssql](assets/img/mssql.png)
 
 
 ---
+
 # Spécifications
 
 ## IPC
 
-
+![]()
 
 +++
+
 ## Pool de threads
 
-
+![]()
 
 ---
+
 # Démonstration
 
 ---
+
 # Conclusion
