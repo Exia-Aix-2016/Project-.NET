@@ -54,15 +54,15 @@
 
 ## Diagrammes de d'activité
 
-![activitéreception](assets/img/activitéreception.png)
+![activitéreception](assets/img/activitereception.png)
 
 +++ 
 
-![activitéreheadwaiter](assets/img/activitéreheadwaiter.png)
+![activitéreheadwaiter](assets/img/activitereheadwaiter.png)
 
 +++
 
-![activitéreserveur](assets/img/activitéreserveur.png)
+![activitéreserveur](assets/img/activitereserveur.png)
 
 ---
 
