@@ -24,7 +24,7 @@
 
 # Architecture
 
-![]()
+![diagram](assets/img/diagram.png)
 
 +++
 
