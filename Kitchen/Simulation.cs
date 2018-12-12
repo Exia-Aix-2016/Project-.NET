@@ -34,11 +34,11 @@ namespace Kitchen
                      //Meal meal = _kitchenStaffService.Cook(orders[0]);
                      //_counterServerService.PutMeals(meal);
                  }*/
-                if (_counterServerService.GetRequirements(orders[0]))
+                /*if (_counterServerService.GetRequirements(orders[0]))
                 {
                     Meal meal = _counterServerService.Cook(orders[0]);
                     _counterServerService.PutMeals(meal);
-                }
+                }*/
 
             }
             

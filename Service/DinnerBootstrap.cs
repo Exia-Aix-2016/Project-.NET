@@ -14,8 +14,8 @@ namespace Service
             
             List<string> recipe = new List<string>();
 
-            recipe.Add("caviar");
-            recipe.Add("Calamar");
+            recipe.Add("Salade");
+            recipe.Add("Soupe");
 
             DependencyInjector injector = new DependencyInjector();
 

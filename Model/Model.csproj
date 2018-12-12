@@ -61,7 +61,6 @@
     <Compile Include="MessageSocket.cs" />
     <Compile Include="TableStatus.cs" />
     <Compile Include="HeadWaiter.cs" />
-    <Compile Include="Ingredient.cs" />
     <Compile Include="ITaskProcessor.cs" />
     <Compile Include="ISimulation.cs" />
     <Compile Include="ITask.cs" />

@@ -12,7 +12,7 @@ namespace Service
     {
         private DependencyInjector _injector;
         private Counter _counter => _injector.Get<Counter>();
-        private MarmitonContext _marmitonContext => _injector.Get<MarmitonContext>();  
+        private MarmitonContext _marmitonContext => _injector.Get<MarmitonContext>();
 
         public CounterServerService(DependencyInjector dependency)
         {
@@ -29,7 +29,11 @@ namespace Service
                 _counter.AddOrders(message.Orders);
 
                 /*TEMPORAIRE*/
-                message.Orders.ToList().ForEach(order => PutMeals(new Meal(order.Recipe, order)));
+                foreach(var order in message.Orders)
+                {
+                    Meal meal = Cook(order);
+                    PutMeals(meal);
+                }
                 /*TEMPORAIRE*/
                 Console.WriteLine("BLABLA");
             }
@@ -49,7 +53,7 @@ namespace Service
             KitchenConnection.Instance.Send(message);
         }
 
-        public bool GetRequirements(Order order)
+        /*public bool GetRequirements(Order order)
         {
             string nameRecipe = _marmitonContext.Recipes.Where(x => x.Name == order.Recipe).Single().Name;            
             foreach(RecipeIngredient recipeIngredient  in _marmitonContext.Recipes.Where(x => x.Name == nameRecipe).Single().Ingredients)
@@ -60,17 +64,24 @@ namespace Service
                 }
             }
             return true;
-        }
+        }*/
 
         public Meal Cook(Order order)
         {
-            string nameRecipe = _marmitonContext.Recipes.Where(x => x.Name == order.Recipe).Single().Name;
+            Recipe recipe = _marmitonContext.Recipes.Where(x => x.Name == order.Recipe).Single();
 
-            foreach (RecipeIngredient ingredient in _marmitonContext.Recipes.Where(x => x.Name == nameRecipe).Single().Ingredients)
+            foreach (RecipeIngredient ingredient in recipe.Ingredients)
             {
-                _marmitonContext.Ingredients.Remove(_marmitonContext.Ingredients.Where(x => x.Type.Name == ingredient.IngredientTypeName).Single());
+                foreach(var i in _marmitonContext.IngredientTypes
+                            .Where(x => x.Name == ingredient.IngredientType.Name)
+                            .SelectMany(x => x.Ingredients)
+                            .Take(ingredient.Quantity))
+                {
+                    _marmitonContext.Ingredients.Remove(i);
+                }
+                _marmitonContext.SaveChanges();
             }
-            return new Meal(nameRecipe, order);
+            return new Meal(recipe.Name, order);
         }
     }
 }
