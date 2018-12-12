@@ -22,10 +22,10 @@ namespace Model
 
         public int TimeToServeWater = 45;
 
-        public int TimeToServeMeal = 120;
+        public int TimeToServeMeal = 50;
 
         public int TimeToCleanTable = 200;
 
-        public int TimeToEat = 3600;
+        public int TimeToEat = 500;
     }
 }
