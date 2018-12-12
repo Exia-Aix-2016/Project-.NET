@@ -72,37 +72,31 @@
 
 ## Injector Pattern
 
-![]()
+![DependancyInjectorClass](assets/img/DependancyInjectorClass.png)
 
 +++
 
 ## Singleton Pattern
 
-![]()
-
-+++
-
-## Façade Pattern
-
-![]()
+![SingletonPatternClass](assets/img/SingletonPatternClass.png)
 
 +++
 
 ## Event Pattern
 
-![]()
+![EventPatternClass](assets/img/EventPatternClass.png)
 
 +++
 
 ## Commande Pattern
 
-![]()
+![CommandPatternClass](assets/img/CommandPatternClass.png)
 
 +++
 
 ## Bridge Pattern
 
-![]()
+![BridgePatternClass](assets/img/BridgePatternClass.png)
 
 ---
 
@@ -110,19 +104,7 @@
 
 ![mssql](assets/img/mssql.png)
 
----
-
-# Spécifications
-
-## IPC
-
-![]()
-
-+++
-
-## Pool de threads
-
-![]()
+![bdd](assets/img/bdd.png)
 
 ---
 
