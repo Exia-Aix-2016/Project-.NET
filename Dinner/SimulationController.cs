@@ -19,8 +19,6 @@ namespace Dinner
         private bool _running = false;
         public int Speed { get; private set; } = 1;
         private Task task;
-        private int PoolQueueLength = 0;
-        private ManualResetEvent @event = new ManualResetEvent(false);
         private double MillisToWait => 1 / Speed * 1000;
         private readonly Action<DiningRoom> renderCallback;
         private Thread mainThread;
@@ -41,31 +39,19 @@ namespace Dinner
             while (_running)
             {
                 DateTime startTime = DateTime.Now;
-                PoolQueueLength = 0;
-                @event.Reset();
+                CountdownEvent countdown = new CountdownEvent(diningRoom.TaskProcessors.Length);
 
                 if(diningRoom.TaskProcessors.Length > 0)
                 {
                     foreach (var taskProcessor in diningRoom.TaskProcessors)
                     {
-                        if (taskProcessor != null)
+                        ThreadPool.QueueUserWorkItem(x =>
                         {
-                            PoolQueueLength++;
-                            ThreadPool.QueueUserWorkItem(x =>
-                            {
-                                taskProcessor.Process();
-                                lock (PoolQueueLengthLock)
-                                {
-                                    PoolQueueLength--;
-                                }
-                                if (PoolQueueLength == 0)
-                                {
-                                    @event.Set();
-                                }
-                            });
-                        }
+                            taskProcessor?.Process();
+                            countdown.Signal();
+                        });
                     }
-                    @event.WaitOne();
+                    countdown.Wait();
                 }
 
                 _simulation.Forward();

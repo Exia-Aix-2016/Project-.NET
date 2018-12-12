@@ -92,7 +92,6 @@ namespace Dinner
             dining.Clients.ToList().ForEach(client =>
             {
                 Clientdata.Rows.Add("Client", client.Order?.Recipe, client.TaskProcessor.CurrentTask?.Name);
-  
             });
 
 

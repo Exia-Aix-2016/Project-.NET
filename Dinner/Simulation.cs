@@ -65,7 +65,8 @@ namespace Dinner
         void DistributeMenus()
         {
             Table[] tables = _tableService.GetTables(x => x.Menus.Count == 0 && x.Items().Count > 0);
-            foreach(var table in tables)
+
+            foreach (Table table in tables)
             {
                 if (_receptionService.IsMenuAvailable(table.Items().Count))
                 {
@@ -77,7 +78,7 @@ namespace Dinner
 
         void ChooseMeal()
         {
-            Table[] tables = _tableService.GetTables(x => x.Menus.Count > 0 && x.Items().All(y => y.Choice == null && y.Order == null));
+            Table[] tables = _tableService.GetTables(x => x.Menus.Count > 0 && x.Items().All(y => y.Choice == null && y.Order == null && y.TaskProcessor.QueueCount == 0));
             foreach(var table in tables)
             {
                 _clientService.ChooseMeal(table);
@@ -86,7 +87,7 @@ namespace Dinner
 
         void TakeOrders()
         {
-            Table[] tables = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Choice != null && y.Order == null));
+            Table[] tables = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Choice != null && y.Order == null && y.TaskProcessor.QueueCount == 0));
             if (tables.Length > 0)
             {
                 _staffService.TakeOrders(tables[0]);

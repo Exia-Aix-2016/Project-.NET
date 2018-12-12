@@ -36,15 +36,17 @@ namespace Model
         }
         public void Process()
         {
-            if (!_Tasks.Any()) return;
-            _Occupied = true;
-            Task task = CurrentTask;
+            lock (this)
+            {
+                if (!_Tasks.Any()) return;
+                _Occupied = true;
+                Task task = CurrentTask;
 
-            task.Exec();
-            if(task.IsProcess) _Tasks.Dequeue();
+                task.Exec();
+                if (task.IsProcess) _Tasks.Dequeue();
 
-            _Occupied = false;
-
+                _Occupied = false;
+            }
         }
 
         public int Size => _Tasks.Count;

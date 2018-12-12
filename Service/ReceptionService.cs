@@ -20,16 +20,19 @@ namespace Service
         {
             Random random = new Random();
 
-            int nbrRandClient = random.Next(1, 10);
-
-            Client[] clients = new Client[nbrRandClient];
-
-            for(int i = 0; i < clients.Length; i++)
+            if(random.Next(1,60) == 1)
             {
-                clients[i] = new Client();
-            }
+                int nbrRandClient = random.Next(1, 10);
 
-            _diningRoom.Lobby.Add(clients);
+                Client[] clients = new Client[nbrRandClient];
+
+                for (int i = 0; i < clients.Length; i++)
+                {
+                    clients[i] = new Client();
+                }
+
+                _diningRoom.Lobby.Add(clients);
+            }
         }
 
         public Client[][] GetNewClients()
