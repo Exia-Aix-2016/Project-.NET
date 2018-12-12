@@ -28,8 +28,7 @@ namespace Service
             PutMeals(meals.ToArray());
             /*TEMPORAIRE*/
 
-
-            message.Orders.ToList();
+            Console.WriteLine("TESTKITCHEN");
         }
         public Order[] GetOrders()
         {

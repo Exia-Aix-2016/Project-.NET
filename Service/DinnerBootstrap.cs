@@ -11,6 +11,11 @@ namespace Service
     {
         public DependencyInjector Bootstrap()
         {
+            List<string> recipe = new List<string>();
+
+            recipe.Add("caviar");
+            recipe.Add("Calamar");
+
             DependencyInjector injector = new DependencyInjector();
 
             DiningRoom diningRoom = new DiningRoom()
@@ -26,10 +31,16 @@ namespace Service
             square1.Waiters.Add(new Waiter());
             Rank rank1 = new Rank(3);
             Table table1 = new Table(1, 10);
+
+            
             rank1.AddItem(table1);
             Table table2 = new Table(2, 3);
             rank1.AddItem(table2);
             Table table3 = new Table(3, 5);
+
+            table1.Menus.Add(new Menu(recipe));
+            table2.Menus.Add(new Menu(recipe));
+            table3.Menus.Add(new Menu(recipe));
             rank1.AddItem(table3);
             square1.AddItem(rank1);
 
