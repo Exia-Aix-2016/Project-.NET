@@ -21,9 +21,12 @@ namespace Kitchen
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly SimulationController simulationController;
         public MainWindow()
         {
+
             Service.KitchenConnection.Instance.Start();
+
             InitializeComponent();
       
             /*var service = new Service.Class1();

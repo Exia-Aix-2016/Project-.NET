@@ -8,13 +8,13 @@ using Service;
 
 namespace Kitchen
 {
-    class Simulation
+    public class Simulation
     {
         private readonly DependencyInjector _injector;
         private CounterServerService _counterServerService => _injector.Get<CounterServerService>();
        // private KitchenStaffService _kitchenStaffService => _injector.Get<KitchenStaffService>();
 
-        Simulation(DependencyInjector injector)
+        public Simulation(DependencyInjector injector)
         {
             _injector = injector;
         }
