@@ -146,7 +146,7 @@ namespace Service
             {
                 lock (_dining.Squares)
                 {
-                    Client client = _tableService.getTableById(meal.Order.TableId).Items().Where(x => x.Choice == meal.Order.Recipe).First();
+                    Client client = _tableService.getTableById(meal.Order.TableId).Items().Where(x => x.Choice == meal.Order.Recipe && x.Meal == null).First();
                     client.Meal = meal;
 
                 }
@@ -155,16 +155,18 @@ namespace Service
 
         public void CleanTable(Table table)
         {
+            table.WillBeClean = true;
             var waiter = GetWaiterByTable(table);
             waiter.TaskProcessor.AddTask(() =>
             {
                 lock (_dining.Squares) lock (_dining.Menus)
                 {
-                table.WaterBottleFull = false;
-                table.BreadBasketFull = false;
-                table.Menus.Clear();
-                table.Clear();
-                table.Reserved = false;
+                    table.WaterBottleFull = false;
+                    table.BreadBasketFull = false;
+                    table.Menus.Clear();
+                    table.Clear();
+                    table.Reserved = false;
+                    table.WillBeClean = false;
                 }
             }, configuration.TimeToCleanTable, "CLEAN_TABLE");
         }

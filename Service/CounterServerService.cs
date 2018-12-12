@@ -29,9 +29,7 @@ namespace Service
                 _counter.AddOrders(message.Orders);
 
                 /*TEMPORAIRE*/
-                List<Meal> meals = new List<Meal>();
-                message.Orders.ToList().ForEach(order => meals.Add(new Meal(order.Recipe, order)));
-                PutMeals(meals.First());
+                message.Orders.ToList().ForEach(order => PutMeals(new Meal(order.Recipe, order)));
                 /*TEMPORAIRE*/
                 Console.WriteLine("BLABLA");
             }

@@ -114,8 +114,6 @@ namespace Dinner
             foreach(var meal in meals)
             {
                 _staffService.ServeMeal(meal);
-                Table table = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().Any(y => y.Choice == meal.Order.Recipe)).First();
-                _clientService.Eat(table.Items().Where(x => x.Choice == meal.Order.Recipe).First());
             }
         }
 
@@ -130,7 +128,7 @@ namespace Dinner
 
         void CleanTables()
         {
-            Table[] tables = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Finished));
+            Table[] tables = _tableService.GetTables(x => x.Items().Count > 0 && !x.WillBeClean && x.Items().All(y => y.Finished));
             if(tables.Length > 0)
             {
                 _staffService.CleanTable(tables[0]);

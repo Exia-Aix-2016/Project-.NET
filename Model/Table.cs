@@ -13,6 +13,7 @@ namespace Model
         public bool BreadBasketFull = false;
         public bool WaterBottleFull = false;
         public bool Reserved = false;
+        public bool WillBeClean = false;
         private TableStatus _tableStatus;
 
         public Table(int tableID, int numberchairs) : base(numberchairs)
