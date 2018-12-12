@@ -19,7 +19,6 @@
 # Présentation du projet
 
 ![example](assets/img/example.jpg)
-
 ![restaurant](assets/img/restaurant.jpg)
 
 ---
@@ -54,7 +53,7 @@
 
 +++
 
-## Diagrammes de d'activité
+## Diagrammes d'activité
 
 ![activitéreception](assets/img/activitereception.png)
 
@@ -69,6 +68,8 @@
 ---
 
 # Design Pattern
+
++++
 
 ## Injector Pattern
 
@@ -101,8 +102,6 @@
 ---
 
 # Connection à la BDD
-
-![mssql](assets/img/mssql.png)
 
 ![bdd](assets/img/bdd.png)
 
