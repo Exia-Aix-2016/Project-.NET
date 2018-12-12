@@ -47,7 +47,9 @@ namespace Dinner
 
             Clientdata = new DataTable();
             Clientdata.Columns.Add("Client", typeof(string));
+            Clientdata.Columns.Add("Order", typeof(string));
             Clientdata.Columns.Add("Status", typeof(string));
+            
 
             //data.Rows.Add("Table 1", 10, Model.TableStatus.CHOOSEN.ToString());
             DataGridDinner.ItemsSource = Tablesdata.AsDataView();
@@ -89,7 +91,7 @@ namespace Dinner
             Clientdata.Clear();
             dining.Clients.ToList().ForEach(client =>
             {
-                Clientdata.Rows.Add("Client", client.TaskProcessor.CurrentTask.Name);
+                Clientdata.Rows.Add("Client", (client.Order != null) ? client.Order.Recipe : "NONE", client.TaskProcessor.CurrentTask.Name);
   
             });
 
