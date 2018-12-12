@@ -26,11 +26,13 @@ namespace Service
                 string recipe = menu.Recipes[random.Next(0, menu.Recipes.Count - 1)];
                 client.TaskProcessor.AddTask(() =>
                 {
+                    var t = table;
+                    var c = client;
                     lock (dining.Squares)
                     {
-                        client.Choice = recipe;
+                        c.Choice = recipe;
                     }
-                }, configuration.TimeToChoose, "CHOOSING");
+                }, configuration.TimeToChoose, "CHOOSING", true);
             });
         }
 
@@ -42,7 +44,7 @@ namespace Service
                 {
                     client.Finished = true;
                 }
-            }, configuration.TimeToEat, "EATING");
+            }, configuration.TimeToEat, "EATING", true);
         }
 
         public Client[] GetClients(Func<Client, bool> selector)

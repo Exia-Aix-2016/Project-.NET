@@ -17,14 +17,23 @@ namespace Service
             recipe.Add("caviar");
             recipe.Add("Calamar");
 
-
-
             DependencyInjector injector = new DependencyInjector();
 
             DiningRoom diningRoom = new DiningRoom()
             {
                 ClerkWaiter = new ClerkWaiter()
             };
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
             diningRoom.Menus.Add(new Menu(recipe));
             diningRoom.Menus.Add(new Menu(recipe));
             diningRoom.Menus.Add(new Menu(recipe));

@@ -64,7 +64,7 @@ namespace Dinner
 
         void DistributeMenus()
         {
-            Table[] tables = _tableService.GetTables(x => x.Menus.Count == 0 && x.Items().Count > 0);
+            Table[] tables = _tableService.GetTables(x => x.Menus.Count == 0 && x.Items().Count > 0 && x.Items().All(y => y.Choice == null));
 
             foreach (Table table in tables)
             {
@@ -78,7 +78,7 @@ namespace Dinner
 
         void ChooseMeal()
         {
-            Table[] tables = _tableService.GetTables(x => x.Menus.Count > 0 && x.Items().All(y => y.Choice == null && y.Order == null && y.TaskProcessor.QueueCount == 0));
+            Table[] tables = _tableService.GetTables(x => x.Menus.Count > 0 && x.Items().Count > 0 && x.Items().All(y => y.Choice == null && y.Order == null && y.TaskProcessor.QueueCount == 0));
             foreach(var table in tables)
             {
                 _clientService.ChooseMeal(table);
@@ -104,7 +104,7 @@ namespace Dinner
             Table[] tablesNoWater = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().All(y => y.Order != null) && !x.WaterBottleFull);
             if(tablesNoWater.Length > 0)
             {
-                _staffService.ServeBread(tablesNoWater[0]);
+                _staffService.ServeWater(tablesNoWater[0]);
             }
         }
 
@@ -114,8 +114,8 @@ namespace Dinner
             foreach(var meal in meals)
             {
                 _staffService.ServeMeal(meal);
-                Table table = _tableService.GetTables(x => x.Items().Any(y => y.Order == meal.Order)).Single();
-                _clientService.Eat(table.Items().Where(x => x.Order == meal.Order).Single());
+                Table table = _tableService.GetTables(x => x.Items().Count > 0 && x.Items().Any(y => y.Choice == meal.Order.Recipe)).First();
+                _clientService.Eat(table.Items().Where(x => x.Choice == meal.Order.Recipe).First());
             }
         }
 

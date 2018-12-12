@@ -11,8 +11,7 @@ namespace Model
         int QueueLenght { get; }
         int QueueCount { get; }
         void AddTask(Task task);
-        void AddTask(Action callback, int ticks = 1);
-        void AddTask(Action callback, int ticks = 1, string name = "");
+        void AddTask(Action callback, int ticks = 1, string name = "", bool unique = false);
         void RemoveTask(Task task);
         void Process();
         Task CurrentTask { get; }

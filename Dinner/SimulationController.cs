@@ -19,11 +19,10 @@ namespace Dinner
         private volatile bool _running = false;
         public int Speed { get; private set; } = 1;
         private Task task;
-        private double MillisToWait => 1 / Speed * 1000;
+        private double MillisToWait => (double)1 / (double)Speed * (double)1000;
         private readonly Action<DiningRoom> renderCallback;
         private Thread mainThread;
         public int Ticks { get; private set; } = 0;
-        private object RunLock = new object();
 
         public SimulationController(Action<DiningRoom> renderCallback, Thread thread)
         {
@@ -91,7 +90,7 @@ namespace Dinner
 
         public void SpeedUp()
         {
-            if (Speed < 7)
+            if (Speed < 20)
             {
                 Speed++;
             }

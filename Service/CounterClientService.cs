@@ -38,7 +38,7 @@ namespace Service
         public void PutOrders(Order[] orders)
         {
             MessageSocket message = new MessageSocket(orders);
-            DinnerConnection.Instance.Send(message);
+            System.Threading.Tasks.Task.Run(() => DinnerConnection.Instance.Send(message));
         }
     }
 }

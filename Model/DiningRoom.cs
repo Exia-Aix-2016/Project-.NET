@@ -63,6 +63,7 @@ namespace Model
                 taskProcessors.AddRange(HeadWaiters.Select(x => x.TaskProcessor));
                 taskProcessors.AddRange(Waiters.Select(x => x.TaskProcessor));
                 taskProcessors.AddRange(Clients.Select(x => x.TaskProcessor));
+                taskProcessors.Add(ClerkWaiter.TaskProcessor);
                 return taskProcessors.ToArray();
             }
         }

@@ -21,13 +21,12 @@ namespace Model
             _Tasks.Enqueue(task);
         }
 
-        public void AddTask(Action callback, int ticks = 1)
+        public void AddTask(Action callback, int ticks = 1, string name = "UNKNOWN", bool unique = false)
         {
-            _Tasks.Enqueue(new Task(callback, ticks));
-        }
-        public void AddTask(Action callback, int ticks = 1, string name = "")
-        {
-            _Tasks.Enqueue(new Task(callback, ticks, name));
+            if (!unique || GetTasks(name).Length == 0)
+            {
+                _Tasks.Enqueue(new Task(callback, ticks, name));
+            }
         }
 
         public void RemoveTask(Task task)

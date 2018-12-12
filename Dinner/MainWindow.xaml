@@ -20,5 +20,6 @@
         <Label x:Name="NumberClientInLoby" Content="Number of client in lobby : 0" HorizontalAlignment="Left" Margin="153,89,0,0" VerticalAlignment="Top" Width="231"/>
         <DataGrid x:Name="StaffStatus" HorizontalAlignment="Left" Height="241" Margin="389,141,0,0" VerticalAlignment="Top" Width="363"/>
         <DataGrid x:Name="DataGridClientView" HorizontalAlignment="Left" Margin="22,400,0,10" Width="362"/>
+        <Label x:Name="AvailibleMenus" Content="AvailibleMenus : 0" HorizontalAlignment="Left" Margin="346,58,0,0" VerticalAlignment="Top" Width="164"/>
     </Grid>
 </Window>
