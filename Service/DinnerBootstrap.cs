@@ -16,12 +16,17 @@ namespace Service
             recipe.Add("caviar");
             recipe.Add("Calamar");
 
+
+
             DependencyInjector injector = new DependencyInjector();
 
             DiningRoom diningRoom = new DiningRoom()
             {
                 ClerkWaiter = new ClerkWaiter()
             };
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
+            diningRoom.Menus.Add(new Menu(recipe));
 
             Square square1 = new Square(1, 1)
             {
@@ -38,9 +43,7 @@ namespace Service
             rank1.AddItem(table2);
             Table table3 = new Table(3, 5);
 
-            table1.Menus.Add(new Menu(recipe));
-            table2.Menus.Add(new Menu(recipe));
-            table3.Menus.Add(new Menu(recipe));
+
             rank1.AddItem(table3);
             square1.AddItem(rank1);
 

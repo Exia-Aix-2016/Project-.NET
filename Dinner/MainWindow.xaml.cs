@@ -91,7 +91,7 @@ namespace Dinner
             Clientdata.Clear();
             dining.Clients.ToList().ForEach(client =>
             {
-                Clientdata.Rows.Add("Client", (client.Order != null) ? client.Order.Recipe : "NONE", client.TaskProcessor.CurrentTask.Name);
+                Clientdata.Rows.Add("Client", (client.Order != null) ? client.Order.Recipe : "NONE", client.TaskProcessor.CurrentTask?.Name);
   
             });
 
